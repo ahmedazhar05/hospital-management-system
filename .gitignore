@@ -1,11 +1,7 @@
 docs/*.zip
 docs/*.odp
 
-!Abstract
-!Backlog
-GenC ADM FSE MFPE Design Considerations.pdf
-!High Level Design
-!Tracker
-!Wireframe
+docs/MFRP/GenC ADM FSE MFPE Design Considerations.pdf
 
-!docs/*/.pdf
+docs/*/*/*
+!docs/*/*/*.pdf
