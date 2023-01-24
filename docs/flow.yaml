@@ -34,9 +34,9 @@ Doctor:
 				- diet chart
 				- tests
 				- done with the patient
-		- accept/reject future patient appointments
+		# - accept/reject future patient appointments
 	- get appointment history
-	- get list of attending doctors under him/her (depends on a docter-position)
+	- get list of attending doctors under him/her (depends on a doctor-position)
 	- &get-emergency-ping (this is only a popup)
 
 Nurses:
