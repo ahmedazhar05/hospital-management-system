@@ -51,13 +51,13 @@ Helpdesk:
 		- close chat
 
 Admin:
-	- add/remove doctors/nurses/staff (staff management)
-	- add/remove departments
+	- add/remove/edit doctors/nurses/staff (staff management)
+	- add/remove/edit departments
 	- define prices for admitting room:
 		- for general beds
 		- for ICU beds
 	- define surgery prices
-	- update shifts of doctor/nurse
+	# - update shifts of doctor/nurse
 	- billing system:
 		- get prescription:
 			- get surgery details:
