@@ -10,7 +10,7 @@ ___
 - **Online prescription** - Doctors will be able to generate prescriptions for patients prescribing medicines, diet chart and related tests.
 - **Billing system** - Admins can initiate bills for the customers for all the hospital services that they have used.
 - **Administration** - Admins can manage all the variables of the hospital such as adding/removing doctors/nurses/staffs, defining charges for the beds and so on.
-- **Online Helpdesk** - An online helpdesk facility will be available for both registered or unregistered patients to ask question and resolve their queries.
+- **Online Helpdesk** - An online helpdesk facility will be available to show information about the hospital services and information about common diseases and surgeries.
 
 ### Users:
 - **Patients** - They are the primary users of different hospital services.
