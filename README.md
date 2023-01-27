@@ -16,5 +16,5 @@ ___
 - **Patients** - They are the primary users of different hospital services.
 - **Doctors** - They will be involved with interacting with patients and prescribing medicines to them.
 - **Nurses** - They will be assisting the visiting patients and helping doctors in their various tasks.
-- **Helpdesk** - They will be involved with responding and resolving any queries that arises through the online Helpdesk chat.
+- **Helpdesk** - They will be involved with responding and resolving any queries that arises through the online Helpdesk chat. Even they help in booking for the rooms.
 - **Admins** - They will have read and write access to all the information about the hospital, they will also be managing the billing system.
