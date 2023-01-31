@@ -15,4 +15,8 @@ Guides:
   - title: Angular 7 + Spring Boot JWT Authentication
     url: https://www.javainuse.com/spring/ang7-jwt
     
+  - title: Spring Boot + Angular 15 + MySQL
+    url: https://www.bezkoder.com/spring-boot-angular-15-mysql
     
+  - title: Angular 15 + Spring Boot: JWT Authentication & Authorization
+    url: https://www.bezkoder.com/angular-15-spring-boot-jwt-auth

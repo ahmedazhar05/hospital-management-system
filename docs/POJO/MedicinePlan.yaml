@@ -1,16 +1,16 @@
 class: MedicinePlan
 member variables:
 	+name: String
-	+dosage: {
-		# HashMap<String, int>
-		Before_Breakfast: 1,
-		After_Breakfast: 2,
-		Before_Lunch: 2,
-		After_Lunch: 2,
-		Night: 2,
-		Morning: 2
-	}
+	+dosage: HashMap<String, int>
+	#{
+	#	Before_Breakfast: 1,
+	#	After_Breakfast: 2,
+	#	Before_Lunch: 2,
+	#	After_Lunch: 2,
+	#	Night: 2,
+	#	Morning: 2
+	#}
 	+DurationDays: int # no of days
 
 methods:
-	+addDosage(String time; int noOfPills): void
+	+addDosage(String timeOfDay; int numberOfPills): void
