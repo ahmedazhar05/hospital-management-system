@@ -1,0 +1,8 @@
+class: Report
+member variables:
+	-<static>UID: int
+	+id: int
+	+name: String
+	+url: String
+
+methods:

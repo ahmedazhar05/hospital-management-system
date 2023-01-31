@@ -1,0 +1,12 @@
+class: Prescription
+member variables:
+	+assignedDoctor: Doctor
+	+diagnosis: String
+	+investigation: String[]
+	+medicinePlan: MedicinePlan[]
+	+dietPlan: HashMap<String, int>
+	+avoidables: String
+
+methods:
+	+addMedicinePlan(MedicinePlan): void
+	+addDietPlan(DietPlan): void

@@ -4,3 +4,15 @@ For images:
 For content:
 - https://www.rubyhospital.com/anaesthesiology.php
 - https://www.adroitinfosystems.com/amp/ehospital-systems
+
+Guides:
+  - title: RESTful Web Service with AngularJS
+    url: https://spring.io/guides/gs/consuming-rest-angularjs
+
+  - title: Accessing JPA Data with REST
+    url: https://spring.io/guides/gs/accessing-data-rest
+    
+  - title: Angular 7 + Spring Boot JWT Authentication
+    url: https://www.javainuse.com/spring/ang7-jwt
+    
+    

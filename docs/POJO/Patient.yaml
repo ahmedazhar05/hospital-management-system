@@ -1,0 +1,24 @@
+class: Patient
+member variables:
+	-UID: int
+	+fullname: String
+	+age: int
+	+gender: char
+	+weight: int
+	+contact number: int
+	-address: String
+	+email: String
+	+blood group: string
+	-verification document number: String
+	+reports: Reports[]
+	+prescription: Prescription[]
+	+appointment: Appointment[]
+
+methods:
+	+addReport(Report): boolean
+	+deleteReport(int report_id): boolean
+	+getReport(int report_id): Report
+	+addPrescription(Prescription): boolean
+	+deletePrescription(int prescription_id): boolean
+	+getPrescription(int prescription_id): Prescription
+	+bookAppointment(Appointment): boolean
