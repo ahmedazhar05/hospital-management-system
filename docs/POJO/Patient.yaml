@@ -12,14 +12,11 @@ member variables:
 	+blood group: string
 	-verification document number: String
 	+reports: Report[]
-	+prescription: Prescription[]
-	+appointment: Appointment[]
+	+toBeAdmitted: boolean
 
 methods:
 	+addReport(Report r): boolean
 	+deleteReport(int report_id): boolean
 	+getReport(int report_id): Report
-	+addPrescription(Prescription p): boolean
-	+deletePrescription(int prescription_id): boolean
 	+getPrescription(int prescription_id): Prescription
-	+bookAppointment(Appointment a): boolean
+	+bookAppointment(...): boolean

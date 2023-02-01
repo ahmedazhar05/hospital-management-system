@@ -1,0 +1,15 @@
+class: Admin
+member variables:
+	-id: int
+	+bills: Bill[]
+	+rooms: HashMap<int, String[]>
+	+schemes: HashMap<int, String>
+	+insurance: HashMap<int, String>
+
+methods:
+	+createNewBill(...): void
+	+alotRoom(...): void
+	+addHealthScheme(): void
+	+removeHealthScheme(): void
+	+addInsurance(): void
+	+removeInsurance(): void

@@ -1,0 +1,20 @@
+class: Doctor
+member variables:
+	-id: int
+	+fullname: String
+	+designation: String
+	+department: String
+	+degrees: String[]
+	+experience: int
+	+imageUrl: String
+	+language: String[]
+	-mobile: int
+	+description: String
+	+gender: char
+	+fees: int
+
+methods:
+	+createPrescription(...): boolean
+	+getPatientReport(int report_id): Report
+	+listAppointments(): Appointment[]
+	+setPatientAdmission(Patient p; boolean b): void # to be admitted

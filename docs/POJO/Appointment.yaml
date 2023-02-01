@@ -1,0 +1,11 @@
+class: Appointment
+member variables:
+	-<static>UID: int
+	+id: int
+	+doctor: Doctor
+	+patient: Patient
+	+specialityType: String
+	+subSpecialityType: String
+	+day: String
+	+time: DateTime
+	+symptoms: String[]
