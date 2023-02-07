@@ -1,28 +1,31 @@
+---
+title: User Login Flow
+---
 sequenceDiagram
     autonumber
     participant A as Angular UI
-    participant SC as Controller
-    participant SM as Manager
-    participant SD as DAO
+    participant SC as Authentication<br>Controller
+    participant SM as Authentication<br>Manager
+    participant SD as Authentication<br>DAO
     participant SU as Utility
 
-    Note over A, SU: User Login
-    A->>SC: POST /login (username, password)
-    SC->>SM: verify user credentials (username, password)
+    A->>SC: POST /login<br>(username, password)
+    SC->>SM: verify user credentials<br>(username, password)
     SM->>+SD: fetch user from DB (username)
     alt user found
-        SD-->>SM: return new User() object
+        SD-->>SM: return new User() object<br>that contains a hash
         SM->>+SU:  calculate Hash (password)
         SU-->>-SM: return hash
         alt both password-hash and hash from user object are equal
-            SM-->>SC: create and return new JWT
+            Note left of SM: using a JWT library
+            SM-->>SC: create and return a new JWT
             SC-->>A: redir to /home with JWT
         else
             SM-->>SC: throw new InvalidUserException()
             SC-->>A: HTTP 401 Unauthorized
         end
     else
-        SD-->>-SM: throw new UserNotFoundException()
+        SD-->>-SM: return null
         SM-->>SC: throw new UserNotFoundException()
         SC-->>A: HTTP 401 Unauthorized
     end

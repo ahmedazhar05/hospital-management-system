@@ -1,0 +1,113 @@
+classDiagram
+User<|--Admin: implements
+User<|--Doctor: implements
+User<|--Patient: implements
+Bill*--PrescriptionManager: composed of
+Prescription*--MedicinePlan: composed of
+
+Doctor--AppointmentManager: can access
+Patient--AppointmentManager: can book
+Patient*--Report: will have
+AppointmentManager*--Appointment: composed of
+
+Doctor--PrescriptionManager: can prescribe
+Patient--PrescriptionManager: can access
+
+PrescriptionManager*--Prescription: composed of
+
+Admin*--Bill: can create
+
+class PrescriptionManager{
+    -prescriptions: Prescription[]
+	+createPrescription(Prescription p): boolean
+	+getPatientDetails(int prescription_id): boolean
+}
+class AppointmentManager{
+    -appointments: Appointment[]
+    -getAppointment(int appointment_id): Appointment
+	+bookAppointment(Appointment a): boolean
+	+cancelAppointment(Appointment a): boolean
+	+getPatientAppointments(Patient p): Appointment[]
+	+getDoctorAppointments(Doctor p): Appointment[]
+}
+class Appointment{
+    +id: int
+    +doctor: Doctor
+	+patient: Patient
+	+specialityType: String
+	+subSpecialityType: String
+	+day: String
+	+time: DateTime
+	+symptoms: String[]
+}
+class Report{
+    +id: int
+	+name: String
+	+url: String
+}
+class User{
+    <<interface>>
+    -fullname: String
+    -id: int
+    -username: String
+    -hash: String
+}
+class Admin{
+    -contact: long
+    -email: String
+}
+class Doctor{
+    +designation: String
+	+department: String
+	+degrees: String[]
+	+experience: int
+	+imageUrl: String
+	+language: String[]
+	-mobile: long
+	+description: String
+	+gender: char
+	+fees: int
+}
+class Patient{
+    -age: int
+	-gender: char
+	-weight: int
+	-contact: long
+	-address: String
+	-email: String
+	-blood_group: String
+	-verification_doc: Map~String, String~
+}
+class Prescription{
+    +id: int
+	+assignedDoctor: Doctor
+	+diagnosis: String
+	+investigation: String[]
+	+medicinePlan: MedicinePlan[]
+	+dietPlan: Map~String, int~
+	+avoidables: String[]
+	+addMedicinePlan(MedicinePlan): void
+	+addDietPlan(String food, int duration): void
+}
+class MedicinePlan{
+    +name: String
+	+dosage: Map~String, int~
+	+durationDays: int
+	+addDosage(String timeOfDay, int numberOfPills): void
+}
+class Bill{
+    +id: int
+    +patient: Patient
+	+prescriptions: Prescription[]
+	+roomCharge: int
+	+surgeryCharge: int
+	+insuranceID: String
+	+schemeID: String
+	+insuranceDeduction: int
+	+schemeDeduction: int
+	+totalAmount: int
+	+paid: boolean
+    +calculateTotal(): int
+	+addPrescription(Prescription p): boolean
+	+removePrescription(Prescription p): boolean
+}
