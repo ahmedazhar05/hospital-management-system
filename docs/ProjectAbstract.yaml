@@ -18,8 +18,7 @@ Hospital Management System:
 			- Should be able to check his/her appointment history.
 			
 		Helpdesk:
-			- Alert an emergency to the relevant doctors and nurses
-			- Accept chat and chat with customers # (chat people online through the chat box)
+			- show all types of information about the hospital including surgery charges and room/bed prices
 			
 		Doctors:
 			- Should be able to check their daily schedules with patients, etc
@@ -29,4 +28,3 @@ Hospital Management System:
 		Admin:
 			- Should be able to create Departments, add Doctors, add Nurses, add Staffs
 			- Should be able to define surgery prices
-			- Should be able to update shifts of doctors or nurses
