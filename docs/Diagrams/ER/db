@@ -1,0 +1,261 @@
+@startuml
+/'
+    Skin
+'/
+
+' left to right direction
+' top to bottom direction
+
+skinparam componentStyle uml2
+skinparam monochrome false
+skinparam shadowing false
+skinparam backgroundColor #ffffff
+skinparam roundCorner 7
+
+skinparam Arrow {
+    Color #999999
+}
+
+skinparam default {
+    BorderColor #666666
+    FontColor #444444
+    FontName Helvetica
+    FontSize 12
+    TextAlignment center
+}
+
+skinparam Box {
+    Padding 10
+    BorderThickness 0.5
+    BorderColor #CEDBE1
+    BackgroundColor #edf5f9
+}
+
+skinparam Note {
+    FontColor #5F560B
+    BorderColor #C8B609
+    BackgroundColor #fff166
+    BorderThickness 1
+}
+
+skinparam Database {
+    BorderColor #202758
+    BorderThickness 0.4
+    BackgroundColor #D7D0F6
+    FontColor #202758
+}
+
+skinparam Control {
+    BorderColor #28451F
+    BorderThickness 1
+    BackgroundColor #C5E5BB
+    FontColor #000000
+}
+
+skinparam Actor {
+    BorderColor #3E4681
+    BorderThickness 1.5
+    BackgroundColor #ffffff
+    FontColor #3E4681
+}
+
+skinparam Rectangle {
+    Padding 20
+    BorderThickness 0.5
+    FontColor #1D234E
+    BackgroundColor #C1C6EC
+    BorderColor #202758
+}
+
+skinparam Participant {
+    Padding 20
+    BorderThickness 1.5
+    FontColor #3E4681
+    BackgroundColor #ffffff
+    BorderColor #3E4681
+}
+
+skinparam Group {
+    FontColor #5F560B
+    BodyFontColor #5F560B
+    BorderColor #C8B609
+    BorderThickness 1
+    BackgroundFontColor #5F560B
+    BackgroundColor #fff166
+    BodyBackgroundColor #f9f9f9
+}
+
+skinparam Collections {
+    BorderColor #233D4B
+    BorderThickness 0.5
+    BackgroundColor #2480AA
+    FontColor #ffffff
+}
+
+skinparam sequence {
+
+    ArrowColor #999999
+
+    LifeLineBorderColor #6998B5
+    LifeLineBorderThickness 1
+    LifeLineBackgroundColor #A9CCE3
+    
+    BoxPadding 10
+    BoxBorderThickness 0.5
+    BoxBorderColor #CEDBE1
+    BoxBackgroundColor #edf5f9
+
+    DividerBorderColor #666666
+    DividerBorderThickness 0.7px
+    DividerBackgroundColor #fff166
+    
+    GroupFontColor #5F560B
+    GroupBodyFontColor #5F560B
+    GroupBorderColor #C8B609
+    GroupBorderThickness 1
+    GroupBackgroundFontColor #5F560B
+    GroupBackgroundColor #fff166
+    GroupBodyBackgroundColor #f9f9f9
+}
+
+
+entity admin{
+    id: int <<PK>> 
+    name: varchar
+    hash: varchar
+    username: varchar
+    email: varchar
+    contact: int
+}
+
+entity language{
+    id: int <<PK>>
+    name: varchar
+}
+
+entity department {
+    id: int <<PK>>
+    name: varchar
+}
+
+entity doctor{
+    id: int <<PK>>
+    name: varchar
+    designation: varchar
+    department: int <<FK>>
+    degrees: varchar
+    experience: int
+    image: varchar
+    language: int <<FK>>
+    contact: int
+    description: varchar 
+    gender: char
+    fees: int
+}
+
+entity verification_doc_types{
+    id: int <<PK>>
+    type: varchar
+}
+
+entity patient{
+    id: int <<PK>>
+    name: int
+    age: int
+    gender: char
+    weight: int
+    contact: int
+    address: varchar
+    email: varchar
+    blood_group: varchar
+    verification_doc_type: int <<FK>>
+    verification_doc: varchar
+}
+
+entity prescription{
+    id: int <<PK>>
+    patient_id: int <<FK>>
+    doctor_id: int <<FK>>
+    diagnosis: varchar
+    investigation: varchar
+    bill_id: int <<FK>>
+}
+
+entity rooms{
+    id: int <<PK>>
+    type: varchar
+    has_ac: boolean
+
+}
+
+entity bill{
+    id: int <<PK>>
+    patient_id: int <<FK>>
+    room_charge: int <<FK>>
+    surgery_charge: int
+    insurance_id: int <<FK>>
+    scheme_id: int <<FK>>
+    total_amount: int
+    paid: boolean
+}
+
+entity appointment{
+    id: int <<PK>>
+    doctor_id: int <<FK>>
+    patient_id: int <<FK>>
+    speciality_type: varchar
+    sub_speciality_type: varchar
+    day: varchar
+    time: datetime
+    symptoms: varchar
+}
+
+entity medicine_plan{
+    id: int <<PK>>
+    name: varchar
+    dosage: varchar
+    duration_days: int
+    prescription_id: int <<FK>>
+}
+
+entity diet_plan{
+    id: int <<PK>>
+    plan: varchar
+    duration_days: int
+    prescription_id: int <<FK>>
+}
+
+entity insurance{
+    id: int <<PK>>
+    company: varchar
+    amount_redeemable: int
+}
+
+entity scheme{
+    id: int <<PK>>
+    scheme_name: varchar
+    amount_redeemable: int
+}
+
+
+language }|--|| doctor
+department ||--|| doctor
+verification_doc_types ||--|| patient
+prescription }o--|| patient
+prescription }o--|| doctor
+medicine_plan }|--|| prescription
+diet_plan }o--|| prescription
+prescription }|--|| bill
+insurance ||--|| bill
+scheme ||--|| bill
+appointment }o--|| patient
+appointment }o--|| doctor
+
+' admin
+' doctor
+' patient
+' prescription
+' bill
+' appointment
+
+@enduml

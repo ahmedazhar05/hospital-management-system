@@ -1,0 +1,15 @@
+---
+title: Prescription Creation flow
+---
+flowchart TD
+    start([Start])
+    start-->create[Create Prescription]
+    create-->details[/Enter Diagnosis and<br>Investigation details/]
+    details-->|Add Medicine Plan| addmed[/Enter medicine name,<br>dosage and duration/]
+    addmed-->|multiple additions| addmed
+    addmed-->diet{Add Diet Plan}
+    diet-->|Yes then Add<br>Diet plan| adddiet[/Enter food and duration/]
+    diet-->|No| s
+    adddiet-->|multiple additions| adddiet
+    adddiet-->s[Submit]
+    s-->ends([End])
