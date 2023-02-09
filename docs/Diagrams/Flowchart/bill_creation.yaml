@@ -3,15 +3,14 @@ title: Bill Creation flow
 ---
 flowchart TD
     start([Start])
-    start-->create[Create a bill]
-    create-->pid[/Enter patient ID/]
+    start-->pid[/Enter patient ID/]
     pid-->select[select prescription]
     select-->|multiple selections| select
     select-->haveinsurance{have<br>insurance<br>ID}
     haveinsurance-->|Yes| insurance[/Enter insurance ID/]
     insurance-->havescheme{have<br>scheme<br>ID}
-    haveinsurance-->|No| havescheme[/Enter scheme ID/]
-    havescheme-->|Yes| scheme
+    haveinsurance-->|No| havescheme{have<br>scheme<br>ID}
+    havescheme-->|Yes| scheme[/Enter scheme ID/]
     scheme-->s
     havescheme-->|No| s
     s[Submit]-->ends([End])

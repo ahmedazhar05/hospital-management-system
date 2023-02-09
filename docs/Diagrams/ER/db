@@ -119,57 +119,21 @@ skinparam sequence {
 }
 
 
-entity admin{
-    id: int <<PK>> 
-    name: varchar
-    hash: varchar
-    username: varchar
-    email: varchar
-    contact: int
+entity bill {
+    id: int <<PK>>
+    billed_prescriptions_id: int <<FK>>
+    patient_id: int <<FK>>
+    room_id: int <<FK>>
+    surgery_charge: int
+    insurance_id: int <<FK>>
+    scheme_id: int <<FK>>
+    total_amount: int
+    paid: boolean
 }
 
-entity language{
-    id: int <<PK>>
-    name: varchar
-}
-
-entity department {
-    id: int <<PK>>
-    name: varchar
-}
-
-entity doctor{
-    id: int <<PK>>
-    name: varchar
-    designation: varchar
-    department: int <<FK>>
-    degrees: varchar
-    experience: int
-    image: varchar
-    language: int <<FK>>
-    contact: int
-    description: varchar 
-    gender: char
-    fees: int
-}
-
-entity verification_doc_types{
-    id: int <<PK>>
-    type: varchar
-}
-
-entity patient{
-    id: int <<PK>>
-    name: int
-    age: int
-    gender: char
-    weight: int
-    contact: int
-    address: varchar
-    email: varchar
-    blood_group: varchar
-    verification_doc_type: int <<FK>>
-    verification_doc: varchar
+entity billed_prescriptions{
+    bill_id: int <<FK>>
+    prescription_id: int <<FK>>
 }
 
 entity prescription{
@@ -178,25 +142,22 @@ entity prescription{
     doctor_id: int <<FK>>
     diagnosis: varchar
     investigation: varchar
-    bill_id: int <<FK>>
+    medicine_plan_id: int <<FK>>
+    diet_plan_id: int <<FK>>
+    avoidables: varchar
 }
 
-entity rooms{
-    id: int <<PK>>
-    type: varchar
-    has_ac: boolean
-
+entity diet_plan{
+    plan_id: int <<FK>>
+    food: varchar
+    duration_days: int
 }
 
-entity bill{
-    id: int <<PK>>
-    patient_id: int <<FK>>
-    room_charge: int <<FK>>
-    surgery_charge: int
-    insurance_id: int <<FK>>
-    scheme_id: int <<FK>>
-    total_amount: int
-    paid: boolean
+entity medicine_plan{
+    plan_id: int <<FK>>
+    name: varchar
+    dosage: varchar
+    duration_days: int
 }
 
 entity appointment{
@@ -205,24 +166,8 @@ entity appointment{
     patient_id: int <<FK>>
     speciality_type: varchar
     sub_speciality_type: varchar
-    day: varchar
-    time: datetime
+    datetime: datetime
     symptoms: varchar
-}
-
-entity medicine_plan{
-    id: int <<PK>>
-    name: varchar
-    dosage: varchar
-    duration_days: int
-    prescription_id: int <<FK>>
-}
-
-entity diet_plan{
-    id: int <<PK>>
-    plan: varchar
-    duration_days: int
-    prescription_id: int <<FK>>
 }
 
 entity insurance{
@@ -237,25 +182,85 @@ entity scheme{
     amount_redeemable: int
 }
 
+entity rooms{
+    id: int <<PK>>
+    type: varchar
+    has_ac: boolean
+    charge: int
+}
 
-language }|--|| doctor
+entity patient{
+    id: int <<PK>>
+    name: varchar
+    hash: varchar
+    username: varchar
+    gender: char
+    weight: int
+    contact: int
+    address: varchar
+    email: varchar
+    blood_group: char
+    verification_doc_type: int <<FK>>
+    verification_doc: varchar
+}
+
+entity reports{
+    id: int <<PK>>
+    name: varchar
+    url: varchar
+    patient_id: int <<FK>>
+}
+
+entity verification_doc_types{
+    id: int <<PK>>
+    type: varchar
+}
+
+entity doctor{
+    id: int <<PK>>
+    name: varchar
+    hash: varchar
+    username: varchar
+    designation: varchar
+    department_id: int <<FK>>
+    degrees: varchar
+    experience: int
+    image: varchar
+    language: varchar
+    contact: int
+    description: varchar
+    gender: char
+    fees: int
+}
+
+entity department{
+    id: int <<PK>>
+    name: varchar
+}
+
+entity admin{
+    id: int <<PK>>
+    name: varchar
+    hash: varchar
+    username: varchar
+    email: varchar
+    contact: int <<PK>>
+}
+
 department ||--|| doctor
-verification_doc_types ||--|| patient
-prescription }o--|| patient
+patient ||--o{ reports
+patient ||--|| verification_doc_types
+patient ||--o{ appointment
+appointment }o--|| doctor
+patient ||--o{ prescription
 prescription }o--|| doctor
-medicine_plan }|--|| prescription
-diet_plan }o--|| prescription
-prescription }|--|| bill
+prescription ||--|{ medicine_plan
+prescription ||--o{ diet_plan
+prescription |o--|| billed_prescriptions
+bill ||--|| billed_prescriptions
+patient }o--|| bill
 insurance ||--|| bill
 scheme ||--|| bill
-appointment }o--|| patient
-appointment }o--|| doctor
-
-' admin
-' doctor
-' patient
-' prescription
-' bill
-' appointment
+rooms ||--|| bill
 
 @enduml

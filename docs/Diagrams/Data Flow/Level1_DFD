@@ -119,46 +119,56 @@ skinparam sequence {
     GroupBodyBackgroundColor #f9f9f9
 }
 
-' skinparam actorStyle awesome
+skinparam actorStyle awesome
 
-:Patient: as P
-:Doctor: as D
-:Admin: as A
+actor Patient as P
+actor Doctor as D
+actor Admin as A
 
-rectangle "Health+"{
-    (Book Appointment) as (bookA)
-    (Create Prescription) as (createP)
-    (View Prescription) as (viewP)
-    (View Reports) as (viewR)
-    (View Appointments) as (viewA)
-    (Upload Reports) as (updR)
-    (Add Details) as (addD)
-    (Select Symptoms,\nspecialization,\nDoctor and Timeslot) as (input)
-    (Create Bills) as (createB)
-    (add prescriptions\nto the bill) as (addP)
-    
-    P -- (Login)
-    P -- (Register)
-    (Register) -.-> (addD) : <<include>>
-    (addD) <-.- (updR) : <<extend>>
-    (updR) -.-> (viewR) : <<include>>
-    (viewR) -- D
-    
-    P -- (bookA)
-    (bookA) -.-> (input) : <<include>>
-    (input) -.-> (viewA) : <<include>>
-    (viewA) -- D
+node "Hospital\nManagement\nSystem" as hms
 
-    (createP) -- D
-    (viewP) <-.- (createP) : <<include>>
-    P -- (viewP)
-    
-    (Add/Delete/\nUpdate Doctor) -up- A
-    (createB) -up- A
-    (createB) -.-> (select Patient) : <<include>>
-    (select Patient) -.-> (addP) : <<include>>
-    (Book\nhospital\nbed) -up- A
-    (addP) -.-> (calculate amount) : <<include>>
-}
+rectangle Login
+rectangle "Login " as l
+rectangle Signup
+rectangle "Book\nAppointment" as ba
+rectangle "Upload\nReport" as upload
+rectangle "View\nReport" as vr
+rectangle "View\nAppointment" as va
+rectangle "Create\nPrescription" as cp
+rectangle "View\nPrescription" as vp
+rectangle "Book hospital\nRoom beds" as bb
+rectangle "Add/Update/\nDelete Doctors" as add
+rectangle "Create\nBill" as cb
+
+P -up-> l : credentials
+D --> Login : credentials
+A --> Login : credentials
+
+P -up-> Signup : "patient\ndetails"
+P -up-> ba : "appointment\ndetails"
+P -up-> upload : "report\nimage"
+P -up-> vp : "prescription\ndetails"
+
+D --> cp : "prescription\ndetails"
+D --> vr : "report\nimage"
+D --> va : "appointment\ndetails"
+
+A --> cb : "bill\ndetails"
+A --> bb : "bed\ndetails"
+A --> add : "doctor\ndetails"
+
+l -up-> hms
+Login --> hms
+Signup -up-> hms
+ba -up-> hms
+upload -up-> hms
+vp -up-> hms
+cp --> hms
+vr --> hms
+va --> hms
+cb --> hms
+bb --> hms
+add --> hms
+
 
 @enduml
