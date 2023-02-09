@@ -18,18 +18,18 @@ Hospital Management System came into the picture of hospital management as early
 1. **Patient**
     - Should be able to *create an account* in order to access hospital services.
     - Should be able to *log in* to my account easily with my username and password.
-    <!-- - Should be able to *book appointments* online with a doctor. -->
+    - Should be able to *book appointments* online with a doctor.
     - Should be able to *update my health information* and access them.
     - Should be able to *upload my medical test reports* in the portal.
 
 2. **Doctor**
     - Should be able to *check patient appointments* to examine and help them recover their illness.
-    <!--- Should be able to *log in* to my account easily with my username and password so that I can access patient information and view thier reports. -->
+    - Should be able to *log in* to my account easily with my username and password so that I can access patient information and view thier reports.
     - Should be able to *create a prescription* to prescribe medicines to the patients and suggest diet plan.
 
 3. **Admin**
     - Should be able to *create bills* for all the services and resources used by the patient.
-    <!--- Should be able to *log in* to my account with my username and password with valid credentials so that I can access and manage hospital information and resources. -->
+    - Should be able to *log in* to my account with my username and password with valid credentials so that I can access and manage hospital information and resources.
     - Should be able to access and *modify all the information of hospital* and *book room-beds* for patients, in the hospital.
 
 ![Use Case Diagram]()
@@ -50,7 +50,7 @@ Hospital Management System came into the picture of hospital management as early
 ![ER Diagram]()
 
 ### Solution Summary
-1. **Scope not covered**
+1. **Modules not covered**
     - Payment gateway integration
     - Medicine inventory management
 
