@@ -1,0 +1,34 @@
+service:
+  database:
+    image: mysql:8.0.32
+    ports:
+      - 3306:3306
+    volumes:
+      - ${PWD}/data/database:/var/lib/mysql
+    secrets:
+      - mysql-root-passwd
+      - mysql-db
+      - mysql-user
+      - mysql-user-passwd
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-root-passwd
+      MYSQL_DATABASE_FILE: /run/secrets/mysql-db
+      MYSQL_USER_FILE: /run/secrets/mysql-user
+      MYSQL_PASSWORD_FILE:  /run/secrets/mysql-user-passwd
+
+  frontend:
+    build: user-interface
+    # depends_on:
+    #   - db
+    ports:
+      - 4200:4200
+
+secrets:
+  mysql-root-passwd:
+    file: ./secrets/mysql-root-passwd
+  mysql-db:
+    file: ./secrets/mysql-db
+  mysql-user:
+    file: ./secrets/mysql-user
+  mysql-user-passwd:
+    file: ./secrets/mysql-user-passwd
