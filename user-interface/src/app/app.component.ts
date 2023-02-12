@@ -15,10 +15,7 @@ export interface BasePage {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements BasePage {
-  options: navOptionsType = [{
-    text: 'Home',
-    href: '/'
-  }];
+  options: navOptionsType = [];
   title: string = "Health+";
   public setNavbarNavigations(component: { options: navOptionsType }){
     this.options = component.options;
