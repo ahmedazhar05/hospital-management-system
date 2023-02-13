@@ -1,0 +1,38 @@
+div.d-flex.flex-column {
+  max-height: 80vh;
+}
+td, th {
+  background-color: white;
+}
+td {
+  padding: 0;
+}
+td:not(:empty) > div.form-check > label,
+thead td:not(:empty) > button {
+  border-radius: 0;
+  width: 100%;
+  border: 0;
+}
+td:not(:empty) > div.form-check > label {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+thead td:not(:empty) > button {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+th {
+  text-align: center;
+}
+#calendar{
+  min-width: 337px;
+  max-width: max-content;
+  flex-shrink: 0;
+  /* min-height: 23rem; */
+}
+.form-check {
+  min-height: unset;
+}
+/* #ap-list {
+  min-height: 23rem;
+} */
