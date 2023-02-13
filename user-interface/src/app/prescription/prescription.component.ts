@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-prescription',
@@ -13,4 +13,13 @@ export class PrescriptionComponent {
   name = "Dr. kuber kanade"
   degree = "MBBS, DNB(Gen. Surgeon), MS, MNAMS, FMAS, FIAGES, FALS, AFIH"
 
+@ViewChild("f") form:any;
+
+  onPrescribe(){
+    if(this.form.valid){
+      console.log(this.form.value);
+      // TODO: perform the necessary login process with these form values
+      this.form.reset();
+    }
+  }
 }

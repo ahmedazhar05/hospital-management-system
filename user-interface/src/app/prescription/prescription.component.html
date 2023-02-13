@@ -9,29 +9,29 @@
     <div class="col-sm-7">
         <p><b>{{name}}</b><br />{{degree}}</p>
     </div>
-    <form>
+    <form (ngSubmit)="onPrescribe()" #f="ngForm">
         <div class="row mb-3">
             <label for="inputName" class="col-sm-4 col-form-label">Patient name:</label>
             <div class="col-sm-6">
-                <input type="name" class="form-control" id="inputname">
+                <input type="text" class="form-control" id="inputname" name="name" ngModel>
             </div>
         </div>
         <div class="row mb-3">
             <label for="inputAge" class="col-sm-4 col-form-label">Age:</label>
             <div class="col-sm-6">
-                <input type="age" class="form-control" id="inputage">
+                <input type="text" class="form-control" id="inputage" name="age" ngModel>
             </div>
         </div>
         <div class="row mb-3">
             <label for="inputDianosis" class="col-sm-4 col-form-label">Diagnosis:</label>
             <div class="col-sm-6">
-                <input type="diagnosis" class="form-control" id="inputsidiagnosis">
+                <input type="text" class="form-control" id="inputsidiagnosis" name="diagnosis" ngModel>
             </div>
         </div>
         <div class="row mb-3">
             <label for="inputInvestigation" class="col-sm-4 col-form-label">Investigation:</label>
             <div class="col-sm-6">
-                <input type="investigation" class="form-control" id="inputInvestigation">
+                <input type="text" class="form-control" id="inputInvestigation" name="investigation" ngModel>
             </div>
         </div>
         <div class="row mb-3">
@@ -88,17 +88,17 @@
             <div class="row mb-3">
                 <label for="inputAvoid" class="col-sm-4 col-form-label">Avoid:</label>
                 <div class="col-sm-6">
-                    <input type="avoid" class="form-control" id="inputAvoid">
+                    <input type="text" class="form-control" id="inputAvoid" name="avoid" ngModel>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="inputsignature" class="col-sm-4 col-form-label">Signature:</label>
                 <div class="col-sm-6">
-                    <input type="signature" class="form-control" id="inputSignature">
+                    <input type="text" class="form-control" id="inputSignature" name="signature" ngModel>
                 </div>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn btn-primary" type="text">Submit</button>
             </div>
         </div>
     </form>
