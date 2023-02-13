@@ -1,0 +1,105 @@
+<div class="container">
+    <h2>Prescription</h2>
+    <div>
+        <hr />
+        <h1>Health+</h1>
+        <span>{{address}}</span>
+        <span>Mobile No. {{mob_no}} | Phone No. {{phn_no}} | E-mail: {{mail_id}} </span>
+    </div>
+    <div class="col-sm-7">
+        <p><b>{{name}}</b><br />{{degree}}</p>
+    </div>
+    <form>
+        <div class="row mb-3">
+            <label for="inputName" class="col-sm-4 col-form-label">Patient name:</label>
+            <div class="col-sm-6">
+                <input type="name" class="form-control" id="inputname">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputAge" class="col-sm-4 col-form-label">Age:</label>
+            <div class="col-sm-6">
+                <input type="age" class="form-control" id="inputage">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputDianosis" class="col-sm-4 col-form-label">Diagnosis:</label>
+            <div class="col-sm-6">
+                <input type="diagnosis" class="form-control" id="inputsidiagnosis">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputInvestigation" class="col-sm-4 col-form-label">Investigation:</label>
+            <div class="col-sm-6">
+                <input type="investigation" class="form-control" id="inputInvestigation">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="inputDianosis" class="col-sm-4 col-form-label">Medicine Plan:</label>
+            <div>
+                <table class="table table-striped-columns">
+                    <thead>
+                        <tr>
+                            <th scope="col">Medicine Name</th>
+                            <th scope="col">Dosage</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                <label class="form-check-label" for="flexCheckIndeterminate">
+                    Diet Plan
+                </label>
+            </div>
+            <div>
+                <table class=" table table-bordered border-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Food Name</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mb-3">
+                <label for="inputAvoid" class="col-sm-4 col-form-label">Avoid:</label>
+                <div class="col-sm-6">
+                    <input type="avoid" class="form-control" id="inputAvoid">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputsignature" class="col-sm-4 col-form-label">Signature:</label>
+                <div class="col-sm-6">
+                    <input type="signature" class="form-control" id="inputSignature">
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
