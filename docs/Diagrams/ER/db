@@ -119,158 +119,135 @@ skinparam sequence {
 }
 
 
-entity bill {
-    id: int <<PK>>
-    billed_prescriptions_id: int <<FK>>
-    patient_id: int <<FK>>
-    room_id: int <<FK>>
-    surgery_charge: int
-    insurance_id: int <<FK>>
-    scheme_id: int <<FK>>
-    total_amount: int
-    paid: boolean
-}
-
-entity billed_prescriptions{
-    bill_id: int <<FK>>
-    prescription_id: int <<FK>>
-}
-
-entity prescription{
-    id: int <<PK>>
-    patient_id: int <<FK>>
-    doctor_id: int <<FK>>
-    diagnosis: varchar
-    investigation: varchar
-    medicine_plan_id: int <<FK>>
-    diet_plan_id: int <<FK>>
-    avoidables: varchar
-}
-
-entity diet_plan{
-    plan_id: int <<FK>>
-    food: varchar
-    duration_days: int
-}
-
-entity medicine_plan{
-    plan_id: int <<FK>>
-    name: varchar
-    dosage: varchar
-    duration_days: int
-}
-
-entity appointment{
-    id: int <<PK>>
-    doctor_id: int <<FK>>
-    patient_id: int <<FK>>
-    speciality_type: varchar
-    sub_speciality_type: varchar
-    datetime: datetime
-    symptoms: varchar
-}
-
-entity insurance{
-    id: int <<PK>>
-    company: varchar
-    amount_redeemable: int
-}
-
-entity scheme{
-    id: int <<PK>>
-    scheme_name: varchar
-    amount_redeemable: int
-}
-
-entity rooms{
-    id: int <<PK>>
-    type: varchar
-    has_ac: boolean
-    charge: int
-}
-
-entity patient{
-    id: int <<PK>>
-    name: varchar
-    hash: varchar
-    username: varchar
-    gender: char
-    weight: int
-    contact: int
-    address_line_1: varchar
+entity patients{
+    * id: int <<PK>>
+    * first_name: varchar
+    * last_name: varchar
+    * hash: varchar
+    * email: varchar
+    * date_of_birth: date
+    * contact: char
+    * gender: char
+    * address_line_1: varchar
     address_line_2: varchar
     address_line_3: varchar
-    email: varchar
-    dob: date
-    blood_group: char
-    verification_doc_type: int <<FK>>
-    verification_doc: varchar
+    * state: varchar
+    * city: varchar
+    * zip: int
+    * document_type: varchar
+    * document_number: varchar
+    weight: int
+    blood_group: varchar
+    * status: boolean
+    * is_blocked: boolean
 }
-
-entity reports{
-    id: int <<PK>>
-    name: varchar
-    url: varchar
-    patient_id: int <<FK>>
+entity departments{
+	* id: int <<PK>>
+	* name: varchar
+	image_url: varchar
 }
-
-entity verification_doc_types{
-    id: int <<PK>>
-    type: varchar
-}
-
-entity doctor{
-    id: int <<PK>>
-    name: varchar
-    hash: varchar
-    username: varchar
-    designation: varchar
-    department_id: int <<FK>>
-    degrees: varchar
-    experience: int
-    image: varchar
-    language: varchar
-    contact: int
+entity doctors{
+    * id: int <<PK>>
+    * hash: varchar
+    * email: varchar
+    * contact: char
+    * designation: varchar
+    * department: int <<FK>>
+    * degrees: varchar
+    * experience: int
+    * image_url: varchar
+    * language: varchar
+    * gender: char
+    * fees: int
     description: varchar
-    gender: char
-    fees: int
 }
-
-entity timeslot{
-    id: int <<PK>>
-    doctor_id: int <<FK>>
-    day: varchar
-    time: time
+entity timeslots{
+    * id: int <<PK>>
+    * doctor_id: int <<FK>>
+    * slot: datetime
+    * hours: int
 }
-
-entity department{
-    id: int <<PK>>
-    name: varchar
+entity admins{
+    * id: int <<PK>>
+    * hash: varchar
+    * email: varchar
+    contact: char
 }
-
-entity admin{
-    id: int <<PK>>
-    name: varchar
-    hash: varchar
-    username: varchar
-    email: varchar
-    contact: int <<PK>>
+entity reports{
+    * id: int <<PK>>
+    * patient_id: int <<FK>>
+    * name: varchar
+    date: datetime
+    * file_url: varchar
 }
-
-department ||--|| doctor
-patient ||--o{ reports
-patient ||--|| verification_doc_types
-patient ||--o{ appointment
-appointment }o--|| doctor
-timeslot }|--|| doctor
-patient ||--o{ prescription
-prescription }o--|| doctor
-prescription ||--|{ medicine_plan
-prescription ||--o{ diet_plan
-prescription |o--|| billed_prescriptions
-bill ||--|| billed_prescriptions
-patient }o--|| bill
-insurance ||--|| bill
-scheme ||--|| bill
-rooms ||--|| bill
+entity appointments{
+    * id: int <<PK>>
+    * patient_id: int <<FK>>
+    * doctor_id: int <<FK>>
+    * timeslot: int <<FK>>
+    symptom: varchar
+}
+entity prescriptions{
+    * id: int <<PK>>
+    * patient_id: int <<FK>>
+    * doctor_id: int <<FK>>
+    * diagnosis: varchar
+    investigation: varchar
+    avoidables: varchar
+    * date: datetime
+    * is_ipd: boolean
+}
+entity medicine_plans{
+    * id: int <<PK>>
+    * prescription_id: int <<FK>>
+    * name: varchar
+    * dosage: varchar
+    duration: int
+}
+entity diet_plans{
+    * id: int <<PK>>
+    * prescription_id: int <<FK>>
+    * food: varchar
+    duration: int
+}
+entity occupied_beds{
+	* id: int <<PK>>
+    * bed_id: int <<FK>>
+    * patient_id: int <<FK>>
+	* start_time: datetime
+	end_time: datetime
+	* rate: int
+}
+entity beds{
+    * id: int <<PK>>
+    * room: varchar
+    * type: varchar
+    * facility: varchar
+    * availability: int
+}
+entity schemes{
+    * id: int <<PK>>
+    * name: varchar
+    description: varchar
+    * amount_redeemable: int
+}
+entity insurances{
+    * id: int <<PK>>
+    * company: varchar
+    description: varchar
+    * amount_redeemable: int
+}
+entity billed_prescriptions{
+	* bill_id: int <<FK>>
+	* prescription_id: int <<FK>>
+}
+entity bills{
+    * id: int <<PK>>
+    * total: int
+    * date: datetime
+    applied_scheme_id: int <<FK>>
+    applied_insurance_id: int <<FK>>
+    occupied_bed_id: int <<FK>>
+    ot_charge: int
+}
 @enduml
