@@ -197,8 +197,11 @@ entity patient{
     gender: char
     weight: int
     contact: int
-    address: varchar
+    address_line_1: varchar
+    address_line_2: varchar
+    address_line_3: varchar
     email: varchar
+    dob: date
     blood_group: char
     verification_doc_type: int <<FK>>
     verification_doc: varchar
@@ -233,6 +236,13 @@ entity doctor{
     fees: int
 }
 
+entity timeslot{
+    id: int <<PK>>
+    doctor_id: int <<FK>>
+    day: varchar
+    time: time
+}
+
 entity department{
     id: int <<PK>>
     name: varchar
@@ -252,6 +262,7 @@ patient ||--o{ reports
 patient ||--|| verification_doc_types
 patient ||--o{ appointment
 appointment }o--|| doctor
+timeslot }|--|| doctor
 patient ||--o{ prescription
 prescription }o--|| doctor
 prescription ||--|{ medicine_plan
@@ -262,5 +273,4 @@ patient }o--|| bill
 insurance ||--|| bill
 scheme ||--|| bill
 rooms ||--|| bill
-
 @enduml
