@@ -1,105 +1,117 @@
-<div class="container">
-    <h2>Prescription</h2>
-    <div>
-        <hr />
-        <h1>Health+</h1>
-        <span>{{address}}</span>
-        <span>Mobile No. {{mob_no}} | Phone No. {{phn_no}} | E-mail: {{mail_id}} </span>
-    </div>
-    <div class="col-sm-7">
-        <p><b>{{name}}</b><br />{{degree}}</p>
-    </div>
-    <form (ngSubmit)="onPrescribe()" #f="ngForm">
-        <div class="row mb-3">
-            <label for="inputName" class="col-sm-4 col-form-label">Patient name:</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="inputname" name="name" ngModel>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="inputAge" class="col-sm-4 col-form-label">Age:</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="inputage" name="age" ngModel>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="inputDianosis" class="col-sm-4 col-form-label">Diagnosis:</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="inputsidiagnosis" name="diagnosis" ngModel>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="inputInvestigation" class="col-sm-4 col-form-label">Investigation:</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="inputInvestigation" name="investigation" ngModel>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="inputDianosis" class="col-sm-4 col-form-label">Medicine Plan:</label>
-            <div>
-                <table class="table table-striped-columns">
-                    <thead>
-                        <tr>
-                            <th scope="col">Medicine Name</th>
-                            <th scope="col">Dosage</th>
-                            <th scope="col">Duration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                <label class="form-check-label" for="flexCheckIndeterminate">
-                    Diet Plan
-                </label>
-            </div>
-            <div>
-                <table class=" table table-bordered border-primary">
-                    <thead>
-                        <tr>
-                            <th scope="col">Food Name</th>
-                            <th scope="col">Duration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<div class="d-flex flex-md-row flex-column">
+    <div class="container py-3">
+        <section>
+            <h1>Health+</h1>
+            <h6>{{address}}</h6>
+            <h6>Mobile No. {{mob_no}} | Phone No. {{phn_no}} | E-mail: {{mail_id}} </h6>
+            <br>
+            <h4>{{name}}</h4>
+            <h6>{{degree}}</h6>
+        </section>
+        <hr>
+        <form (ngSubmit)="onPrescribe()" #f="ngForm">
             <div class="row mb-3">
-                <label for="inputAvoid" class="col-sm-4 col-form-label">Avoid:</label>
+                <label for="inputName" class="col-sm-3 col-form-label">Patient name:</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="inputAvoid" name="avoid" ngModel>
+                    <input type="text" class="form-control" id="inputName" name="patientName" [(ngModel)]="prescription.patientName">
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="inputsignature" class="col-sm-4 col-form-label">Signature:</label>
+                <label for="inputAge" class="col-sm-3 col-form-label">Age:</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="inputSignature" name="signature" ngModel>
+                    <input type="number" class="form-control" id="inputAge" name="patientAge" [(ngModel)]="prescription.patientAge">
                 </div>
             </div>
-            <div class="col-12">
-                <button class="btn btn-primary" type="text">Submit</button>
+            <div class="row mb-3">
+                <label for="inputDiagnosis" class="col-sm-3 col-form-label">Diagnosis:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputDiagnosis" name="diagnosis" [(ngModel)]="prescription.diagnosis">
+                </div>
             </div>
-        </div>
-    </form>
+            <div class="row mb-3">
+                <label for="inputInvestigation" class="col-sm-3 col-form-label">Investigation:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputInvestigation" name="investigation" [(ngModel)]="prescription.investigation">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <h4>Medicine Plan</h4>
+                <div>
+                    <fieldset ngModelGroup="medPlan">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-7">Medicine Name</th>
+                                    <th scope="col" class="col-3">Dosage</th>
+                                    <th scope="col" class="col-1">Duration</th>
+                                    <th scope="col" class="col-1"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let medi of prescription.medPlan; index as i">
+                                    <td>{{medi.name}}</td>
+                                    <td>{{medi.dosage}}</td>
+                                    <td>{{medi.duration}}</td>
+                                    <td><button type="button" class="btn-close" aria-label="Close" (click)="deleteMedPlan(i)"></button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" (keyup.enter)="$event.preventDefault()" name="name" ngModel></td>
+                                    <td>
+                                        <select class="form-select" name="dosage" ngModel>
+                                            <option *ngFor="let d of dosage_list" value="{{d}}">{{d}}</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="number" class="form-control" (keyup.enter)="appendMedPlan()" name="duration" ngModel></td>
+                                    <td><input type="button" value="Add" class="btn btn-primary" (click)="appendMedPlan()"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+                <div class="form-check ms-3">
+                    <input class="form-check-input" type="checkbox" (change)="dietEnabled = !dietEnabled" [checked]="dietEnabled" id="use-diet-plan">
+                    <h4><label class="form-check-label" for="use-diet-plan">Diet Plan</label></h4>
+                </div>
+                <fieldset [hidden]="!dietEnabled" ngModelGroup="dietPlan">
+                    <table class=" table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-10">Food Name</th>
+                                <th scope="col" class="col-1">Duration</th>
+                                <th scope="col" class="col-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let diet of prescription.dietPlan; index as i">
+                                <td>{{diet.name}}</td>
+                                <td>{{diet.duration}}</td>
+                                <td><button type="button" class="btn-close" aria-label="Close" (click)="deleteDietPlan(i)"></button></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" class="form-control" name="name" (keyup.enter)="$event.preventDefault()" ngModel></td>
+                                <td><input type="number" class="form-control" name="duration" (keyup.enter)="$event.preventDefault()" ngModel></td>
+                                <td><input type="button" value="Add" class="btn btn-primary" (click)="appendDietPlan()"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <div class="row mb-3">
+                    <label for="inputAvoid" class="col-sm-2 col-form-label">Avoid:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputAvoid" name="avoid">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <span class="col-sm-2">Signature: </span>
+                    <h3 class="col-sm-10" id="signature">{{name}}</h3>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="text">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+
+    </div>
 </div>
