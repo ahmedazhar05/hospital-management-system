@@ -250,4 +250,22 @@ entity bills{
     occupied_bed_id: int <<FK>>
     ot_charge: int
 }
+
+departments ||-right-|| doctors
+patients ||--o{ reports
+patients ||--o{ appointments
+appointments }o--|| doctors
+timeslots }|--|| doctors
+patients ||--o{ prescriptions
+prescriptions }o--|| doctors
+prescriptions ||--|{ medicine_plans
+prescriptions ||--o{ diet_plans
+prescriptions ||--|| billed_prescriptions
+bills ||--|{ billed_prescriptions
+patients ||--o{ bills
+insurances ||--|| bills
+schemes ||--|| bills
+occupied_beds ||--|| bills
+occupied_beds ||--|| beds
+
 @enduml

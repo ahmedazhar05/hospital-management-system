@@ -68,17 +68,24 @@ class Doctor{
 }
 class Patient{
     -id: int
-    -fullname: String
-    -username: String
+    -firstName: String
+    -lastName: String
+    -email: String
     -hash: String
-    -age: int
+    -dateOfBirth: Date
     -gender: char
     -weight: int
     -contact: long
-    -address: String
-    -email: String
-    -blood_group: String
-    -verification_doc: Map<String, String>
+    -address: String[3]
+    -state: String
+    -city: String
+    -zip: int
+    -bloodGroup: String
+    -verificationDocumentType: String
+    -verificationDocumentNumber: String
+    -status: boolean
+    -is_blocked: boolean
+    bloodGroup: String
 }
 class Prescription{
     -id: int
