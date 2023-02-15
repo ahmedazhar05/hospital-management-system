@@ -1,0 +1,160 @@
+<div class="container-lg px-0 mb-5" style="max-width:1000px">
+    <div class="container-fluid px-0">
+      <div id="carouselExample" class="carousel slide overflow-hidden pointer-event" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div style="max-height: 50vh;" class="carousel-item">
+            <img src="https://png.pngtree.com/thumb_back/fh260/back_pic/02/50/63/71577e1cf59d802.jpg" class="d-block w-100" alt="img1">
+            <div class="carousel-caption d-sm-block d-none">
+              <h5>Doctor</h5>
+              <p>Some representative placeholder content for the first slide.</p>
+            </div>
+          </div>
+          <div style="max-height: 50vh;" class="carousel-item">
+            <img src="https://png.pngtree.com/thumb_back/fh260/back_pic/03/51/70/585791ffa147edc.jpg" class="d-block w-100" alt="img2">
+            <div class="carousel-caption d-sm-block d-none">
+              <h5>Patient</h5>
+              <p>Some representative placeholder content for the first slide.</p>
+            </div>
+          </div>
+          <div style="max-height: 50vh;" class="carousel-item active">
+            <img src="https://png.pngtree.com/thumb_back/fh260/back_pic/04/42/87/525852490664a65.jpg" class="d-block w-100" alt="img3">
+            <div class="carousel-caption d-sm-block d-none">
+              <h5>Admin</h5>
+              <p>Some representative placeholder content for the first slide.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="row mx-3 mt-5">
+      <div class="border p-4 col-md-8 overflow-auto">
+        <form (ngSubmit)="onBooking()" #f="ngForm">
+          <fieldset>
+            <legend><h2><b>Book and Appointment</b></h2></legend>
+            <div class="row mb-3">
+              <label for="symptom" class="col-sm-2 col-form-label">Symptom</label>
+              <div class="col-sm-10">
+                <select class="form-select" id="symptom" name="Symptom"  ngModel>
+                  <option selected="" disabled="">Select a Symptom</option>
+                  <option *ngFor="let sym of Symptoms" value="{{sym}}">{{sym}}</option>
+                  <!--option value="foc">Fever or chills</option>
+                  <option value="c">Cough</option>
+                  <option value="sobodb">Shortness of breath or difficulty breathing</option>
+                  <option value="f">Fatigue</option>
+                  <option value="moda">Muscle or body aches</option>
+                  <option value="h">Headache</option>
+                  <option value="nlotos">New loss of taste or smell</option>
+                  <option value="st">Sore throat</option>
+                  <option value="corn">Congestion or runny nose</option>
+                  <option value="nov">Nausea or vomiting</option>
+                  <option value="d">Diarrhea</option-->
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="speciality" class="col-sm-2 col-form-label">Speciality</label>
+              <div class="col-sm-10">
+                <select class="form-select" id="speciality" name="Speciality"  ngModel>
+                  <option selected="" disabled="">Select a Speciality</option>
+                  <option *ngFor="let spl of Speciality" value="{{spl}}">{{spl}}</option>
+                  <!--option value="ort">Orthopedics</option>
+                  <option value="im">Internal Medicine</option>
+                  <option value="og">Obstetrics and Gynecology</option>
+                  <option value="der">Dermatology</option>
+                  <option value="ped">Pediatrics</option>
+                  <option value="rad">Radiology</option>
+                  <option value="gensur">General Surgery</option>
+                  <option value="oph">Ophthalmology</option>
+                  <option value="fammed">Family Medicine</option>
+                  <option value="chem">Chest Medicine</option>
+                  <option value="anes">Anesthesia</option>
+                  <option value="path">Pathology</option>
+                  <option value="ent">ENT</option-->
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="doctor" class="col-sm-2 col-form-label">Doctor</label>
+              <div class="col-sm-10">
+                <select class="form-select" id="doctor" name="Doctor" ngModel> 
+                
+                  <option selected="" disabled="">Select a Doctor</option>
+                  <option *ngFor="let doc of Doctors" value="{{doc}}">{{doc}}</option>
+                  <!--option value="ort">Dr. Kuber Kanade</option>
+                  <option value="im">Dr. Vishal Pasumarthi</option>
+                  <option value="og">Dr. Amar Kumar</option>
+                  <option value="der">Dr. Azhar Ahmed</option-->
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="day" class="col-sm-2 col-form-label">Day</label>
+              <div class="col-sm-10">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                  <input type="radio" class="btn-check" id="day-mon" name="day" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="day-mon">Mon</label>
+                  <input type="radio" class="btn-check" id="day-tue" name="day" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="day-tue">Tue</label>
+                  <input type="radio" class="btn-check" id="day-wed" name="day" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="day-wed">Wed</label>
+                  <input type="radio" class="btn-check" id="day-thu" name="day" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="day-thu">Thu</label>
+                  <input type="radio" class="btn-check" id="day-fri" name="day" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="day-fri">Fri</label>
+                  <input type="radio" class="btn-check" id="day-sat" name="day" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="day-sat">Sat</label>
+                  <input type="radio" class="btn-check" id="day-sun" name="day" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="day-sun">Sun</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="slot" class="col-sm-2 col-form-label">Time<wbr>slot</label>
+              <div class="col-sm-10">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                  <input type="radio" class="btn-check" id="slot-sun" name="slot" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="slot-sun">6am-7am</label>
+                  <input type="radio" class="btn-check" id="slot-mon" name="slot" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="slot-mon">8am-9am</label>
+                  <input type="radio" class="btn-check" id="slot-tue" name="slot" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="slot-tue">10am-11am</label>
+                  <input type="radio" class="btn-check" id="slot-wed" name="slot" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="slot-wed">12pm-1pm</label>
+                  <input type="radio" class="btn-check" id="slot-thu" name="slot" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="slot-thu">4pm-5pm</label>
+                  <input type="radio" class="btn-check" id="slot-fri" name="slot" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="slot-fri">6pm-7pm</label>
+                  <input type="radio" class="btn-check" id="slot-sat" name="slot" autocomplete="off" ngModel>
+                  <label class="btn btn-outline-dark" for="slot-sat">8pm-9pm</label>
+                </div>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-primary fs-5" value=" Book ">
+          </fieldset>
+        </form>
+      </div>
+      <div class="border p-4 col-md-4">
+        <div class="container">
+          <h3><b>Profile</b></h3>
+          <b>Name: </b><span></span><br>
+          <b>Age: </b><span></span><br>
+          <b>Weight: </b><span></span><br>
+          <b>Reports: </b>
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <button class="btn btn-warning float-end">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
