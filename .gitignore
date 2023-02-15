@@ -5,3 +5,5 @@ docs/MFRP/GenC ADM FSE MFPE Design Considerations.pdf
 
 docs/MFRP/*/*
 !docs/*/*/*.pdf
+user-interface
+secrets
