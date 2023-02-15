@@ -6,9 +6,6 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./gov-scheme.component.css']
 })
 export class GovSchemeComponent {
-  @ViewChild('searchinput')
-  search: any = "";
-
   schemes = [
     {
       name: 'Rajiv Gandhi Jeevandayee yojana',
@@ -38,8 +35,26 @@ export class GovSchemeComponent {
 
   selected: number = this.schemes.length > 0 ? 0 : -1;
 
+  @ViewChild('searchinput')
+  search: any = "";
+
   highlight(){
     this.selected = this.schemes.map(s => s.name).indexOf(this.search.nativeElement.value);
     this.search.nativeElement.value = '';
+  }
+
+  @ViewChild('data')
+  form: any = "";
+
+  @ViewChild('modalClose')
+  modalClose: any;
+
+  addEntry(){
+    if(this.form.valid){
+      // TODO: send add request to the backend
+      console.log(this.form.value);
+      this.form.reset();
+      this.modalClose.nativeElement.click();
+    }
   }
 }

@@ -11,7 +11,7 @@
     </datalist>
   </div>
   <div class="ms-sm-4 ms-1">
-    <button class="btn btn-primary btn-lg">Add Scheme</button>
+    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#addModal">Add Scheme</button>
   </div>
 </div>
 <div class="m-2 p-4 border rounded">
@@ -25,5 +25,44 @@
     <div class="tab-content border flex-grow-1 p-3 ms-md-3 mt-3 mt-md-0 overflow-auto" id="v-tabContent">
       <div *ngFor="let scheme of schemes; index as i" class="tab-pane fade" [class.show]="selected == i" [class.active]="selected == i" id="scheme-{{i}}" role="tabpanel" tabindex="0">{{scheme.description}}</div>
     </div>
+  </div>
+</div>
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" (ngSubmit)="addEntry()" #data="ngForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" #modalClose data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-3">
+          <label for="entryname" class="col-sm-3 col-form-label">Name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="entryname" name="name" ngModel>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="entryid" class="col-sm-3 col-form-label">ID</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="entryid" name="id" ngModel>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="entrydescription" class="col-sm-3 col-form-label">Description</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" id="entrydescription" rows="3" name="description" ngModel></textarea>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="entryamount" class="col-sm-3 col-form-label">Amount</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" id="entryamount" name="amount" ngModel>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
   </div>
 </div>
