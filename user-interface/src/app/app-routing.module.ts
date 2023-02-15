@@ -10,11 +10,6 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    title: 'Health+ Gov-Schemes',
-    path: 'gov-scheme',
-    component: GovSchemeComponent
-  },
-  {
     title: 'Health+ Home',
     path: '',
     redirectTo: '/login',

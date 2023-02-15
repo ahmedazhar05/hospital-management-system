@@ -1,62 +1,29 @@
-<div class="card text-center">
-  <div class="card-body pt-2">
-    <h5 class="card-title">Health Schemes</h5>
-    <div class="row" style="align-items: center;">
-      <div class="d-flex justify-center">
-        <div class="col-lg-6 ">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2 " type="search" placeholder="Search scheme by name" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-            
-          </form>
-          <div class=" px-2">
-            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">
-              Launch demo modal
-            </button>
-          </div>
-        </div>
-      </div>
+<div class="d-flex align-items-center py-3 px-2 px-sm-5">
+  <div class="container text-center border p-3">
+    <h1>Health Scheme</h1>
+    <div class="d-flex flex-column flex-sm-row mt-2">
+      <label for="search-scheme" class="d-none d-sm-inline-block form-label align-self-center m-0"><b>Name: </b></label>
+      <input list="scheme_list" type="text" #searchinput class="ms-sm-3 form-control" placeholder="Search Health Scheme" id="search-scheme">
+      <button class="btn btn-primary ms-0 mt-2 mt-sm-0 ms-sm-3" (click)="highlight()">Search</button>
+    </div>
+    <datalist id="scheme_list">
+      <option *ngFor="let scheme of schemes; index as i" value="{{scheme.name}}">
+    </datalist>
+  </div>
+  <div class="ms-sm-4 ms-1">
+    <button class="btn btn-primary btn-lg">Add Scheme</button>
+  </div>
+</div>
+<div class="m-2 p-4 border rounded">
+  <h3>Schemes</h3>
+  <div id="viewer" class="d-flex flex-column flex-md-row align-items-stretch">
+    <div class="overflow-auto flex-shrink-0">
+      <ul class="nav flex-column list-group" id="v-tab" role="tablist" aria-orientation="vertical">
+        <li *ngFor="let scheme of schemes; index as i" class="nav-link list-group-item" [class.active]="selected == i" id="scheme-tab-{{i}}" data-bs-toggle="pill" attr.data-bs-target="#scheme-{{i}}" type="button" role="tab" attr.aria-controls="scheme-{{i}}" aria-selected="false">{{scheme.name}}</li>
+      </ul>
+    </div>
+    <div class="tab-content border flex-grow-1 p-3 ms-md-3 mt-3 mt-md-0 overflow-auto" id="v-tabContent">
+      <div *ngFor="let scheme of schemes; index as i" class="tab-pane fade" [class.show]="selected == i" [class.active]="selected == i" id="scheme-{{i}}" role="tabpanel" tabindex="0">{{scheme.description}}</div>
     </div>
   </div>
 </div>
-<div class=" row h-50"></div>
-<div class="col-lg-8">
-  <div class="container lg">
-    <h3>Schemes</h3>
-    
-      <div class="d-flex align-items-start">
-  <div class="nav flex-column nav-pills me-4 mb-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-    
-    <button *ngFor="let scheme of Schemes" class="nav-link active mb-2"  id="{{scheme}}" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">{{scheme}}</button>
-   
-  </div>
-  <div class="tab-content" id="v-pills-tabContent">
-    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="1. Rajiv Gandhi Jeevandayee yojana">...</div>
-    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="1. Rajiv Gandhi Jeevandayee yojana">...</div>
-    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
-  </div>
-</div>
-
-
-
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
