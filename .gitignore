@@ -7,3 +7,4 @@ docs/*/*/*
 !docs/*/*/*.pdf
 user-interface
 secrets
+/.metadata/
