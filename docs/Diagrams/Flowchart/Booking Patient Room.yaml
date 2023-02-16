@@ -1,0 +1,13 @@
+---
+title: Book Room
+---
+flowchart TD
+    start([Start])
+    start-->PatientID[/Enter PatientID/]
+    PatientID-->Bed{Select Beds:<br>ICU bed<br>General Room}
+    Bed-->Facilities{Select<br>AC or Non-AC<br>facilities}
+    Facilities-->Room{Select<br> type of rooms:<br>Private Room<br>Shared Room<br>General Ward}
+    Room-->s[Submit]
+
+    
+    
