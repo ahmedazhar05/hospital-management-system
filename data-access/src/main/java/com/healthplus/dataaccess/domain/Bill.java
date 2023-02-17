@@ -11,6 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 class Bill{
@@ -35,6 +36,7 @@ class Bill{
     @OneToMany(targetEntity=Prescription.class)
     private List<Prescription> prescriptions;
 
+    @Positive
 	private int otCharge;
 
 	public int getId() {

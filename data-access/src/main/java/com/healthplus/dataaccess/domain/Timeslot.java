@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 class Timeslot{
@@ -21,9 +22,11 @@ class Timeslot{
     private Doctor doctor;
 
     @NotNull
+    @FutureOrPresent
     private Date slot;
 
     @NotNull
+    @Positive
     private int hours;
 
 	public int getId() {
@@ -41,7 +44,7 @@ class Timeslot{
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-    @FutureOrPresent
+	
 	public Date getSlot() {
 		return slot;
 	}
@@ -49,7 +52,7 @@ class Timeslot{
 	public void setSlot(Date slot) {
 		this.slot = slot;
 	}
-	@FutureOrPresent
+	
 	public int getHours() {
 		return hours;
 	}

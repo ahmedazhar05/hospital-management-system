@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 
 @Entity
 class Patient{
@@ -28,6 +29,7 @@ class Patient{
     private String email;
 
     @NotNull
+    @Past
     private Date dateOfBirth;
 
     @NotNull

@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 class Report{
@@ -21,7 +22,8 @@ class Report{
 
     @NotNull
     private String name;
-
+    
+    @PastOrPresent
     private Date date;
 
     @NotNull

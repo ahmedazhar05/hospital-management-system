@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 class DietPlan{
@@ -17,7 +18,8 @@ class DietPlan{
 
     @NotNull
     private String food;
-
+    
+    @Positive
     private int duration;
 
 	public int getId() {

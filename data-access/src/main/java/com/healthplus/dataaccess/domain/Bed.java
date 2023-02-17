@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 class Bed{
@@ -22,6 +23,7 @@ class Bed{
     private String facility;
 
     @NotNull
+    @Positive
     private int availability;
 
 	public int getId() {
