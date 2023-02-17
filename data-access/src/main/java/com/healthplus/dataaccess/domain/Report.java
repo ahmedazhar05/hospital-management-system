@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
-class Report{
+public class Report{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

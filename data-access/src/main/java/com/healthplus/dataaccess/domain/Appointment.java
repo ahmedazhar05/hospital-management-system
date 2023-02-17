@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-class Appointment{
+public class Appointment{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

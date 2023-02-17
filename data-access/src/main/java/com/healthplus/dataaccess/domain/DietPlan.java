@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 @Entity
-class DietPlan{
+public class DietPlan{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-class Department{
+public class Department{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

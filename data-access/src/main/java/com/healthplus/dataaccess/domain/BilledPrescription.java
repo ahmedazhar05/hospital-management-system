@@ -5,7 +5,7 @@ import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 
 @Entity
-class BilledPrescription{
+public class BilledPrescription{
     @NotNull
     private Bill bill;
 

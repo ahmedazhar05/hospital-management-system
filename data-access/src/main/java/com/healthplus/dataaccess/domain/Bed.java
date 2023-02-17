@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 @Entity
-class Bed{
+public class Bed{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

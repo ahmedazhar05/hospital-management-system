@@ -10,7 +10,7 @@ import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-class Prescription{
+public class Prescription{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

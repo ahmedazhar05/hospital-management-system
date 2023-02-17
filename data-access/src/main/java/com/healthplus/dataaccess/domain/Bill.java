@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 @Entity
-class Bill{
+public class Bill{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

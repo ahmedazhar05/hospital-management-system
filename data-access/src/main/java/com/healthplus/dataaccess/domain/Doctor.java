@@ -12,7 +12,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 @Entity
-class Doctor{
+public class Doctor{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
@@ -31,7 +31,7 @@ class Doctor{
     private String designation;
 
     @NotNull
-    @OneToOne
+    @OneToOne(optional=false)
     private Department department;
 
     @NotNull

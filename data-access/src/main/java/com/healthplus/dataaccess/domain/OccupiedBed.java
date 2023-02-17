@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 @Entity
-class OccupiedBed{
+public class OccupiedBed{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

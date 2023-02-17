@@ -12,7 +12,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 @Entity
-class Timeslot{
+public class Timeslot{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

@@ -1,74 +1,126 @@
 package com.healthplus.dataaccess.domain;
-import java.util.Date;
 
+import java.util.Date;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+<<<<<<< Updated upstream
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+=======
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Pattern;
+>>>>>>> Stashed changes
 
 @Entity
-class Patient{
+@Table(name="Patient")
+public class Patient{
+	private enum DOCUMENT_TYPE{
+		AADHAR,
+		PAN,
+		VOTER_ID,
+		LICENSE
+	}
+	private enum BLOOD_GROUP{
+		A_RHD_POSITIVE("A+"),
+		A_RHD_NEGATIVE("A-"),
+		B_RHD_POSITIVE("B+"),
+		B_RHD_NEGATIVE("B-"),
+		O_RHD_POSITIVE("O+"),
+		O_RHD_NEGATIVE("O-"),
+		AB_RHD_POSITIVE("AB+"),
+		AB_RHD_NEGATIVE("AB-");
+		
+		public final String label;
+
+	    private BLOOD_GROUP(String label) {
+	        this.label = label;
+	    }
+	}
+	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
-    @NotNull
+    @NotNull(message="First name is required")
     private String firstName;
 
-    @NotNull
+    @NotNull(message="Last name is required")
     private String lastName;
 
-    @NotNull
+    @NotNull(message="Password is required")
+    @Email
     private String hash;
 
+<<<<<<< Updated upstream
     @NotNull
     @Email
     private String email;
 
     @NotNull
+=======
+    @NotNull(message="Email is required")
+    private String email;
+
+    @NotNull(message="Date of Birth is required")
+>>>>>>> Stashed changes
     @Past
     private Date dateOfBirth;
 
-    @NotNull
-    private String contact;
+    @NotNull(message="Contact number is required")
+    @Digits(fraction = 0, integer = 10)
+    @Positive
+    private long contact;
 
-    @NotNull
+    @NotNull(message="Gender is required")
     private char gender;
 
-    @NotNull
+    @NotNull(message="First address line is required")
     private String addressLine1;
 
     private String addressLine2;
 
     private String addressLine3;
 
-    @NotNull
+    @NotNull(message="State is required")
     private String state;
 
-    @NotNull
+    @NotNull(message="City is required")
     private String city;
 
-    @NotNull
+    @NotNull(message="Zip is required")
+    @Digits(fraction = 0, integer = 6)
     private int zip;
 
-    @NotNull
-    private String documentType;
+    @NotNull(message="ID document is required")
+    @Enumerated(EnumType.STRING)
+    private DOCUMENT_TYPE documentType;
 
-    @NotNull
+    @NotNull(message="ID document is required")
+    @Pattern(regexp="[A-Z]{3}[PCHABGJLFT][A-Z][0-9]{4}[A-Z]")
+    @Pattern(regexp="[2-9][0-9]{11}")
+    @Pattern(regexp="[A-Z]{3}[0-9]{7}")
+    @Pattern(regexp="[A-Z]{2}[0-9]{13}")
     private String documentNumber;
 
+    @Digits(fraction = 0, integer = 3)
     private int weight;
 
-    private String bloodGroup;
+    @Enumerated(EnumType.STRING)
+    private BLOOD_GROUP bloodGroup;
 
-    @NotNull
-    private boolean status;
+    private boolean status = false;
 
-    @NotNull
-    private boolean isBlocked;
+    private boolean isBlocked = false;
 
 	public int getId() {
 		return id;
@@ -118,11 +170,11 @@ class Patient{
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public String getContact() {
+	public long getContact() {
 		return contact;
 	}
 
-	public void setContact(String contact) {
+	public void setContact(long contact) {
 		this.contact = contact;
 	}
 
@@ -182,11 +234,12 @@ class Patient{
 		this.zip = zip;
 	}
 
-	public String getDocumentType() {
+	public DOCUMENT_TYPE getDocumentType() {
 		return documentType;
 	}
 
-	public void setDocumentType(String documentType) {
+	public void setDocumentType(DOCUMENT_TYPE documentType) {
+		// boolean b = Arrays.stream(DOCUMENT_TYPE.values()).anyMatch((Patient.DOCUMENT_TYPE d) -> documentType == d);
 		this.documentType = documentType;
 	}
 
@@ -206,11 +259,11 @@ class Patient{
 		this.weight = weight;
 	}
 
-	public String getBloodGroup() {
+	public BLOOD_GROUP getBloodGroup() {
 		return bloodGroup;
 	}
 
-	public void setBloodGroup(String bloodGroup) {
+	public void setBloodGroup(BLOOD_GROUP bloodGroup) {
 		this.bloodGroup = bloodGroup;
 	}
 
