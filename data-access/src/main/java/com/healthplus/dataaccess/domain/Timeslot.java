@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -40,7 +41,7 @@ class Timeslot{
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-
+    @FutureOrPresent
 	public Date getSlot() {
 		return slot;
 	}
@@ -48,7 +49,7 @@ class Timeslot{
 	public void setSlot(Date slot) {
 		this.slot = slot;
 	}
-
+	@FutureOrPresent
 	public int getHours() {
 		return hours;
 	}

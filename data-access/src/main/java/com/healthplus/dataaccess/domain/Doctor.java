@@ -7,7 +7,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 
 @Entity
 class Doctor{
@@ -19,6 +21,7 @@ class Doctor{
     private String hash;
 
     @NotNull
+    @Email
     private String email;
 
     @NotNull
@@ -35,6 +38,7 @@ class Doctor{
     private String degrees;
 
     @NotNull
+    @Past
     private Date degreeCertificationDate;
 
     @NotNull
@@ -66,7 +70,7 @@ class Doctor{
 	public void setHash(String hash) {
 		this.hash = hash;
 	}
-
+    
 	public String getEmail() {
 		return email;
 	}
