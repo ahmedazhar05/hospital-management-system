@@ -1,22 +1,21 @@
 package com.healthplus.dataaccess.domain;
 
 import java.util.Date;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Digits;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 
 @Entity
-@Table(name="Patient")
 public class Patient{
 	private enum DOCUMENT_TYPE{
 		AADHAR,
@@ -52,14 +51,13 @@ public class Patient{
     private String lastName;
 
     @NotNull(message="Password is required")
-    @Email
     private String hash;
 
     @NotNull(message="Email is required")
-	@Email
+    @Email
     private String email;
 
-	@NotNull(message="Date of Birth is required")
+    @NotNull(message="Date of Birth is required")
     @Past
     private Date dateOfBirth;
 
@@ -92,7 +90,7 @@ public class Patient{
     @Enumerated(EnumType.STRING)
     private DOCUMENT_TYPE documentType;
 
-    @NotNull(message="ID document is required")
+    @NotNull(message="ID document number is required")
     @Pattern(regexp="[A-Z]{3}[PCHABGJLFT][A-Z][0-9]{4}[A-Z]")
     @Pattern(regexp="[2-9][0-9]{11}")
     @Pattern(regexp="[A-Z]{3}[0-9]{7}")
