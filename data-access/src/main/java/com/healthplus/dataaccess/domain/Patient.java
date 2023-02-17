@@ -7,11 +7,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-<<<<<<< Updated upstream
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-=======
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Email;
@@ -19,7 +14,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Pattern;
->>>>>>> Stashed changes
 
 @Entity
 @Table(name="Patient")
@@ -61,18 +55,11 @@ public class Patient{
     @Email
     private String hash;
 
-<<<<<<< Updated upstream
-    @NotNull
-    @Email
-    private String email;
-
-    @NotNull
-=======
     @NotNull(message="Email is required")
+	@Email
     private String email;
 
-    @NotNull(message="Date of Birth is required")
->>>>>>> Stashed changes
+	@NotNull(message="Date of Birth is required")
     @Past
     private Date dateOfBirth;
 
