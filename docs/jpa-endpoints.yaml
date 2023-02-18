@@ -9,7 +9,7 @@ Patient:
         - patient by id:
             path: /:id
             path variables: 
-            	- id
+                - id
             method: GET
             
         - patient by email:
@@ -34,7 +34,7 @@ Doctor:
         - doctor by id:
             path: /:id
             path variables: 
-            	- id
+                - id
             method: GET
             
         - doctor by email:
@@ -54,4 +54,94 @@ Doctor:
             request params: 
                 - department
             method: GET
+
+Report:
+    path: /reports
+    subpaths:
+        - list of reports of a patient id:
+            path: /search
+            request params: 
+                - patient
+            method: GET
+
+Prescription:
+    path: /prescriptions
+    subpaths:
+        - prescription by id:
+            path: /:id
+            path variables: 
+                - id
+            method: GET
+            
+        - list of all prescriptions for a patient id:
+            path: /search
+            request params: 
+                - patient
+            method: GET
         
+        - list of prescriptions assigned by a doctor id:
+            path: /search
+            request params: 
+                - doctor
+            method: GET
+
+Appointment:
+    path: /appointments
+    subpaths:
+        - appointment by id:
+            path: /:id
+            path variables: 
+                - id
+            method: GET
+            
+        - list of all appointments of a patient id:
+            path: /search
+            request params: 
+                - patient
+            method: GET
+        
+        - list of all appointments for a doctor id:
+            path: /search
+            request params: 
+                - doctor
+            method: GET
+        
+        - list of appointments for a doctor id on a particular date:
+			path: /search
+			request params:
+				- doctor
+				- date
+        
+        - list of appointments for a patient id on a particular date:
+			path: /search
+			request params:
+				- patient
+				- date
+
+Timeslot:
+	path: /timeslots
+	subpaths:
+		- list of timeslots for a doctor id:
+			path: /search
+			request params:
+				- doctor
+		
+		- list of timeslots for a doctor id on a particular date:
+			path: /search
+			request params:
+				- doctor
+				- date
+
+Bill:
+	path: /bill
+		subpaths:
+        	- bill by id:
+            	path: /:id
+            	path variables: 
+                	- id
+            	method: GET
+            
+			- list of bills of a patient id:
+				path: /search
+				request params:
+					- patient
