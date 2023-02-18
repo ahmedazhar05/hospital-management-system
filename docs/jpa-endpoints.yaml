@@ -1,55 +1,56 @@
+# API Best Practices: https://www.freecodecamp.org/news/rest-api-best-practices-rest-endpoint-design-examples
 Patient:
-    path: /patient
+    path: /patients
     subpaths: 
         - list of patients:
             path: /
             method: GET
             
         - patient by id:
-            path: /get
-            request params:
-                - id
+            path: /:id
+            path variables: 
+            	- id
             method: GET
             
         - patient by email:
-            path: /get
+            path: /search
             request params: 
                 - email
             method: GET
             
         - patient by contact:
-            path: /get
+            path: /search
             request params: 
                 - contact
             method: GET
 
 Doctor:
-    path: /doctor
+    path: /doctors
     subpaths: 
         - list of doctors:
             path: /
             method: GET
             
         - doctor by id:
-            path: /get
-            request params:
-                - id
+            path: /:id
+            path variables: 
+            	- id
             method: GET
             
         - doctor by email:
-            path: /get
+            path: /search
             request params: 
                 - email
             method: GET
             
         - doctor by contact:
-            path: /get
+            path: /search
             request params: 
                 - contact
             method: GET
         
         - list of doctors by department id:
-            path: /get/department
+            path: /search
             request params: 
                 - department
             method: GET
