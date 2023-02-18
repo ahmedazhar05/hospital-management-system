@@ -1,11 +1,14 @@
 /*
 package com.healthplus.dataaccess.domain;
 
+import java.io.Serializable;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 
 @Entity
-public class BilledPrescription{
+public class BilledPrescription implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @NotNull
     private Bill bill;
 

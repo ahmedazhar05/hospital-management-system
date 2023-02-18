@@ -1,5 +1,6 @@
 package com.healthplus.dataaccess.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -11,7 +12,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
-public class Report{
+public class Report implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;

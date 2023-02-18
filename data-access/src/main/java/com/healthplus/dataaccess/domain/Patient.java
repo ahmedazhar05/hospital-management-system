@@ -1,5 +1,6 @@
 package com.healthplus.dataaccess.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -8,8 +9,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.EnumType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -18,7 +17,9 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 
 @Entity
-public class Patient{
+public class Patient implements Serializable {
+    private static final long serialVersionUID = 1L;
+
 	private enum DOCUMENT_TYPE{
 		AADHAR,
 		PAN,

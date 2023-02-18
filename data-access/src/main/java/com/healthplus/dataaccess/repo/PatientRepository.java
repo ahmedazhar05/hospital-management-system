@@ -14,5 +14,5 @@ public interface PatientRepository extends CrudRepository<Patient, Integer> {
 	public Optional<Patient> getPatientByEmail(String email);
 
 	@Query("SELECT * FROM Patient WHERE contact = ?1")
-	public Optional<Patient> getPatientByContact(long contact);
+	public Optional<Patient> getPatientByContact(Long contact);
 }

@@ -1,7 +1,0 @@
-Patient:
-	/patient: list of patient
-	/patient/get?id=...: patient with that specific id
-	/patient/get?email=...: patient with that specific email
-	/patient/get?contact=...: patient with that specific contact
-
-/doctor

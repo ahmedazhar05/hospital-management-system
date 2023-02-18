@@ -1,21 +1,25 @@
 package com.healthplus.dataaccess.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 @Entity
-public class Doctor{
-    @Id
+public class Doctor implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     private String hash;
@@ -31,8 +35,7 @@ public class Doctor{
     private String designation;
 
     @NotNull
-    @OneToOne(optional=false)
-    private Department department;
+    private String department;
 
     @NotNull
     private String degrees;
@@ -48,18 +51,18 @@ public class Doctor{
     private String language;
 
     @NotNull
-    private char gender;
+    private Character gender;
 
     @NotNull
-    private int fees;
+    private Integer fees;
 
     private String description;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -94,12 +97,15 @@ public class Doctor{
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-
-	public Department getDepartment() {
+	
+	@OneToOne(optional=false)
+	@JoinColumn(name="department_id", referencedColumnName="id")
+	public String getDepartment() {
 		return department;
 	}
+	
 
-	public void setDepartment(Department department) {
+	public void setDepartment(String department) {
 		this.department = department;
 	}
 
@@ -135,19 +141,19 @@ public class Doctor{
 		this.language = language;
 	}
 
-	public char getGender() {
+	public Character getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(Character gender) {
 		this.gender = gender;
 	}
 
-	public int getFees() {
+	public Integer getFees() {
 		return fees;
 	}
 
-	public void setFees(int fees) {
+	public void setFees(Integer fees) {
 		this.fees = fees;
 	}
 

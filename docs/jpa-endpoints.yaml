@@ -1,0 +1,56 @@
+Patient:
+    path: /patient
+    subpaths: 
+        - list of patients:
+            path: /
+            method: GET
+            
+        - patient by id:
+            path: /get
+            request params:
+                - id
+            method: GET
+            
+        - patient by email:
+            path: /get
+            request params: 
+                - email
+            method: GET
+            
+        - patient by contact:
+            path: /get
+            request params: 
+                - contact
+            method: GET
+
+Doctor:
+    path: /doctor
+    subpaths: 
+        - list of doctors:
+            path: /
+            method: GET
+            
+        - doctor by id:
+            path: /get
+            request params:
+                - id
+            method: GET
+            
+        - doctor by email:
+            path: /get
+            request params: 
+                - email
+            method: GET
+            
+        - doctor by contact:
+            path: /get
+            request params: 
+                - contact
+            method: GET
+        
+        - list of doctors by department id:
+            path: /get/department
+            request params: 
+                - department
+            method: GET
+        

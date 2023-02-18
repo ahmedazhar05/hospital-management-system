@@ -1,5 +1,6 @@
 package com.healthplus.dataaccess.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -10,7 +11,9 @@ import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class Prescription{
+public class Prescription implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
