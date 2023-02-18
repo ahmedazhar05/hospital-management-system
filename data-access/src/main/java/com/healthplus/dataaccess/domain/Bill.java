@@ -20,11 +20,11 @@ public class Bill implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     @Min(0)
-    private int total;
+    private Integer total;
 
     @NotNull
     @FutureOrPresent
@@ -40,21 +40,21 @@ public class Bill implements Serializable {
     private List<Prescription> prescriptions;
 
     @Positive
-	private int otCharge;
+	private Integer otCharge;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getTotal() {
+	public Integer getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(Integer total) {
 		this.total = total;
 	}
 
@@ -90,11 +90,11 @@ public class Bill implements Serializable {
 		this.occupiedBed = occupiedBed;
 	}
 
-	public int getOtCharge() {
+	public Integer getOtCharge() {
 		return otCharge;
 	}
 
-	public void setOtCharge(int otCharge) {
+	public void setOtCharge(Integer otCharge) {
 		this.otCharge = otCharge;
 	}
 

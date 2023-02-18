@@ -2,7 +2,6 @@ package com.healthplus.dataaccess.domain;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,20 +13,19 @@ public class Department implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @Column(name="id")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     private String name;
 
     private String imageUrl;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

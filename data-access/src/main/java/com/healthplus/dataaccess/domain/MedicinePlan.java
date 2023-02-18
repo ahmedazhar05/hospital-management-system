@@ -15,7 +15,7 @@ public class MedicinePlan implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     private Prescription prescription;
@@ -27,13 +27,13 @@ public class MedicinePlan implements Serializable {
     private String dosage;
     
     @Positive
-    private int duration;
+    private Integer duration;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -61,11 +61,11 @@ public class MedicinePlan implements Serializable {
 		this.dosage = dosage;
 	}
 
-	public int getDuration() {
+	public Integer getDuration() {
 		return duration;
 	}
 
-	public void setDuration(int duration) {
+	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
 }

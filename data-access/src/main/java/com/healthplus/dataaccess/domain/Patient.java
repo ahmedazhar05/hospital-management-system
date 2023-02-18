@@ -45,7 +45,7 @@ public class Patient implements Serializable {
 	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull(message="First name is required")
     private String firstName;
@@ -67,10 +67,10 @@ public class Patient implements Serializable {
     @NotNull(message="Contact number is required")
     @Digits(fraction = 0, integer = 10)
     @Positive
-    private long contact;
+    private Long contact;
 
     @NotNull(message="Gender is required")
-    private char gender;
+    private Character gender;
 
     @NotNull(message="First address line is required")
     private String addressLine1;
@@ -87,7 +87,7 @@ public class Patient implements Serializable {
 
     @NotNull(message="Zip is required")
     @Digits(fraction = 0, integer = 6)
-    private int zip;
+    private Integer zip;
 
     @NotNull(message="ID document is required")
     @Enumerated(EnumType.STRING)
@@ -101,20 +101,20 @@ public class Patient implements Serializable {
     private String documentNumber;
 
     @Digits(fraction = 0, integer = 3)
-    private int weight;
+    private Integer weight;
 
     @Enumerated(EnumType.STRING)
     private BLOOD_GROUP bloodGroup;
 
-    private boolean status = false;
+    private Boolean status = false;
 
-    private boolean isBlocked = false;
+    private Boolean isBlocked = false;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -158,19 +158,19 @@ public class Patient implements Serializable {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public long getContact() {
+	public Long getContact() {
 		return contact;
 	}
 
-	public void setContact(long contact) {
+	public void setContact(Long contact) {
 		this.contact = contact;
 	}
 
-	public char getGender() {
+	public Character getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(Character gender) {
 		this.gender = gender;
 	}
 
@@ -214,11 +214,11 @@ public class Patient implements Serializable {
 		this.city = city;
 	}
 
-	public int getZip() {
+	public Integer getZip() {
 		return zip;
 	}
 
-	public void setZip(int zip) {
+	public void setZip(Integer zip) {
 		this.zip = zip;
 	}
 
@@ -239,11 +239,11 @@ public class Patient implements Serializable {
 		this.documentNumber = documentNumber;
 	}
 
-	public int getWeight() {
+	public Integer getWeight() {
 		return weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
 
@@ -255,19 +255,19 @@ public class Patient implements Serializable {
 		this.bloodGroup = bloodGroup;
 	}
 
-	public boolean isStatus() {
+	public Boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 
-	public boolean isBlocked() {
+	public Boolean isBlocked() {
 		return isBlocked;
 	}
 
-	public void setBlocked(boolean isBlocked) {
+	public void setBlocked(Boolean isBlocked) {
 		this.isBlocked = isBlocked;
 	}
 }

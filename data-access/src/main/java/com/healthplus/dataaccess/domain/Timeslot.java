@@ -18,7 +18,7 @@ public class Timeslot implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     @ManyToOne
@@ -30,13 +30,13 @@ public class Timeslot implements Serializable {
 
     @NotNull
     @Positive
-    private int hours;
+    private Integer hours;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -56,11 +56,11 @@ public class Timeslot implements Serializable {
 		this.slot = slot;
 	}
 	
-	public int getHours() {
+	public Integer getHours() {
 		return hours;
 	}
 
-	public void setHours(int hours) {
+	public void setHours(Integer hours) {
 		this.hours = hours;
 	}
 }

@@ -15,7 +15,7 @@ public class Bed implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     private String room;
@@ -28,13 +28,13 @@ public class Bed implements Serializable {
 
     @NotNull
     @Positive
-    private int availability;
+    private Integer availability;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -62,11 +62,11 @@ public class Bed implements Serializable {
 		this.facility = facility;
 	}
 
-	public int getAvailability() {
+	public Integer getAvailability() {
 		return availability;
 	}
 
-	public void setAvailability(int availability) {
+	public void setAvailability(Integer availability) {
 		this.availability = availability;
 	}
 }

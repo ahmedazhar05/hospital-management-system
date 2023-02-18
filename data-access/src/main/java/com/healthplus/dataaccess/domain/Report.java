@@ -17,7 +17,7 @@ public class Report implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     @ManyToOne
@@ -32,11 +32,11 @@ public class Report implements Serializable {
     @NotNull
     private String fileUrl;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

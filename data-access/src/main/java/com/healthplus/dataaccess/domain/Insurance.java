@@ -15,7 +15,7 @@ public class Insurance implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     private String company;
@@ -24,13 +24,13 @@ public class Insurance implements Serializable {
 
     @NotNull
     @Positive
-    private int amountRedeemable;
+    private Integer amountRedeemable;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -50,11 +50,11 @@ public class Insurance implements Serializable {
 		this.description = description;
 	}
 
-	public int getAmountRedeemable() {
+	public Integer getAmountRedeemable() {
 		return amountRedeemable;
 	}
 
-	public void setAmountRedeemable(int amountRedeemable) {
+	public void setAmountRedeemable(Integer amountRedeemable) {
 		this.amountRedeemable = amountRedeemable;
 	}
 }

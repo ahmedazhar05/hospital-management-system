@@ -16,7 +16,7 @@ public class Prescription implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @NotNull
     private Patient patient;
@@ -36,13 +36,13 @@ public class Prescription implements Serializable {
     private Date date;
 
     @NotNull
-    private boolean isIpd;
+    private Boolean isIpd;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -94,11 +94,11 @@ public class Prescription implements Serializable {
 		this.date = date;
 	}
 
-	public boolean isIpd() {
+	public Boolean isIpd() {
 		return isIpd;
 	}
 
-	public void setIpd(boolean isIpd) {
+	public void setIpd(Boolean isIpd) {
 		this.isIpd = isIpd;
 	}
 }
