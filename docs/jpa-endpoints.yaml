@@ -1,3 +1,4 @@
+---
 # API Best Practices: https://www.freecodecamp.org/news/rest-api-best-practices-rest-endpoint-design-examples
 Patient:
     path: /patients
@@ -107,41 +108,41 @@ Appointment:
             method: GET
         
         - list of appointments for a doctor id on a particular date:
-			path: /search
-			request params:
-				- doctor
-				- date
+            path: /search
+            request params:
+                - doctor
+                - date
         
         - list of appointments for a patient id on a particular date:
-			path: /search
-			request params:
-				- patient
-				- date
+            path: /search
+            request params:
+                - patient
+                - date
 
 Timeslot:
-	path: /timeslots
-	subpaths:
-		- list of timeslots for a doctor id:
-			path: /search
-			request params:
-				- doctor
-		
-		- list of timeslots for a doctor id on a particular date:
-			path: /search
-			request params:
-				- doctor
-				- date
+    path: /timeslots
+    subpaths:
+        - list of timeslots for a doctor id:
+            path: /search
+            request params:
+                - doctor
+        
+        - list of timeslots for a doctor id on a particular date:
+            path: /search
+            request params:
+                - doctor
+                - date
 
 Bill:
-	path: /bill
-		subpaths:
-        	- bill by id:
-            	path: /:id
-            	path variables: 
-                	- id
-            	method: GET
-            
-			- list of bills of a patient id:
-				path: /search
-				request params:
-					- patient
+    path: /bill
+    subpaths:
+        - bill by id:
+            path: /:id
+            path variables: 
+                - id
+            method: GET
+        
+        - list of bills of a patient id:
+            path: /search
+            request params:
+                - patient
