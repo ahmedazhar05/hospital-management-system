@@ -11,10 +11,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Patient implements Serializable {
@@ -27,20 +27,15 @@ public class Patient implements Serializable {
         DRIVING_LICENSE
     }
     public static enum BLOOD_GROUP{
-        A_RHD_POSITIVE("A+"),
-        A_RHD_NEGATIVE("A-"),
-        B_RHD_POSITIVE("B+"),
-        B_RHD_NEGATIVE("B-"),
-        O_RHD_POSITIVE("O+"),
-        O_RHD_NEGATIVE("O-"),
-        AB_RHD_POSITIVE("AB+"),
-        AB_RHD_NEGATIVE("AB-");
-        
-        public final String label;
-
-        private BLOOD_GROUP(String label) {
-            this.label = label;
-        }
+        A_RHD_POSITIVE,
+        A_RHD_NEGATIVE,
+        B_RHD_POSITIVE,
+        B_RHD_NEGATIVE,
+        O_RHD_POSITIVE,
+        O_RHD_NEGATIVE,
+        AB_RHD_POSITIVE,
+        AB_RHD_NEGATIVE,
+        RH_NULL
     }
     public static enum STATUS{
         UNVERIFIED,
@@ -106,17 +101,16 @@ public class Patient implements Serializable {
     private String hash;
 
     @NotNull(message="Email is required")
-    @Email
+    @Email(message="Email should be valid")
     private String email;
 
     @NotNull(message="Date of Birth is required")
-    @Past
+    @PastOrPresent(message="Date of Birth cannot be in the future")
     private Date dateOfBirth;
 
     @NotNull(message="Contact number is required")
-    @Digits(fraction = 0, integer = 10)
-    @Positive
-    private Long contact;
+    @Size(min = 10, max = 10, message = "Contact number should be a valid 10 digit number")
+    private String contact;
 
     @NotNull(message="Gender is required")
     @Enumerated(EnumType.STRING)
@@ -130,13 +124,14 @@ public class Patient implements Serializable {
     private String addressLine3;
 
     @NotNull(message="State is required")
+    @Enumerated(EnumType.STRING)
     private STATE state;
 
     @NotNull(message="City is required")
     private String city;
 
     @NotNull(message="Zip is required")
-    @Digits(fraction = 0, integer = 6)
+    @Digits(fraction = 0, integer = 6, message ="Zip should be a valid 6 digit number")
     private Integer zip;
 
     @NotNull(message="ID document is required")
@@ -150,7 +145,7 @@ public class Patient implements Serializable {
     @Pattern(regexp="[A-Z]{2}[0-9]{13}") // Driving License
     private String documentNumber;
 
-    @Digits(fraction = 0, integer = 3)
+    @Digits(fraction = 0, integer = 3, message ="Patient weight should be in Kilograms")
     private Integer weight;
 
     @Enumerated(EnumType.STRING)
@@ -160,23 +155,7 @@ public class Patient implements Serializable {
         super();
     }
 
-    public Patient(
-            @NotNull(message = "First name is required") String firstName, 
-            @NotNull(message = "Last name is required") String lastName, 
-            @NotNull(message = "Password is required") String hash, 
-            @NotNull(message = "Email is required") @Email String email, 
-            @NotNull(message = "Date of Birth is required") @Past Date dateOfBirth, 
-            @NotNull(message = "Contact number is required") @Digits(fraction = 0, integer = 10) @Positive Long contact, 
-            @NotNull(message = "Gender is required") GENDER gender, 
-            @NotNull(message = "First address line is required") String addressLine1, String addressLine2, String addressLine3, 
-            @NotNull(message = "State is required") STATE state, 
-            @NotNull(message = "City is required") String city, 
-            @NotNull(message = "Zip is required") @Digits(fraction = 0, integer = 6) Integer zip, 
-            @NotNull(message = "ID document is required") DOCUMENT_TYPE documentType, 
-            @NotNull(message = "ID document number is required") @Pattern(regexp = "[A-Z]{3}[PCHABGJLFT][A-Z][0-9]{4}[A-Z]") @Pattern(regexp = "[2-9][0-9]{11}") @Pattern(regexp = "[A-Z]{3}[0-9]{7}") @Pattern(regexp = "[A-Z]{2}[0-9]{13}") String documentNumber, 
-            @Digits(fraction = 0, integer = 3) Integer weight, 
-            BLOOD_GROUP bloodGroup, 
-            @NotNull STATUS status) {
+    public Patient(String firstName, String lastName, String hash, String email, Date dateOfBirth, String contact, GENDER gender, String addressLine1, String addressLine2, String addressLine3, STATE state, String city, Integer zip, DOCUMENT_TYPE documentType, String documentNumber, Integer weight, BLOOD_GROUP bloodGroup, STATUS status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.hash = hash;
@@ -249,11 +228,11 @@ public class Patient implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Long getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public void setContact(Long contact) {
+    public void setContact(String contact) {
         this.contact = contact;
     }
 
@@ -354,8 +333,8 @@ public class Patient implements Serializable {
         this.status = status;
     }
 
-	@Override
-	public String toString() {
-		return "Patient [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hash=" + hash + ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", contact=" + contact + ", gender=" + gender + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3 + ", state=" + state + ", city=" + city + ", zip=" + zip + ", documentType=" + documentType + ", documentNumber=" + documentNumber + ", weight=" + weight + ", bloodGroup=" + bloodGroup + ", status=" + status + "]";
-	}
+    @Override
+    public String toString() {
+        return "Patient [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hash=" + hash + ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", contact=" + contact + ", gender=" + gender + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3 + ", state=" + state + ", city=" + city + ", zip=" + zip + ", documentType=" + documentType + ", documentNumber=" + documentNumber + ", weight=" + weight + ", bloodGroup=" + bloodGroup + ", status=" + status + "]";
+    }
 }

@@ -8,7 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -20,21 +21,23 @@ public class OccupiedBed implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message="Bed is required")
     @ManyToOne(optional=false)
     private Bed bed;
 
-    @NotNull
+    @NotNull(message="Patient is required")
     @ManyToOne(optional=false)
     private Patient patient;
 
-    @NotNull
+    @NotNull(message="Booking time is required")
+    @FutureOrPresent(message = "Bed booking time cannot be in the past")
     private Date startTime;
 
+    @FutureOrPresent(message = "Bed discharge time cannot be in the past")
     private Date endTime;
 
-    @NotNull
-    @Positive
+    @NotNull(message="Bed charge is required")
+    @Min(value = 0, message="Bed charge cannot be negative")
     private Integer rate;
 
     public OccupiedBed() {
@@ -97,8 +100,8 @@ public class OccupiedBed implements Serializable {
         this.rate = rate;
     }
 
-	@Override
-	public String toString() {
-		return "OccupiedBed [id=" + id + ", bed=" + bed + ", patient=" + patient + ", startTime=" + startTime + ", endTime=" + endTime + ", rate=" + rate + "]";
-	}
+    @Override
+    public String toString() {
+        return "OccupiedBed [id=" + id + ", bed=" + bed + ", patient=" + patient + ", startTime=" + startTime + ", endTime=" + endTime + ", rate=" + rate + "]";
+    }
 }

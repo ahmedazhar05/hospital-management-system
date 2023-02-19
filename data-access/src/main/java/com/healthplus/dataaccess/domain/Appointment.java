@@ -17,15 +17,15 @@ public class Appointment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message="Patient is required")
     @ManyToOne(optional = false)
     private Patient patient;
 
-    @NotNull
+    @NotNull(message="Doctor is required")
     @ManyToOne(optional = false)
     private Doctor doctor;
 
-    @NotNull
+    @NotNull(message="Timeslot is required")
     @ManyToOne(optional = false)
     private Timeslot timeslot;
 
@@ -35,7 +35,7 @@ public class Appointment implements Serializable {
         super();
     }
 
-    public Appointment(@NotNull Patient patient, @NotNull Doctor doctor, @NotNull Timeslot timeslot, String symptom) {
+    public Appointment(Patient patient, Doctor doctor, Timeslot timeslot, String symptom) {
         this.patient = patient;
         this.doctor = doctor;
         this.timeslot = timeslot;
@@ -82,8 +82,8 @@ public class Appointment implements Serializable {
         this.symptom = symptom;
     }
 
-	@Override
-	public String toString() {
-		return "Appointment [id=" + id + ", patient=" + patient + ", doctor=" + doctor + ", timeslot=" + timeslot + ", symptom=" + symptom + "]";
-	}
+    @Override
+    public String toString() {
+        return "Appointment [id=" + id + ", patient=" + patient + ", doctor=" + doctor + ", timeslot=" + timeslot + ", symptom=" + symptom + "]";
+    }
 }

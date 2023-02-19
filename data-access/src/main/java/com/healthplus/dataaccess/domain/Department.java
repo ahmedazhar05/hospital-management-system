@@ -16,7 +16,7 @@ public class Department implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Department name is required")
     private String name;
 
     private String imageUrl; // TODO: assign a default image URL to this
@@ -54,8 +54,8 @@ public class Department implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-	@Override
-	public String toString() {
-		return "Department [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + "]";
-	}
+    @Override
+    public String toString() {
+        return "Department [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + "]";
+    }
 }

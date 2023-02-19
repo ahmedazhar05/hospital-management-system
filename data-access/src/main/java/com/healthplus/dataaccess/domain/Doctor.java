@@ -7,13 +7,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Doctor implements Serializable {
@@ -29,44 +29,43 @@ public class Doctor implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message="Password is required")
     private String hash;
 
-    @NotNull
-    @Email
+    @NotNull(message="Email is required")
+    @Email(message="Email should be valid")
     private String email;
 
-    @NotNull
+    @NotNull(message="Contact number is required")
+    @Size(min = 10, max = 10, message = "Contact number should be a valid 10 digit number")
     private String contact;
 
-    @NotNull
+    @NotNull(message="Designation is required")
     private String designation;
 
-    @NotNull
+    @NotNull(message="Department is required")
     @ManyToOne(optional=false)
     private Department department;
 
-    @NotNull
+    @NotNull(message="Degree is required")
     private String degrees;
 
-    @NotNull
-    @Past
+    @NotNull(message="Degree Certification Date is required")
+    @Past(message="Degree Certification Date cannot be in the future")
     private Date degreeCertificationDate;
 
-    @NotNull
     private String imageUrl; // TODO: assign a default image URL to this
 
-    @NotNull
     private String language = "English";
 
-    @NotNull
+    @NotNull(message="Gender is required")
     private GENDER gender;
 
-    @NotNull
-    @Positive
+    @NotNull(message="Doctor fees is required")
+    @Min(value = 0, message="Doctor fees cannot be negative")
     private Integer fees;
 
-    private String description;
+    private String description = "<em>No description available</em>";
 
     public Doctor() {
         super();
@@ -191,8 +190,8 @@ public class Doctor implements Serializable {
         this.description = description;
     }
 
-	@Override
-	public String toString() {
-		return "Doctor [id=" + id + ", hash=" + hash + ", email=" + email + ", contact=" + contact + ", designation=" + designation + ", department=" + department + ", degrees=" + degrees + ", degreeCertificationDate=" + degreeCertificationDate + ", imageUrl=" + imageUrl + ", language=" + language + ", gender=" + gender + ", fees=" + fees + ", description=" + description + "]";
-	}
+    @Override
+    public String toString() {
+        return "Doctor [id=" + id + ", hash=" + hash + ", email=" + email + ", contact=" + contact + ", designation=" + designation + ", department=" + department + ", degrees=" + degrees + ", degreeCertificationDate=" + degreeCertificationDate + ", imageUrl=" + imageUrl + ", language=" + language + ", gender=" + gender + ", fees=" + fees + ", description=" + description + "]";
+    }
 }

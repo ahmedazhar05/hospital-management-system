@@ -10,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -33,20 +32,19 @@ public class Timeslot implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message="Doctor is required")
     @ManyToOne(optional=false)
     private Doctor doctor;
     
-    @NotNull
+    @NotNull(message="Day of the week is required")
     @Enumerated(EnumType.STRING)
     private DAY_OF_WEEK dayOfWeek;
 
-    @NotNull
-    @FutureOrPresent
+    @NotNull(message="Time is required")
     private Time time;
 
-    @NotNull
-    @Positive
+    @NotNull(message="Number of hours of availability is required")
+    @Positive(message="Number of hours of availability cannot be negative")
     private Integer hours;
 
     public Timeslot() {
@@ -100,8 +98,8 @@ public class Timeslot implements Serializable {
         this.hours = hours;
     }
 
-	@Override
-	public String toString() {
-		return "Timeslot [id=" + id + ", doctor=" + doctor + ", dayOfWeek=" + dayOfWeek + ", time=" + time + ", hours=" + hours + "]";
-	}
+    @Override
+    public String toString() {
+        return "Timeslot [id=" + id + ", doctor=" + doctor + ", dayOfWeek=" + dayOfWeek + ", time=" + time + ", hours=" + hours + "]";
+    }
 }

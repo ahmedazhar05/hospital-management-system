@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -20,17 +19,17 @@ public class Report implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message="Patient is required")
     @ManyToOne(optional=false)
     private Patient patient;
 
-    @NotNull
+    @NotNull(message="Name is required")
     private String name;
     
-    @PastOrPresent
-    private Date date;
+    @PastOrPresent(message="Date cannot be in the future")
+    private Date date = new Date();
 
-    @NotNull
+    @NotNull(message="File path is required")
     private String fileUrl;
 
     public Report() {
@@ -84,8 +83,8 @@ public class Report implements Serializable {
         this.fileUrl = fileUrl;
     }
 
-	@Override
-	public String toString() {
-		return "Report [id=" + id + ", patient=" + patient + ", name=" + name + ", date=" + date + ", fileUrl=" + fileUrl + "]";
-	}
+    @Override
+    public String toString() {
+        return "Report [id=" + id + ", patient=" + patient + ", name=" + name + ", date=" + date + ", fileUrl=" + fileUrl + "]";
+    }
 }

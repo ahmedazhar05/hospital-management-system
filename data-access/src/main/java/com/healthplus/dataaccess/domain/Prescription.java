@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 
@@ -20,26 +19,26 @@ public class Prescription implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message="Patient is required")
     @ManyToOne(optional=false)
     private Patient patient;
 
-    @NotNull
+    @NotNull(message="Doctor is required")
     @ManyToOne(optional=false)
     private Doctor doctor;
 
-    @NotNull
+    @NotNull(message="Diagnosis is required")
     private String diagnosis;
 
     private String investigation;
 
     private String avoidables;
 
-    @NotNull
-    @FutureOrPresent
+    @NotNull(message="Date is required")
+    @FutureOrPresent(message="Date cannot be in the past")
     private Date date;
 
-    @NotNull
+    @NotNull(message="Whether prescription is for IPD or not should be mentioned")
     private Boolean isIpd;
 
     public Prescription() {
@@ -120,8 +119,8 @@ public class Prescription implements Serializable {
         this.isIpd = isIpd;
     }
 
-	@Override
-	public String toString() {
-		return "Prescription [id=" + id + ", patient=" + patient + ", doctor=" + doctor + ", diagnosis=" + diagnosis + ", investigation=" + investigation + ", avoidables=" + avoidables + ", date=" + date + ", isIpd=" + isIpd + "]";
-	}
+    @Override
+    public String toString() {
+        return "Prescription [id=" + id + ", patient=" + patient + ", doctor=" + doctor + ", diagnosis=" + diagnosis + ", investigation=" + investigation + ", avoidables=" + avoidables + ", date=" + date + ", isIpd=" + isIpd + "]";
+    }
 }

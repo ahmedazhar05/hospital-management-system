@@ -8,8 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Bed implements Serializable {
@@ -36,27 +36,27 @@ public class Bed implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message="Room type is required")
     @Enumerated(EnumType.STRING)
     private ROOM room;
 
-    @NotNull
+    @NotNull(message="Bed type is required")
     @Enumerated(EnumType.STRING)
     private BED type;
 
-    @NotNull
+    @NotNull(message="Room facility is required")
     @Enumerated(EnumType.STRING)
     private FACILITY facility;
 
-    @NotNull
-    @Positive
+    @NotNull(message="Beds availibility is required")
+    @Min(value = 0, message="Availability of beds cannot be less than 0")
     private Integer availability;
 
     public Bed() {
         super();
     }
 
-    public Bed(@NotNull ROOM room, @NotNull BED type, @NotNull FACILITY facility, @NotNull @Positive Integer availability) {
+    public Bed(ROOM room, BED type, FACILITY facility, Integer availability) {
         this.room = room;
         this.type = type;
         this.facility = facility;
@@ -103,8 +103,8 @@ public class Bed implements Serializable {
         this.availability = availability;
     }
 
-	@Override
-	public String toString() {
-		return "Bed [id=" + id + ", room=" + room + ", type=" + type + ", facility=" + facility + ", availability=" + availability + "]";
-	}
+    @Override
+    public String toString() {
+        return "Bed [id=" + id + ", room=" + room + ", type=" + type + ", facility=" + facility + ", availability=" + availability + "]";
+    }
 }

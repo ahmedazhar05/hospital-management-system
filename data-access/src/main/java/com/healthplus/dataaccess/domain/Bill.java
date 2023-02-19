@@ -2,11 +2,9 @@ package com.healthplus.dataaccess.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -26,12 +25,12 @@ public class Bill implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    @PositiveOrZero
+    @NotNull(message = "Total should be calculated for a bill")
+    @Min(value = 0, message="Total cannot be negative")
     private Integer total;
 
-    @NotNull
-    @FutureOrPresent
+    @NotNull(message = "Date is required")
+    @FutureOrPresent(message = "Bill cannot be created in advance")
     private Date date;
 
     @ManyToOne
@@ -43,11 +42,11 @@ public class Bill implements Serializable {
     @OneToOne
     private OccupiedBed occupiedBed;
 
-    @NotNull
+    @NotNull(message = "There should be atleast one prescription for billing")
     @OneToMany
     private Set<Prescription> prescriptions;
 
-    @Positive
+    @Min(value = 0, message="OT charge cannot be negative")
     private Integer otCharge;
 
     public Bill() {
@@ -128,8 +127,8 @@ public class Bill implements Serializable {
         this.prescriptions = prescriptions;
     }
 
-	@Override
-	public String toString() {
-		return "Bill [id=" + id + ", total=" + total + ", date=" + date + ", appliedScheme=" + appliedScheme + ", appliedInsurance=" + appliedInsurance + ", occupiedBed=" + occupiedBed + ", prescriptions=" + prescriptions + ", otCharge=" + otCharge + "]";
-	}
+    @Override
+    public String toString() {
+        return "Bill [id=" + id + ", total=" + total + ", date=" + date + ", appliedScheme=" + appliedScheme + ", appliedInsurance=" + appliedInsurance + ", occupiedBed=" + occupiedBed + ", prescriptions=" + prescriptions + ", otCharge=" + otCharge + "]";
+    }
 }

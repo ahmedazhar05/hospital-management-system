@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -19,14 +19,14 @@ public class DietPlan implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Prescription is required")
     @ManyToOne(optional=false)
     private Prescription prescription;
 
-    @NotNull
+    @NotNull(message = "Diet plan food is required")
     private String food;
     
-    @Positive
+    @Min(value = 0, message = "Duration cannot be negative")
     private Integer duration;
 
     public DietPlan() {
@@ -71,8 +71,8 @@ public class DietPlan implements Serializable {
         this.duration = duration;
     }
 
-	@Override
-	public String toString() {
-		return "DietPlan [id=" + id + ", prescription=" + prescription + ", food=" + food + ", duration=" + duration + "]";
-	}
+    @Override
+    public String toString() {
+        return "DietPlan [id=" + id + ", prescription=" + prescription + ", food=" + food + ", duration=" + duration + "]";
+    }
 }

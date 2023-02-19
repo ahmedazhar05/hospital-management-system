@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -17,13 +18,13 @@ public class Insurance implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message="Company name is required")
     private String company;
 
-    private String description;
+    private String description = "<em>No description available</em>";
 
-    @NotNull
-    @Positive
+    @NotNull(message="Deductable amount is required")
+    @Min(value=0, message="Amount cannot be negative")
     private Integer amountRedeemable;
 
     public Insurance() {
@@ -68,8 +69,8 @@ public class Insurance implements Serializable {
         this.amountRedeemable = amountRedeemable;
     }
 
-	@Override
-	public String toString() {
-		return "Insurance [id=" + id + ", company=" + company + ", description=" + description + ", amountRedeemable=" + amountRedeemable + "]";
-	}
+    @Override
+    public String toString() {
+        return "Insurance [id=" + id + ", company=" + company + ", description=" + description + ", amountRedeemable=" + amountRedeemable + "]";
+    }
 }

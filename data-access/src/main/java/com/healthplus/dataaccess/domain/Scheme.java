@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -16,12 +17,13 @@ public class Scheme implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotNull(message="Scheme name is required")
     private String name;
 
-    private String description;
+    private String description = "<em>No description available</em>";
 
-    @NotNull
+    @NotNull(message="Deductable amount is required")
+    @Min(value=0, message="Amount cannot be negative")
     private Integer amountRedeemable;
 
     public Scheme() {
@@ -66,8 +68,8 @@ public class Scheme implements Serializable {
         this.amountRedeemable = amountRedeemable;
     }
 
-	@Override
-	public String toString() {
-		return "Scheme [id=" + id + ", name=" + name + ", description=" + description + ", amountRedeemable=" + amountRedeemable + "]";
-	}
+    @Override
+    public String toString() {
+        return "Scheme [id=" + id + ", name=" + name + ", description=" + description + ", amountRedeemable=" + amountRedeemable + "]";
+    }
 }
