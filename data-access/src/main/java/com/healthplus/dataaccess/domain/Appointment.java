@@ -31,6 +31,13 @@ public class Appointment implements Serializable {
 
     private String symptom;
 
+    public Appointment(@NotNull Patient patient, @NotNull Doctor doctor, @NotNull Timeslot timeslot, String symptom) {
+        this.patient = patient;
+        this.doctor = doctor;
+        this.timeslot = timeslot;
+        this.symptom = symptom;
+    }
+
     public Long getId() {
         return id;
     }

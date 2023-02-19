@@ -52,7 +52,14 @@ public class Bed implements Serializable {
     @Positive
     private Integer availability;
 
-    public Long getId() {
+    public Bed(@NotNull ROOM room, @NotNull BED type, @NotNull FACILITY facility, @NotNull @Positive Integer availability) {
+		this.room = room;
+		this.type = type;
+		this.facility = facility;
+		this.availability = availability;
+	}
+
+	public Long getId() {
         return id;
     }
 

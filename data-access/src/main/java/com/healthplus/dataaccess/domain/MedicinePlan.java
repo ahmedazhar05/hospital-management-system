@@ -32,7 +32,14 @@ public class MedicinePlan implements Serializable {
     @Positive
     private Integer duration;
 
-    public Long getId() {
+    public MedicinePlan(@NotNull Prescription prescription, @NotNull String name, @NotNull String dosage, @Positive Integer duration) {
+		this.prescription = prescription;
+		this.name = name;
+		this.dosage = dosage;
+		this.duration = duration;
+	}
+
+	public Long getId() {
         return id;
     }
 

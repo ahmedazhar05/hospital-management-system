@@ -68,7 +68,22 @@ public class Doctor implements Serializable {
 
     private String description;
 
-    public Long getId() {
+    public Doctor(@NotNull String hash, @NotNull @Email String email, @NotNull String contact, @NotNull String designation, @NotNull Department department, @NotNull String degrees, @NotNull @Past Date degreeCertificationDate, @NotNull String imageUrl, @NotNull String language, @NotNull GENDER gender, @NotNull @Positive Integer fees, String description) {
+		this.hash = hash;
+		this.email = email;
+		this.contact = contact;
+		this.designation = designation;
+		this.department = department;
+		this.degrees = degrees;
+		this.degreeCertificationDate = degreeCertificationDate;
+		this.imageUrl = imageUrl;
+		this.language = language;
+		this.gender = gender;
+		this.fees = fees;
+		this.description = description;
+	}
+
+	public Long getId() {
         return id;
     }
 

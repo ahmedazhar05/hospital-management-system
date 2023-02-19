@@ -21,7 +21,12 @@ public class Department implements Serializable {
 
     private String imageUrl; // TODO: assign a default image URL to this
 
-    public Long getId() {
+    public Department(@NotNull String name, String imageUrl) {
+		this.name = name;
+		this.imageUrl = imageUrl;
+	}
+
+	public Long getId() {
         return id;
     }
 

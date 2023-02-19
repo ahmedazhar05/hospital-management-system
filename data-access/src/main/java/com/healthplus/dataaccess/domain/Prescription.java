@@ -42,7 +42,17 @@ public class Prescription implements Serializable {
     @NotNull
     private Boolean isIpd;
 
-    public Long getId() {
+    public Prescription(@NotNull Patient patient, @NotNull Doctor doctor, @NotNull String diagnosis, String investigation, String avoidables, @NotNull @FutureOrPresent Date date, @NotNull Boolean isIpd) {
+		this.patient = patient;
+		this.doctor = doctor;
+		this.diagnosis = diagnosis;
+		this.investigation = investigation;
+		this.avoidables = avoidables;
+		this.date = date;
+		this.isIpd = isIpd;
+	}
+
+	public Long getId() {
         return id;
     }
 

@@ -27,6 +27,12 @@ public class Admin implements Serializable {
     @NotNull
     private String contact;
 
+    public Admin(@NotNull String hash, @NotNull @Email String email, @NotNull String contact) {
+        this.hash = hash;
+        this.email = email;
+        this.contact = contact;
+    }
+
     public Long getId() {
         return id;
     }

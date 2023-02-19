@@ -33,7 +33,14 @@ public class Report implements Serializable {
     @NotNull
     private String fileUrl;
 
-    public Long getId() {
+    public Report(@NotNull Patient patient, @NotNull String name, @PastOrPresent Date date, @NotNull String fileUrl) {
+		this.patient = patient;
+		this.name = name;
+		this.date = date;
+		this.fileUrl = fileUrl;
+	}
+
+	public Long getId() {
         return id;
     }
 
