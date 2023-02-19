@@ -2,6 +2,7 @@ package com.healthplus.dataaccess.controller;
 
 import java.util.List;
 
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public List<Department> listDepartments(){
 }
 
 @GetMapping(path="/{id}")
-public List<Department> getDepartmentBy(@PathVariable("id") Integer id){
-	return departmentRepository.findAll();
+public Optional<Department> getDepartmentBy(@PathVariable("id") Integer id){
+	return departmentRepository.findById(id);
 }
 }

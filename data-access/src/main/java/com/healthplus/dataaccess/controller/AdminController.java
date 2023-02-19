@@ -1,10 +1,10 @@
 package com.healthplus.dataaccess.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,8 +29,8 @@ public class AdminController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public List<Admin> getAdminBy(@PathVariable("id") Integer id) {
-		return adminRepository.findAll();
+	public Optional<Admin> getAdminBy(@PathVariable("id") Long id) {
+		return adminRepository.findById(null);
 	}
 
 	@GetMapping(path = "/search", params = { "email" })
@@ -39,8 +39,14 @@ public class AdminController {
 	}
 
 	@GetMapping(path = "/search", params = { "contact" })
-	public Optional<Admin> getAdminBy(@RequestParam("contact") Long contact) {
+	public Optional<Admin> getAdminBy1(@RequestParam("contact") Long contact) {
 		return adminRepository.getAdminByContact(contact);
+	}
+	
+	@DeleteMapping(path="/{id}")
+	public @ResponseBody String deleteAdmin(@PathVariable("id")Long id){
+		adminRepository.deleteById(id);
+		return "Deleted";
 	}
 
 }
