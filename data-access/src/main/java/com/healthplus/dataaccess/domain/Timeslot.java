@@ -1,13 +1,16 @@
 package com.healthplus.dataaccess.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Time;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -15,52 +18,74 @@ import jakarta.validation.constraints.Positive;
 @Entity
 public class Timeslot implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    private enum DAY_OF_WEEK{
+        SUNDAY,
+        MONDAY,
+        TUESDAY,
+        WEDNESDAY,
+        THURSDAY,
+        FRIDAY,
+        SATURDAY
+    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @NotNull
-    @ManyToOne
+    @OneToOne(optional=false)
     private Doctor doctor;
+    
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private DAY_OF_WEEK dayOfWeek;
 
     @NotNull
     @FutureOrPresent
-    private Date slot;
+    private Time time;
 
     @NotNull
     @Positive
     private Integer hours;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Doctor getDoctor() {
-		return doctor;
-	}
+    public Doctor getDoctor() {
+        return doctor;
+    }
 
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
-	}
-	
-	public Date getSlot() {
-		return slot;
-	}
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+    
+    public DAY_OF_WEEK getDayOfWeek() {
+        return dayOfWeek;
+    }
 
-	public void setSlot(Date slot) {
-		this.slot = slot;
-	}
-	
-	public Integer getHours() {
-		return hours;
-	}
+    public void setDayOfWeek(DAY_OF_WEEK dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
+    }
 
-	public void setHours(Integer hours) {
-		this.hours = hours;
-	}
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+    
+    public Integer getHours() {
+        return hours;
+    }
+
+    public void setHours(Integer hours) {
+        this.hours = hours;
+    }
 }

@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -20,7 +21,7 @@ public class Report implements Serializable {
     private Long id;
 
     @NotNull
-    @ManyToOne
+    @OneToOne(optional=false)
     private Patient patient;
 
     @NotNull
@@ -32,43 +33,43 @@ public class Report implements Serializable {
     @NotNull
     private String fileUrl;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Patient getPatient() {
-		return patient;
-	}
+    public Patient getPatient() {
+        return patient;
+    }
 
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public String getFileUrl() {
-		return fileUrl;
-	}
+    public String getFileUrl() {
+        return fileUrl;
+    }
 
-	public void setFileUrl(String fileUrl) {
-		this.fileUrl = fileUrl;
-	}
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
 }

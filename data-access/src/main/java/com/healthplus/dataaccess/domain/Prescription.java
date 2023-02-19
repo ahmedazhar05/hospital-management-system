@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 
@@ -19,9 +20,11 @@ public class Prescription implements Serializable {
     private Long id;
 
     @NotNull
+    @OneToOne(optional=false)
     private Patient patient;
 
     @NotNull
+    @OneToOne(optional=false)
     private Doctor doctor;
 
     @NotNull
@@ -38,67 +41,67 @@ public class Prescription implements Serializable {
     @NotNull
     private Boolean isIpd;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Patient getPatient() {
-		return patient;
-	}
+    public Patient getPatient() {
+        return patient;
+    }
 
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
 
-	public Doctor getDoctor() {
-		return doctor;
-	}
+    public Doctor getDoctor() {
+        return doctor;
+    }
 
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
-	}
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
 
-	public String getDiagnosis() {
-		return diagnosis;
-	}
+    public String getDiagnosis() {
+        return diagnosis;
+    }
 
-	public void setDiagnosis(String diagnosis) {
-		this.diagnosis = diagnosis;
-	}
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
 
-	public String getInvestigation() {
-		return investigation;
-	}
+    public String getInvestigation() {
+        return investigation;
+    }
 
-	public void setInvestigation(String investigation) {
-		this.investigation = investigation;
-	}
+    public void setInvestigation(String investigation) {
+        this.investigation = investigation;
+    }
 
-	public String getAvoidables() {
-		return avoidables;
-	}
+    public String getAvoidables() {
+        return avoidables;
+    }
 
-	public void setAvoidables(String avoidables) {
-		this.avoidables = avoidables;
-	}
+    public void setAvoidables(String avoidables) {
+        this.avoidables = avoidables;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public Boolean isIpd() {
-		return isIpd;
-	}
+    public Boolean getIsIpd() {
+        return isIpd;
+    }
 
-	public void setIpd(Boolean isIpd) {
-		this.isIpd = isIpd;
-	}
+    public void setIsIpd(Boolean isIpd) {
+        this.isIpd = isIpd;
+    }
 }

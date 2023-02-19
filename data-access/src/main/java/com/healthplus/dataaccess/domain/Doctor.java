@@ -12,12 +12,19 @@ import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Doctor implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    private enum GENDER{
+        MALE,
+        FEMALE,
+        OTHERS
+    }
 
-	@Id
+    @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
@@ -35,7 +42,8 @@ public class Doctor implements Serializable {
     private String designation;
 
     @NotNull
-    private String department;
+    @OneToOne(optional=false)
+    private Department department;
 
     @NotNull
     private String degrees;
@@ -45,123 +53,121 @@ public class Doctor implements Serializable {
     private Date degreeCertificationDate;
 
     @NotNull
-    private String imageUrl;
+    private String imageUrl; // TODO: assign a default image URL to this
 
     @NotNull
-    private String language;
+    private String language = "English";
 
     @NotNull
-    private Character gender;
+    private GENDER gender;
 
     @NotNull
+    @Positive
     private Integer fees;
 
     private String description;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getHash() {
-		return hash;
-	}
+    public String getHash() {
+        return hash;
+    }
 
-	public void setHash(String hash) {
-		this.hash = hash;
-	}
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
     
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getContact() {
-		return contact;
-	}
+    public String getContact() {
+        return contact;
+    }
 
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
 
-	public String getDesignation() {
-		return designation;
-	}
+    public String getDesignation() {
+        return designation;
+    }
 
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
-	
-	@OneToOne(optional=false)
-	@JoinColumn(name="department_id", referencedColumnName="id")
-	public String getDepartment() {
-		return department;
-	}
-	
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+    
+    public Department getDepartment() {
+        return department;
+    }
+    
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
-	public void setDepartment(String department) {
-		this.department = department;
-	}
+    public String getDegrees() {
+        return degrees;
+    }
 
-	public String getDegrees() {
-		return degrees;
-	}
+    public void setDegrees(String degrees) {
+        this.degrees = degrees;
+    }
 
-	public void setDegrees(String degrees) {
-		this.degrees = degrees;
-	}
+    public Date getDegreeCertificationDate() {
+        return degreeCertificationDate;
+    }
 
-	public Date getDegreeCertificationDate() {
-		return degreeCertificationDate;
-	}
+    public void setDegreeCertificationDate(Date degreeCertificationDate) {
+        this.degreeCertificationDate = degreeCertificationDate;
+    }
 
-	public void setDegreeCertificationDate(Date degreeCertificationDate) {
-		this.degreeCertificationDate = degreeCertificationDate;
-	}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+    public String getLanguage() {
+        return language;
+    }
 
-	public String getLanguage() {
-		return language;
-	}
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
+    public GENDER getGender() {
+        return gender;
+    }
 
-	public Character getGender() {
-		return gender;
-	}
+    public void setGender(GENDER gender) {
+        this.gender = gender;
+    }
 
-	public void setGender(Character gender) {
-		this.gender = gender;
-	}
+    public Integer getFees() {
+        return fees;
+    }
 
-	public Integer getFees() {
-		return fees;
-	}
+    public void setFees(Integer fees) {
+        this.fees = fees;
+    }
 
-	public void setFees(Integer fees) {
-		this.fees = fees;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

@@ -26,35 +26,35 @@ public class Insurance implements Serializable {
     @Positive
     private Integer amountRedeemable;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getCompany() {
-		return company;
-	}
+    public String getCompany() {
+        return company;
+    }
 
-	public void setCompany(String company) {
-		this.company = company;
-	}
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Integer getAmountRedeemable() {
-		return amountRedeemable;
-	}
+    public Integer getAmountRedeemable() {
+        return amountRedeemable;
+    }
 
-	public void setAmountRedeemable(Integer amountRedeemable) {
-		this.amountRedeemable = amountRedeemable;
-	}
+    public void setAmountRedeemable(Integer amountRedeemable) {
+        this.amountRedeemable = amountRedeemable;
+    }
 }

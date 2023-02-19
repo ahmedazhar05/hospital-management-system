@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -18,6 +19,7 @@ public class MedicinePlan implements Serializable {
     private Long id;
 
     @NotNull
+    @OneToOne(optional=false)
     private Prescription prescription;
 
     @NotNull
@@ -29,43 +31,43 @@ public class MedicinePlan implements Serializable {
     @Positive
     private Integer duration;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Prescription getPrescription() {
-		return prescription;
-	}
+    public Prescription getPrescription() {
+        return prescription;
+    }
 
-	public void setPrescription(Prescription prescription) {
-		this.prescription = prescription;
-	}
+    public void setPrescription(Prescription prescription) {
+        this.prescription = prescription;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getDosage() {
-		return dosage;
-	}
+    public String getDosage() {
+        return dosage;
+    }
 
-	public void setDosage(String dosage) {
-		this.dosage = dosage;
-	}
+    public void setDosage(String dosage) {
+        this.dosage = dosage;
+    }
 
-	public Integer getDuration() {
-		return duration;
-	}
+    public Integer getDuration() {
+        return duration;
+    }
 
-	public void setDuration(Integer duration) {
-		this.duration = duration;
-	}
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
 }

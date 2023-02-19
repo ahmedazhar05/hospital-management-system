@@ -3,6 +3,8 @@ package com.healthplus.dataaccess.domain;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,61 +14,81 @@ import jakarta.validation.constraints.Positive;
 @Entity
 public class Bed implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    private enum ROOM{
+        PRIVATE,
+        SEMI_PRIVATE,
+        MALE_GENERAL,
+        FEMALE_GENERAL
+    }
+    
+    private enum BED{
+        ICU,
+        NORMAL
+    }
+    
+    private enum FACILITY{
+        AC,
+        NON_AC
+    }
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @NotNull
-    private String room;
+    @Enumerated(EnumType.STRING)
+    private ROOM room;
 
     @NotNull
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private BED type;
 
     @NotNull
-    private String facility;
+    @Enumerated(EnumType.STRING)
+    private FACILITY facility;
 
     @NotNull
     @Positive
     private Integer availability;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getRoom() {
-		return room;
-	}
+    public ROOM getRoom() {
+        return room;
+    }
 
-	public void setRoom(String room) {
-		this.room = room;
-	}
+    public void setRoom(ROOM room) {
+        this.room = room;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public BED getType() {
+        return type;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setType(BED type) {
+        this.type = type;
+    }
 
-	public String getFacility() {
-		return facility;
-	}
+    public FACILITY getFacility() {
+        return facility;
+    }
 
-	public void setFacility(String facility) {
-		this.facility = facility;
-	}
+    public void setFacility(FACILITY facility) {
+        this.facility = facility;
+    }
 
-	public Integer getAvailability() {
-		return availability;
-	}
+    public Integer getAvailability() {
+        return availability;
+    }
 
-	public void setAvailability(Integer availability) {
-		this.availability = availability;
-	}
+    public void setAvailability(Integer availability) {
+        this.availability = availability;
+    }
 }

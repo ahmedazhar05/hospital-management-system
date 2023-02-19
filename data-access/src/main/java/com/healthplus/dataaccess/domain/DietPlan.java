@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -18,6 +19,7 @@ public class DietPlan implements Serializable {
     private Long id;
 
     @NotNull
+    @OneToOne(optional=false)
     private Prescription prescription;
 
     @NotNull
@@ -26,35 +28,35 @@ public class DietPlan implements Serializable {
     @Positive
     private Integer duration;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Prescription getPrescription() {
-		return prescription;
-	}
+    public Prescription getPrescription() {
+        return prescription;
+    }
 
-	public void setPrescription(Prescription prescription) {
-		this.prescription = prescription;
-	}
+    public void setPrescription(Prescription prescription) {
+        this.prescription = prescription;
+    }
 
-	public String getFood() {
-		return food;
-	}
+    public String getFood() {
+        return food;
+    }
 
-	public void setFood(String food) {
-		this.food = food;
-	}
+    public void setFood(String food) {
+        this.food = food;
+    }
 
-	public Integer getDuration() {
-		return duration;
-	}
+    public Integer getDuration() {
+        return duration;
+    }
 
-	public void setDuration(Integer duration) {
-		this.duration = duration;
-	}
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
 }

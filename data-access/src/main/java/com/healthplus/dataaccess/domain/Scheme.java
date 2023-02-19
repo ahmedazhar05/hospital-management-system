@@ -24,35 +24,35 @@ public class Scheme implements Serializable {
     @NotNull
     private Integer amountRedeemable;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Integer getAmountRedeemable() {
-		return amountRedeemable;
-	}
+    public Integer getAmountRedeemable() {
+        return amountRedeemable;
+    }
 
-	public void setAmountRedeemable(Integer amountRedeemable) {
-		this.amountRedeemable = amountRedeemable;
-	}
+    public void setAmountRedeemable(Integer amountRedeemable) {
+        this.amountRedeemable = amountRedeemable;
+    }
 }
