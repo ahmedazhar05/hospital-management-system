@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,11 +29,8 @@ public List<DietPlan> getDietPlanByPrescription(@RequestParam("prescription")Lon
 }
 
 @PostMapping(path="/")
-public @ResponseBody String addNewDiet(@RequestParam Prescription prescription,@RequestParam String food,@RequestParam Integer duration) {
-  DietPlan dp=new DietPlan();
-  dp.setPrescription(prescription);
-  dp.setFood(food);
-  dp.setDuration(duration);
-return "Prescribed";
+public @ResponseBody String addNewDiet(@RequestBody DietPlan newDietPlan) {
+dietPlanRepository.save(newDietPlan);
+return "Added";
 }
 }
