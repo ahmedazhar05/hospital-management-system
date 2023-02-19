@@ -15,11 +15,11 @@ import com.healthplus.dataaccess.repo.PrescriptionRepository;
 @Controller
 @RequestMapping(path = "/prescription")
 public class PrescriptionController {
-	private PrescriptionRepository prescriptionRepository;
+    private PrescriptionRepository prescriptionRepository;
 
-	@GetMapping(path = "/{id}")
-	public Optional<Prescription> getPrescriptionBy(@PathVariable("id") Long id) {
-		return prescriptionRepository.findById(id);
-	}
+    @GetMapping(path = "/{id}")
+    public Optional<Prescription> getPrescriptionBy(@PathVariable("id") Long id) {
+        return prescriptionRepository.findById(id);
+    }
 
 }

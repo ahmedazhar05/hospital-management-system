@@ -30,16 +30,16 @@ public class DietPlan implements Serializable {
     private Integer duration;
 
     public DietPlan() {
-		super();
-	}
+        super();
+    }
 
     public DietPlan(@NotNull Prescription prescription, @NotNull String food, @Positive Integer duration) {
-		this.prescription = prescription;
-		this.food = food;
-		this.duration = duration;
-	}
+        this.prescription = prescription;
+        this.food = food;
+        this.duration = duration;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 

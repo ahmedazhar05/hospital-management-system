@@ -27,16 +27,16 @@ public class Insurance implements Serializable {
     private Integer amountRedeemable;
 
     public Insurance() {
-		super();
-	}
+        super();
+    }
 
     public Insurance(@NotNull String company, String description, @NotNull @Positive Integer amountRedeemable) {
-		this.company = company;
-		this.description = description;
-		this.amountRedeemable = amountRedeemable;
-	}
+        this.company = company;
+        this.description = description;
+        this.amountRedeemable = amountRedeemable;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 

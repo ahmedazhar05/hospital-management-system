@@ -18,27 +18,27 @@ import com.healthplus.dataaccess.repo.AppointmentRepository;
 @Controller
 @RequestMapping(path = "/appointments")
 public class AppointmentController {
-	@Autowired
-	public AppointmentRepository appointmentRepository;
+    @Autowired
+    public AppointmentRepository appointmentRepository;
 
-	@GetMapping(path = "/{id}")
-	public List<Appointment> getAppointmentBy(@PathVariable("id") Long id) {
-		return appointmentRepository.findAll();
-	}
+    @GetMapping(path = "/{id}")
+    public List<Appointment> getAppointmentBy(@PathVariable("id") Long id) {
+        return appointmentRepository.findAll();
+    }
 
-	@GetMapping(path = "/search", params = { "patient" })
-	public List<Appointment> getAppointmentBy(@RequestParam("patient") Integer id) {
-		return appointmentRepository.getAppointmentByPatient(id);
-	}
+    @GetMapping(path = "/search", params = { "patient" })
+    public List<Appointment> getAppointmentBy(@RequestParam("patient") Integer id) {
+        return appointmentRepository.getAppointmentByPatient(id);
+    }
 
-	@GetMapping(path = "/search", params = { "doctor" })
-	public List<Appointment> getAppointmentBy1(@RequestParam("doctor") Long id) {
-		return appointmentRepository.getAppointmentByPatient(id);
-	}
+    @GetMapping(path = "/search", params = { "doctor" })
+    public List<Appointment> getAppointmentBy1(@RequestParam("doctor") Long id) {
+        return appointmentRepository.getAppointmentByPatient(id);
+    }
 
-	@DeleteMapping(path="/{id}")
-	public @ResponseBody String deleteAppointment(@PathVariable("id") Long id) {
-		appointmentRepository.deleteById(id);
-		return "Deleted";
-	}
+    @DeleteMapping(path="/{id}")
+    public @ResponseBody String deleteAppointment(@PathVariable("id") Long id) {
+        appointmentRepository.deleteById(id);
+        return "Deleted";
+    }
 }

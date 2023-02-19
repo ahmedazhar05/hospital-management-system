@@ -16,14 +16,14 @@ import src.main.java.com.healthplus.dataaccess.repo.ReportRepository;
 @Controller
 @RequestMapping(path="/schemes")
 public class SchemeController {
-	private ReportRepository reportRepository;
+    private ReportRepository reportRepository;
 @Autowired
-	@GetMapping(path = "/")
-	public List<Scheme> listScheme() {
-	    return schemeRepository.findAll();
-	}
+    @GetMapping(path = "/")
+    public List<Scheme> listScheme() {
+        return schemeRepository.findAll();
+    }
 @GetMapping(path="/{id}")
 public Optional<Scheme> getschemeBy(@PathVariable("id") Long id){
-	return schemeRepository.findById(id);
+    return schemeRepository.findById(id);
 }
 }

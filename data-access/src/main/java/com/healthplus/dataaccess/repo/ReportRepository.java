@@ -8,5 +8,5 @@ import com.healthplus.dataaccess.domain.Report;
 
 public interface ReportRepository extends JpaRepository<Report, Long> {
 
-	@Query(value = "SELECT * FROM Report WHERE Pateint = ?1", nativeQuery = true)
-	public Optional<Report> getReportByPatient(Long id);
+    @Query(value = "SELECT * FROM Report WHERE Pateint = ?1", nativeQuery = true)
+    public Optional<Report> getReportByPatient(Long id);

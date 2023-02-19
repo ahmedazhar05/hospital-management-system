@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import com.healthplus.dataaccess.domain.Bed;
 
 public interface BedRepository extends JpaRepository<Bed,Long> {
-	@Query(value="Select * From bed Where patient=?1", nativeQuery=true)
-	List<Bed> getBedByPatient(Long id);
+    @Query(value="SELECT * FROM bed WHERE patient=?1", nativeQuery=true)
+    List<Bed> getBedByPatient(Long id);
 
-	
+    
 
 }

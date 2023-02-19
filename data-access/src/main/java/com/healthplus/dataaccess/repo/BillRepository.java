@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.healthplus.dataaccess.domain.Bill;
 
 public interface BillRepository extends JpaRepository<Bill, Long> {
-    @Query(value="Select * From Bill Where patient=?1", nativeQuery=true)
-public 	List<Bill> getBillByPatient(Integer id);
+    @Query(value="SELECT * FROM Bill WHERE patient=?1", nativeQuery=true)
+public     List<Bill> getBillByPatient(Integer id);
 
 }

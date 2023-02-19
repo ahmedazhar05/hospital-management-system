@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import com.healthplus.dataaccess.domain.Admin;
 
 public interface AdminRepository extends JpaRepository<Admin, Long> {
-	@Query(value="Select * From admin Where email=?1", nativeQuery=true)
-	Optional<Admin> getAdminByEmail(String email);
+    @Query(value="SELECT * FROM admin WHERE email=?1", nativeQuery=true)
+    Optional<Admin> getAdminByEmail(String email);
 
-	@Query(value="Select * From admin Where contact=?1", nativeQuery=true)
-	Optional<Admin> getAdminByContact(Long contact);
+    @Query(value="SELECT * FROM admin WHERE contact=?1", nativeQuery=true)
+    Optional<Admin> getAdminByContact(Long contact);
 
 }

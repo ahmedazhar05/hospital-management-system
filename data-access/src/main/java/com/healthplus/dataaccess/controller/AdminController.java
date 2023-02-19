@@ -19,34 +19,33 @@ import com.healthplus.dataaccess.repo.AdminRepository;
 @Controller
 @RequestMapping(path = "/admin")
 public class AdminController {
-	@Autowired
-	public AdminRepository adminRepository;
+    @Autowired
+    public AdminRepository adminRepository;
 
-	@PostMapping(path = "/")
-	public @ResponseBody String addNewAdmin(@RequestBody Admin newAdmin) {
-		adminRepository.save(newAdmin);
-		return "Added";
-	}
+    @PostMapping(path = "/")
+    public @ResponseBody String addNewAdmin(@RequestBody Admin newAdmin) {
+        adminRepository.save(newAdmin);
+        return "Added";
+    }
 
-	@GetMapping(path = "/{id}")
-	public Optional<Admin> getAdminBy(@PathVariable("id") Long id) {
-		return adminRepository.findById(null);
-	}
+    @GetMapping(path = "/{id}")
+    public Optional<Admin> getAdminById(@PathVariable("id") Long id) {
+        return adminRepository.findById(null);
+    }
 
-	@GetMapping(path = "/search", params = { "email" })
-	public Optional<Admin> getAdminBy(@RequestParam("email") String email) {
-		return adminRepository.getAdminByEmail(email);
-	}
+    @GetMapping(path = "/search", params = { "email" })
+    public Optional<Admin> getAdminBy(@RequestParam("email") String email) {
+        return adminRepository.getAdminByEmail(email);
+    }
 
-	@GetMapping(path = "/search", params = { "contact" })
-	public Optional<Admin> getAdminBy1(@RequestParam("contact") Long contact) {
-		return adminRepository.getAdminByContact(contact);
-	}
-	
-	@DeleteMapping(path="/{id}")
-	public @ResponseBody String deleteAdmin(@PathVariable("id")Long id){
-		adminRepository.deleteById(id);
-		return "Deleted";
-	}
-
+    @GetMapping(path = "/search", params = { "contact" })
+    public Optional<Admin> getAdminBy(@RequestParam("contact") Long contact) {
+        return adminRepository.getAdminByContact(contact);
+    }
+    
+    @DeleteMapping(path="/{id}")
+    public @ResponseBody String deleteAdmin(@PathVariable("id")Long id){
+        adminRepository.deleteById(id);
+        return "Deleted";
+    }
 }

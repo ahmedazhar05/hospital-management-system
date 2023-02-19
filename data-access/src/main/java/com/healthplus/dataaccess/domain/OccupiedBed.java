@@ -38,18 +38,18 @@ public class OccupiedBed implements Serializable {
     private Integer rate;
 
     public OccupiedBed() {
-		super();
-	}
+        super();
+    }
 
     public OccupiedBed(@NotNull Bed bed, @NotNull Patient patient, @NotNull Date startTime, Date endTime, @NotNull @Positive Integer rate) {
-		this.bed = bed;
-		this.patient = patient;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.rate = rate;
-	}
+        this.bed = bed;
+        this.patient = patient;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.rate = rate;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 

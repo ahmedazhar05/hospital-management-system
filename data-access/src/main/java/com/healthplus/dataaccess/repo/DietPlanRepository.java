@@ -9,8 +9,8 @@ import com.healthplus.dataaccess.domain.DietPlan;
 
 
 public interface DietPlanRepository extends JpaRepository<DietPlan,Integer> {
-    @Query(value="Select * From dietplan where id=?1 ")
-	List<DietPlan> getDietPlanByPrescription(Long id);
+    @Query(value="SELECT * FROM dietplan WHERE id=?1 ")
+    List<DietPlan> getDietPlanByPrescription(Long id);
 
 }
 

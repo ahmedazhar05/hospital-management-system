@@ -19,33 +19,33 @@ import com.healthplus.dataaccess.repo.PatientRepository;
 @Controller
 @RequestMapping(path="/patients")
 public class PatientController {
-	@Autowired
-	private PatientRepository patientRepository;
-	
-	@GetMapping(path="/")
-	public List<Patient> listPatients(){
-		return patientRepository.findAll();
-	}
-	
-	@GetMapping(path="/{id}")
-	public Optional<Patient> getPatientBy(@PathVariable("id") Long id){
-		return patientRepository.findById(id);
-	}
-	
-	@GetMapping(path="/search", params={"email"})
-	public Optional<Patient> getPatientBy(@RequestParam("email") String email){
-		return patientRepository.getPatientByEmail(email);
-	}
-	
-	@GetMapping(path="/search", params={"contact"})
-	public Optional<Patient> getPatientByContact(@RequestParam("contact") Long contact){
-		return patientRepository.getPatientByContact(contact);
-	}
-	
-	@PutMapping(path="/{id}")
-	public @ResponseBody String updatePatient(@PathVariable("id") Long id, @RequestBody Patient newPatient) {
-		newPatient.setId(id);
-		patientRepository.save(newPatient);
-		return "Saved";
-	}
+    @Autowired
+    private PatientRepository patientRepository;
+    
+    @GetMapping(path="/")
+    public List<Patient> listPatients(){
+        return patientRepository.findAll();
+    }
+    
+    @GetMapping(path="/{id}")
+    public Optional<Patient> getPatientBy(@PathVariable("id") Long id){
+        return patientRepository.findById(id);
+    }
+    
+    @GetMapping(path="/search", params={"email"})
+    public Optional<Patient> getPatientBy(@RequestParam("email") String email){
+        return patientRepository.getPatientByEmail(email);
+    }
+    
+    @GetMapping(path="/search", params={"contact"})
+    public Optional<Patient> getPatientByContact(@RequestParam("contact") Long contact){
+        return patientRepository.getPatientByContact(contact);
+    }
+    
+    @PutMapping(path="/{id}")
+    public @ResponseBody String updatePatient(@PathVariable("id") Long id, @RequestBody Patient newPatient) {
+        newPatient.setId(id);
+        patientRepository.save(newPatient);
+        return "Saved";
+    }
 }

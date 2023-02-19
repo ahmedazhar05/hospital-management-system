@@ -9,8 +9,8 @@ import com.healthplus.dataaccess.domain.OccupiedBed;
 import com.healthplus.dataaccess.domain.Timeslot;
 
 public interface OccupiedBedRepository extends JpaRepository<OccupiedBed, Long> {
-	@Query(value="Select * From occupied_bed Where patient = ?1", nativeQuery=true)
-	List<OccupiedBed> getOccupiedBedByPatient(Long id);
+    @Query(value="SELECT * FROM occupied_bed WHERE patient = ?1", nativeQuery=true)
+    List<OccupiedBed> getOccupiedBedByPatient(Long id);
 
 
 

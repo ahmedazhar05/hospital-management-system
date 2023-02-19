@@ -157,47 +157,47 @@ public class Patient implements Serializable {
     private BLOOD_GROUP bloodGroup;
 
     public Patient() {
-		super();
-	}
+        super();
+    }
 
     public Patient(
-    		@NotNull(message = "First name is required") String firstName, 
-    		@NotNull(message = "Last name is required") String lastName, 
-    		@NotNull(message = "Password is required") String hash, 
-    		@NotNull(message = "Email is required") @Email String email, 
-    		@NotNull(message = "Date of Birth is required") @Past Date dateOfBirth, 
-    		@NotNull(message = "Contact number is required") @Digits(fraction = 0, integer = 10) @Positive Long contact, 
-    		@NotNull(message = "Gender is required") GENDER gender, 
-    		@NotNull(message = "First address line is required") String addressLine1, String addressLine2, String addressLine3, 
-    		@NotNull(message = "State is required") STATE state, 
-    		@NotNull(message = "City is required") String city, 
-    		@NotNull(message = "Zip is required") @Digits(fraction = 0, integer = 6) Integer zip, 
-    		@NotNull(message = "ID document is required") DOCUMENT_TYPE documentType, 
-    		@NotNull(message = "ID document number is required") @Pattern(regexp = "[A-Z]{3}[PCHABGJLFT][A-Z][0-9]{4}[A-Z]") @Pattern(regexp = "[2-9][0-9]{11}") @Pattern(regexp = "[A-Z]{3}[0-9]{7}") @Pattern(regexp = "[A-Z]{2}[0-9]{13}") String documentNumber, 
-    		@Digits(fraction = 0, integer = 3) Integer weight, 
-    		BLOOD_GROUP bloodGroup, 
-    		@NotNull STATUS status) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.hash = hash;
-		this.email = email;
-		this.dateOfBirth = dateOfBirth;
-		this.contact = contact;
-		this.gender = gender;
-		this.addressLine1 = addressLine1;
-		this.addressLine2 = addressLine2;
-		this.addressLine3 = addressLine3;
-		this.state = state;
-		this.city = city;
-		this.zip = zip;
-		this.documentType = documentType;
-		this.documentNumber = documentNumber;
-		this.weight = weight;
-		this.bloodGroup = bloodGroup;
-		this.status = status;
-	}
+            @NotNull(message = "First name is required") String firstName, 
+            @NotNull(message = "Last name is required") String lastName, 
+            @NotNull(message = "Password is required") String hash, 
+            @NotNull(message = "Email is required") @Email String email, 
+            @NotNull(message = "Date of Birth is required") @Past Date dateOfBirth, 
+            @NotNull(message = "Contact number is required") @Digits(fraction = 0, integer = 10) @Positive Long contact, 
+            @NotNull(message = "Gender is required") GENDER gender, 
+            @NotNull(message = "First address line is required") String addressLine1, String addressLine2, String addressLine3, 
+            @NotNull(message = "State is required") STATE state, 
+            @NotNull(message = "City is required") String city, 
+            @NotNull(message = "Zip is required") @Digits(fraction = 0, integer = 6) Integer zip, 
+            @NotNull(message = "ID document is required") DOCUMENT_TYPE documentType, 
+            @NotNull(message = "ID document number is required") @Pattern(regexp = "[A-Z]{3}[PCHABGJLFT][A-Z][0-9]{4}[A-Z]") @Pattern(regexp = "[2-9][0-9]{11}") @Pattern(regexp = "[A-Z]{3}[0-9]{7}") @Pattern(regexp = "[A-Z]{2}[0-9]{13}") String documentNumber, 
+            @Digits(fraction = 0, integer = 3) Integer weight, 
+            BLOOD_GROUP bloodGroup, 
+            @NotNull STATUS status) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.hash = hash;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.contact = contact;
+        this.gender = gender;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.addressLine3 = addressLine3;
+        this.state = state;
+        this.city = city;
+        this.zip = zip;
+        this.documentType = documentType;
+        this.documentNumber = documentNumber;
+        this.weight = weight;
+        this.bloodGroup = bloodGroup;
+        this.status = status;
+    }
 
-	@NotNull
+    @NotNull
     @Enumerated(EnumType.STRING)
     private STATUS status = STATUS.UNVERIFIED;
 

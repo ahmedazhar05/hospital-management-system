@@ -16,11 +16,11 @@ import src.main.java.com.healthplus.dataaccess.controller.ReportRepository;
 @Controller
 @RequestMapping(path="medicines")
 public class MedicinePlanController {
-	@Autowired
-	private MedicinePlanRepository medicinePlanRepository;
-	@GetMapping(path = "/search", params = "prescription")
-	public List<MedicinePlan> getMedicinePlanBy(@RequestParam("prescription") Long id) {
-	    return medicinePlanRepository.getMedicinePlanByPrescription(id);
-	}
+    @Autowired
+    private MedicinePlanRepository medicinePlanRepository;
+    @GetMapping(path = "/search", params = "prescription")
+    public List<MedicinePlan> getMedicinePlanBy(@RequestParam("prescription") Long id) {
+        return medicinePlanRepository.getMedicinePlanByPrescription(id);
+    }
 
 }

@@ -25,16 +25,16 @@ public class Scheme implements Serializable {
     private Integer amountRedeemable;
 
     public Scheme() {
-		super();
-	}
+        super();
+    }
 
     public Scheme(@NotNull String name, String description, @NotNull Integer amountRedeemable) {
-		this.name = name;
-		this.description = description;
-		this.amountRedeemable = amountRedeemable;
-	}
+        this.name = name;
+        this.description = description;
+        this.amountRedeemable = amountRedeemable;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -21,34 +21,34 @@ import com.healthplus.dataaccess.repo.BedRepository;
 @Controller
 @RequestMapping(path = "/bed")
 public class BedController {
-	@Autowired
-	public BedRepository bedRepository;
+    @Autowired
+    public BedRepository bedRepository;
 
-	@PostMapping(path = "/")
-	public @ResponseBody String addNewBed(@RequestBody Bed newBed) {
-		bedRepository.save(newBed);
-		return "Added";
-	}
+    @PostMapping(path = "/")
+    public @ResponseBody String addNewBed(@RequestBody Bed newBed) {
+        bedRepository.save(newBed);
+        return "Added";
+    }
 
-	@GetMapping(path = "/")
-	public List<Bed> listBeds() {
-		return bedRepository.findAll();
-	}
+    @GetMapping(path = "/")
+    public List<Bed> listBeds() {
+        return bedRepository.findAll();
+    }
 
-	@GetMapping(path = "/{id}")
-	public Optional<Bed> getBedBy(@PathVariable("id") Long id) {
-		return bedRepository.findById(id);
-	}
+    @GetMapping(path = "/{id}")
+    public Optional<Bed> getBedBy(@PathVariable("id") Long id) {
+        return bedRepository.findById(id);
+    }
 
-	@GetMapping(path = "/search", params = { "patient" })
-	public List<Bed> getBedBy1(@RequestParam("patient") Long id) {
-		return bedRepository.getBedByPatient(id);
-	}
-	
-	@PutMapping(path="/{id}")
-	public @ResponseBody String updateBed(@PathVariable("id") Long id, @RequestBody Bed newBed) {
-		newBed.setId(id);
-		bedRepository.save(newBed);
-		return "Saved";
-	}
+    @GetMapping(path = "/search", params = { "patient" })
+    public List<Bed> getBedBy1(@RequestParam("patient") Long id) {
+        return bedRepository.getBedByPatient(id);
+    }
+    
+    @PutMapping(path="/{id}")
+    public @ResponseBody String updateBed(@PathVariable("id") Long id, @RequestBody Bed newBed) {
+        newBed.setId(id);
+        bedRepository.save(newBed);
+        return "Saved";
+    }
 }

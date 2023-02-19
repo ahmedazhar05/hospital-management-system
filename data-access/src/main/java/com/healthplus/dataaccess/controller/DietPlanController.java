@@ -24,8 +24,8 @@ public DietPlanRepository dietPlanRepository;
 
 @GetMapping(path="/search", params="{prescription}")
 public List<DietPlan> getDietPlanByPrescription(@RequestParam("prescription")Long id){
-	return dietPlanRepository.getDietPlanByPrescription(id);
-	
+    return dietPlanRepository.getDietPlanByPrescription(id);
+    
 }
 
 @PostMapping(path="/")

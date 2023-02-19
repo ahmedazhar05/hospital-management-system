@@ -32,8 +32,8 @@ public class Appointment implements Serializable {
     private String symptom;
 
     public Appointment() {
-		super();
-	}
+        super();
+    }
 
     public Appointment(@NotNull Patient patient, @NotNull Doctor doctor, @NotNull Timeslot timeslot, String symptom) {
         this.patient = patient;

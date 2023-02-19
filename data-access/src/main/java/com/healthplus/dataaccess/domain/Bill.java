@@ -51,20 +51,20 @@ public class Bill implements Serializable {
     private Integer otCharge;
 
     public Bill() {
-		super();
-	}
+        super();
+    }
 
     public Bill(@NotNull @PositiveOrZero Integer total, @NotNull @FutureOrPresent Date date, Scheme appliedScheme, Insurance appliedInsurance, OccupiedBed occupiedBed, @NotNull Set<Prescription> prescriptions, @Positive Integer otCharge) {
-		this.total = total;
-		this.date = date;
-		this.appliedScheme = appliedScheme;
-		this.appliedInsurance = appliedInsurance;
-		this.occupiedBed = occupiedBed;
-		this.prescriptions = prescriptions;
-		this.otCharge = otCharge;
-	}
+        this.total = total;
+        this.date = date;
+        this.appliedScheme = appliedScheme;
+        this.appliedInsurance = appliedInsurance;
+        this.occupiedBed = occupiedBed;
+        this.prescriptions = prescriptions;
+        this.otCharge = otCharge;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 

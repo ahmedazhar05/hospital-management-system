@@ -19,11 +19,11 @@ public class DepartmentController {
 public DepartmentRepository departmentRepository;
 @GetMapping(path="/")
 public List<Department> listDepartments(){
-	return departmentRepository.findAll();
+    return departmentRepository.findAll();
 }
 
 @GetMapping(path="/{id}")
 public Optional<Department> getDepartmentBy(@PathVariable("id") Integer id){
-	return departmentRepository.findById(id);
+    return departmentRepository.findById(id);
 }
 }

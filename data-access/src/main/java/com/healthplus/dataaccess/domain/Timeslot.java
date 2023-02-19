@@ -50,17 +50,17 @@ public class Timeslot implements Serializable {
     private Integer hours;
 
     public Timeslot() {
-		super();
-	}
+        super();
+    }
 
     public Timeslot(@NotNull Doctor doctor, @NotNull DAY_OF_WEEK dayOfWeek, @NotNull @FutureOrPresent Time time, @NotNull @Positive Integer hours) {
-		this.doctor = doctor;
-		this.dayOfWeek = dayOfWeek;
-		this.time = time;
-		this.hours = hours;
-	}
+        this.doctor = doctor;
+        this.dayOfWeek = dayOfWeek;
+        this.time = time;
+        this.hours = hours;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 

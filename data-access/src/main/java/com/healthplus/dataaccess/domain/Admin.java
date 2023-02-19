@@ -28,10 +28,10 @@ public class Admin implements Serializable {
     private String contact;
 
     public Admin() {
-		super();
-	}
+        super();
+    }
 
-	public Admin(@NotNull String hash, @NotNull @Email String email, @NotNull String contact) {
+    public Admin(@NotNull String hash, @NotNull @Email String email, @NotNull String contact) {
         this.hash = hash;
         this.email = email;
         this.contact = contact;

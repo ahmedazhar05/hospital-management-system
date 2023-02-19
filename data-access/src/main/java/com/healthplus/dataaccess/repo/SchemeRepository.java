@@ -6,4 +6,4 @@ import com.healthplus.dataaccess.domain.Scheme;
 
 public interface SchemeRepository extends JpaRepository<Scheme, Long> {
 
-	
+    
