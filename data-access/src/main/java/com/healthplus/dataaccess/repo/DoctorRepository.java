@@ -14,6 +14,9 @@ public interface  DoctorRepository extends 	JpaRepository<Doctor, Integer> {
 	Optional<Doctor> getDoctorByEmail(String email);
 
     @Query(value="Select * From doctor Where contact=?1", nativeQuery=true)
-	Optional<Doctor> getDoctorByContact(Integer contact);
+	Optional<Doctor> getDoctorByContact(Long contact);
+    
+    @Query(value="Select * From doctor Where id=?1", nativeQuery=true)
+	Optional<Doctor> getDoctorByDepartment(Integer id);
 
 }

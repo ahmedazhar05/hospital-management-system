@@ -40,9 +40,12 @@ public Optional<Doctor> getDoctorBy(@RequestParam("contact") Long contact){
 }
 
 @GetMapping (path="/search", params= {"department"})
-public Optional<Doctor> getDoctorBy(@RequestParam("departmentId") Integer departmentId){
-		return doctorRepository.getDoctorByDepartmentId(contact);
+public Optional<Doctor> getDoctorBy(@RequestParam("departmentId") Integer Id){
+		return doctorRepository.getDoctorByDepartment(Id);
 }
+
+@PutMapping(path="/{id}")
+
 
 
 
