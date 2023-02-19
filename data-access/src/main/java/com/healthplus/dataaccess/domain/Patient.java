@@ -353,4 +353,9 @@ public class Patient implements Serializable {
     public void setStatus(STATUS status) {
         this.status = status;
     }
+
+	@Override
+	public String toString() {
+		return "Patient [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hash=" + hash + ", email=" + email + ", dateOfBirth=" + dateOfBirth + ", contact=" + contact + ", gender=" + gender + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3 + ", state=" + state + ", city=" + city + ", zip=" + zip + ", documentType=" + documentType + ", documentNumber=" + documentNumber + ", weight=" + weight + ", bloodGroup=" + bloodGroup + ", status=" + status + "]";
+	}
 }

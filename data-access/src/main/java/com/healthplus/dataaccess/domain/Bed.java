@@ -102,4 +102,9 @@ public class Bed implements Serializable {
     public void setAvailability(Integer availability) {
         this.availability = availability;
     }
+
+	@Override
+	public String toString() {
+		return "Bed [id=" + id + ", room=" + room + ", type=" + type + ", facility=" + facility + ", availability=" + availability + "]";
+	}
 }

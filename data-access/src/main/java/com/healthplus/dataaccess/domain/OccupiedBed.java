@@ -96,4 +96,9 @@ public class OccupiedBed implements Serializable {
     public void setRate(Integer rate) {
         this.rate = rate;
     }
+
+	@Override
+	public String toString() {
+		return "OccupiedBed [id=" + id + ", bed=" + bed + ", patient=" + patient + ", startTime=" + startTime + ", endTime=" + endTime + ", rate=" + rate + "]";
+	}
 }

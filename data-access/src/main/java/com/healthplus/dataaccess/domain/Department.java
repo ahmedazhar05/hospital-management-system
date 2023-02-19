@@ -53,4 +53,9 @@ public class Department implements Serializable {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+	@Override
+	public String toString() {
+		return "Department [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + "]";
+	}
 }

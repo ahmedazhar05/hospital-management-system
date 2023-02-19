@@ -81,4 +81,9 @@ public class Appointment implements Serializable {
     public void setSymptom(String symptom) {
         this.symptom = symptom;
     }
+
+	@Override
+	public String toString() {
+		return "Appointment [id=" + id + ", patient=" + patient + ", doctor=" + doctor + ", timeslot=" + timeslot + ", symptom=" + symptom + "]";
+	}
 }

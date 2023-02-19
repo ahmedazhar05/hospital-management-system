@@ -127,4 +127,9 @@ public class Bill implements Serializable {
     public void setPrescriptions(Set<Prescription> prescriptions) {
         this.prescriptions = prescriptions;
     }
+
+	@Override
+	public String toString() {
+		return "Bill [id=" + id + ", total=" + total + ", date=" + date + ", appliedScheme=" + appliedScheme + ", appliedInsurance=" + appliedInsurance + ", occupiedBed=" + occupiedBed + ", prescriptions=" + prescriptions + ", otCharge=" + otCharge + "]";
+	}
 }

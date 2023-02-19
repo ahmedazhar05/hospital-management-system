@@ -83,4 +83,9 @@ public class Report implements Serializable {
     public void setFileUrl(String fileUrl) {
         this.fileUrl = fileUrl;
     }
+
+	@Override
+	public String toString() {
+		return "Report [id=" + id + ", patient=" + patient + ", name=" + name + ", date=" + date + ", fileUrl=" + fileUrl + "]";
+	}
 }

@@ -119,4 +119,9 @@ public class Prescription implements Serializable {
     public void setIsIpd(Boolean isIpd) {
         this.isIpd = isIpd;
     }
+
+	@Override
+	public String toString() {
+		return "Prescription [id=" + id + ", patient=" + patient + ", doctor=" + doctor + ", diagnosis=" + diagnosis + ", investigation=" + investigation + ", avoidables=" + avoidables + ", date=" + date + ", isIpd=" + isIpd + "]";
+	}
 }

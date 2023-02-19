@@ -65,4 +65,9 @@ public class Scheme implements Serializable {
     public void setAmountRedeemable(Integer amountRedeemable) {
         this.amountRedeemable = amountRedeemable;
     }
+
+	@Override
+	public String toString() {
+		return "Scheme [id=" + id + ", name=" + name + ", description=" + description + ", amountRedeemable=" + amountRedeemable + "]";
+	}
 }

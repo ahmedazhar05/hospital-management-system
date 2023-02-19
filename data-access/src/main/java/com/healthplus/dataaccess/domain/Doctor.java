@@ -190,4 +190,9 @@ public class Doctor implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+	@Override
+	public String toString() {
+		return "Doctor [id=" + id + ", hash=" + hash + ", email=" + email + ", contact=" + contact + ", designation=" + designation + ", department=" + department + ", degrees=" + degrees + ", degreeCertificationDate=" + degreeCertificationDate + ", imageUrl=" + imageUrl + ", language=" + language + ", gender=" + gender + ", fees=" + fees + ", description=" + description + "]";
+	}
 }

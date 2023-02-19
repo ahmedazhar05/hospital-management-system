@@ -82,4 +82,9 @@ public class MedicinePlan implements Serializable {
     public void setDuration(Integer duration) {
         this.duration = duration;
     }
+
+	@Override
+	public String toString() {
+		return "MedicinePlan [id=" + id + ", prescription=" + prescription + ", name=" + name + ", dosage=" + dosage + ", duration=" + duration + "]";
+	}
 }

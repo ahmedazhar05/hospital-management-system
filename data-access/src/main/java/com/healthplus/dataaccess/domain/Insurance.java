@@ -67,4 +67,9 @@ public class Insurance implements Serializable {
     public void setAmountRedeemable(Integer amountRedeemable) {
         this.amountRedeemable = amountRedeemable;
     }
+
+	@Override
+	public String toString() {
+		return "Insurance [id=" + id + ", company=" + company + ", description=" + description + ", amountRedeemable=" + amountRedeemable + "]";
+	}
 }

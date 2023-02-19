@@ -68,4 +68,9 @@ public class Admin implements Serializable {
     public void setContact(String contact) {
         this.contact = contact;
     }
+
+	@Override
+	public String toString() {
+		return "Admin [id=" + id + ", hash=" + hash + ", email=" + email + ", contact=" + contact + "]";
+	}
 }

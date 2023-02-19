@@ -70,4 +70,9 @@ public class DietPlan implements Serializable {
     public void setDuration(Integer duration) {
         this.duration = duration;
     }
+
+	@Override
+	public String toString() {
+		return "DietPlan [id=" + id + ", prescription=" + prescription + ", food=" + food + ", duration=" + duration + "]";
+	}
 }
