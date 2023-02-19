@@ -3,12 +3,14 @@ package com.healthplus.dataaccess.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -32,18 +34,18 @@ public class Bill implements Serializable {
     @FutureOrPresent
     private Date date;
 
-    @OneToOne
+    @ManyToOne
     private Scheme appliedScheme;
 
-    @OneToOne
+    @ManyToOne
     private Insurance appliedInsurance;
 
     @OneToOne
     private OccupiedBed occupiedBed;
 
     @NotNull
-    @OneToMany(targetEntity=Prescription.class)
-    private List<Prescription> prescriptions;
+    @OneToMany
+    private Set<Prescription> prescriptions;
 
     @Positive
     private Integer otCharge;
@@ -104,11 +106,11 @@ public class Bill implements Serializable {
         this.otCharge = otCharge;
     }
 
-    public List<Prescription> getPrescriptions() {
+    public Set<Prescription> getPrescriptions() {
         return prescriptions;
     }
 
-    public void setPrescriptions(List<Prescription> prescriptions) {
+    public void setPrescriptions(Set<Prescription> prescriptions) {
         this.prescriptions = prescriptions;
     }
 }

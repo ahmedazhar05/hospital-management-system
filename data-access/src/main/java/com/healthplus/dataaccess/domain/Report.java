@@ -21,7 +21,7 @@ public class Report implements Serializable {
     private Long id;
 
     @NotNull
-    @OneToOne(optional=false)
+    @ManyToOne(optional=false)
     private Patient patient;
 
     @NotNull

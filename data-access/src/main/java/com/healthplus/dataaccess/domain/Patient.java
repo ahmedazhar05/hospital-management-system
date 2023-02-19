@@ -20,13 +20,13 @@ import jakarta.validation.constraints.Positive;
 public class Patient implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private enum DOCUMENT_TYPE{
+    public static enum DOCUMENT_TYPE{
         AADHAR,
         PAN,
         VOTER_ID,
         DRIVING_LICENSE
     }
-    private enum BLOOD_GROUP{
+    public static enum BLOOD_GROUP{
         A_RHD_POSITIVE("A+"),
         A_RHD_NEGATIVE("A-"),
         B_RHD_POSITIVE("B+"),
@@ -42,18 +42,18 @@ public class Patient implements Serializable {
             this.label = label;
         }
     }
-    private enum STATUS{
+    public static enum STATUS{
         UNVERIFIED,
         VERIFIED,
         BLOCKED
     }
-    private enum GENDER{
+    public static enum GENDER{
         MALE,
         FEMALE,
         OTHERS
     }
     
-    private enum STATE{
+    public static enum STATE{
         ANDHRA_PRADESH,
         ARUNACHAL_PRADESH,
         ASSAM,

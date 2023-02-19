@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ import jakarta.validation.constraints.Positive;
 public class Doctor implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private enum GENDER{
+    public static enum GENDER{
         MALE,
         FEMALE,
         OTHERS
@@ -42,7 +43,7 @@ public class Doctor implements Serializable {
     private String designation;
 
     @NotNull
-    @OneToOne(optional=false)
+    @ManyToOne(optional=false)
     private Department department;
 
     @NotNull

@@ -14,7 +14,7 @@ public class Admin implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
@@ -24,6 +24,7 @@ public class Admin implements Serializable {
     @Email
     private String email;
 
+    @NotNull
     private String contact;
 
     public Long getId() {

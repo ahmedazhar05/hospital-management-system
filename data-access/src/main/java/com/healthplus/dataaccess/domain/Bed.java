@@ -15,19 +15,19 @@ import jakarta.validation.constraints.Positive;
 public class Bed implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private enum ROOM{
+    public static enum ROOM{
         PRIVATE,
         SEMI_PRIVATE,
         MALE_GENERAL,
         FEMALE_GENERAL
     }
     
-    private enum BED{
+    public static enum BED{
         ICU,
         NORMAL
     }
     
-    private enum FACILITY{
+    public static enum FACILITY{
         AC,
         NON_AC
     }

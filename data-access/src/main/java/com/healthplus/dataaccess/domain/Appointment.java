@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -14,19 +14,19 @@ public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
-    @OneToOne(optional=false)
+    @ManyToOne(optional = false)
     private Patient patient;
 
     @NotNull
-    @OneToOne(optional=false)
+    @ManyToOne(optional = false)
     private Doctor doctor;
 
     @NotNull
-    @OneToOne(optional=false)
+    @ManyToOne(optional = false)
     private Timeslot timeslot;
 
     private String symptom;

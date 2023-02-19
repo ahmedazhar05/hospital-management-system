@@ -19,7 +19,7 @@ import jakarta.validation.constraints.Positive;
 public class Timeslot implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private enum DAY_OF_WEEK{
+    public static enum DAY_OF_WEEK{
         SUNDAY,
         MONDAY,
         TUESDAY,
@@ -34,7 +34,7 @@ public class Timeslot implements Serializable {
     private Long id;
 
     @NotNull
-    @OneToOne(optional=false)
+    @ManyToOne(optional=false)
     private Doctor doctor;
     
     @NotNull
