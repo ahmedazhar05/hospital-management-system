@@ -52,6 +52,10 @@ public class Bed implements Serializable {
     @Positive
     private Integer availability;
 
+    public Bed() {
+		super();
+	}
+
     public Bed(@NotNull ROOM room, @NotNull BED type, @NotNull FACILITY facility, @NotNull @Positive Integer availability) {
 		this.room = room;
 		this.type = type;

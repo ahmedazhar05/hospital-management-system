@@ -156,6 +156,10 @@ public class Patient implements Serializable {
     @Enumerated(EnumType.STRING)
     private BLOOD_GROUP bloodGroup;
 
+    public Patient() {
+		super();
+	}
+
     public Patient(
     		@NotNull(message = "First name is required") String firstName, 
     		@NotNull(message = "Last name is required") String lastName, 

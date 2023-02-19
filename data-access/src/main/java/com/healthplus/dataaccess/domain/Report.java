@@ -33,6 +33,10 @@ public class Report implements Serializable {
     @NotNull
     private String fileUrl;
 
+    public Report() {
+		super();
+	}
+
     public Report(@NotNull Patient patient, @NotNull String name, @PastOrPresent Date date, @NotNull String fileUrl) {
 		this.patient = patient;
 		this.name = name;

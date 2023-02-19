@@ -26,6 +26,10 @@ public class Insurance implements Serializable {
     @Positive
     private Integer amountRedeemable;
 
+    public Insurance() {
+		super();
+	}
+
     public Insurance(@NotNull String company, String description, @NotNull @Positive Integer amountRedeemable) {
 		this.company = company;
 		this.description = description;

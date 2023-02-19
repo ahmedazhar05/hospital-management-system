@@ -37,6 +37,10 @@ public class OccupiedBed implements Serializable {
     @Positive
     private Integer rate;
 
+    public OccupiedBed() {
+		super();
+	}
+
     public OccupiedBed(@NotNull Bed bed, @NotNull Patient patient, @NotNull Date startTime, Date endTime, @NotNull @Positive Integer rate) {
 		this.bed = bed;
 		this.patient = patient;

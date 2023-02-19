@@ -24,6 +24,10 @@ public class Scheme implements Serializable {
     @NotNull
     private Integer amountRedeemable;
 
+    public Scheme() {
+		super();
+	}
+
     public Scheme(@NotNull String name, String description, @NotNull Integer amountRedeemable) {
 		this.name = name;
 		this.description = description;

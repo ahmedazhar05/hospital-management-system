@@ -21,6 +21,10 @@ public class Department implements Serializable {
 
     private String imageUrl; // TODO: assign a default image URL to this
 
+    public Department() {
+		super();
+	}
+
     public Department(@NotNull String name, String imageUrl) {
 		this.name = name;
 		this.imageUrl = imageUrl;

@@ -68,6 +68,10 @@ public class Doctor implements Serializable {
 
     private String description;
 
+    public Doctor() {
+		super();
+	}
+
     public Doctor(@NotNull String hash, @NotNull @Email String email, @NotNull String contact, @NotNull String designation, @NotNull Department department, @NotNull String degrees, @NotNull @Past Date degreeCertificationDate, @NotNull String imageUrl, @NotNull String language, @NotNull GENDER gender, @NotNull @Positive Integer fees, String description) {
 		this.hash = hash;
 		this.email = email;

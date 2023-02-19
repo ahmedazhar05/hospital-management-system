@@ -50,6 +50,10 @@ public class Bill implements Serializable {
     @Positive
     private Integer otCharge;
 
+    public Bill() {
+		super();
+	}
+
     public Bill(@NotNull @PositiveOrZero Integer total, @NotNull @FutureOrPresent Date date, Scheme appliedScheme, Insurance appliedInsurance, OccupiedBed occupiedBed, @NotNull Set<Prescription> prescriptions, @Positive Integer otCharge) {
 		this.total = total;
 		this.date = date;
