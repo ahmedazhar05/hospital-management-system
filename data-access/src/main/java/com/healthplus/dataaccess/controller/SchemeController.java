@@ -5,7 +5,7 @@ package src.main.java.com.healthplus.dataaccess.controller;
 public class SchemeController {
 @Autowired
 	@GetMapping(path = "/")
-	public List<Scheme> getAllSchemes() {
+	public List<Scheme> listScheme() {
 	    return schemeRepository.findAll();
 	}
 @GetMapping(path="/{id}")
