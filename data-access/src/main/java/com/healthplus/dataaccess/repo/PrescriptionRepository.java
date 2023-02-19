@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.healthplus.dataaccess.domain.Prescription;
 import com.healthplus.dataaccess.domain.Timeslot;
 
-public interface PrescriptionRepository extends JpaRepository<Prescription, Integer> {
+public interface PrescriptionRepository extends JpaRepository<Prescription, Long> {
 
 }

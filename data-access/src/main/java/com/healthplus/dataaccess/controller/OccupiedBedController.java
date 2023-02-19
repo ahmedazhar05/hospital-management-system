@@ -14,16 +14,19 @@ import com.healthplus.dataaccess.repo.OccupiedBedRepository;
 import com.healthplus.dataaccess.repo.TimeslotRepository;
 
 @Controller
-@RequestMapping(path="/bed")
+@RequestMapping(path = "/bed")
 public class OccupiedBedController {
-@Autowired
-private OccupiedBedRepository occupiedBedRepository;
-@GetMapping(path="/")
-public List<OccupiedBed> listOccupiedBeds(){
-	return occupiedBedRepository.findAll();
-}
-@GetMapping(path = "/search")
-public List<OccupiedBed> getBookedBedsByPatientId(@RequestParam("patient") Long id) {
-	return occupiedBedRepository.getOccupiedBedByPatient(id);
+	@Autowired
+	private OccupiedBedRepository occupiedBedRepository;
 
+	@GetMapping(path = "/")
+	public List<OccupiedBed> listOccupiedBeds() {
+		return occupiedBedRepository.findAll();
+	}
+
+	@GetMapping(path = "/search", params= {"patient"})
+	public List<OccupiedBed> getBookedBedsByPatientId(@RequestParam("patient") Long id) {
+		return occupiedBedRepository.getOccupiedBedByPatient(id);
+
+	}
 }

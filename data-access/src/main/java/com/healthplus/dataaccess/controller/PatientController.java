@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.healthplus.dataaccess.domain.Patient;
 import com.healthplus.dataaccess.repo.PatientRepository;
@@ -25,8 +28,8 @@ public class PatientController {
 	}
 	
 	@GetMapping(path="/{id}")
-	public List<Patient> getPatientBy(@PathVariable("id") Integer id){
-		return patientRepository.findAll();
+	public Optional<Patient> getPatientBy(@PathVariable("id") Long id){
+		return patientRepository.findById(id);
 	}
 	
 	@GetMapping(path="/search", params={"email"})
@@ -35,7 +38,14 @@ public class PatientController {
 	}
 	
 	@GetMapping(path="/search", params={"contact"})
-	public Optional<Patient> getPatientBy(@RequestParam("contact") Long contact){
+	public Optional<Patient> getPatientByContact(@RequestParam("contact") Long contact){
 		return patientRepository.getPatientByContact(contact);
+	}
+	
+	@PutMapping(path="/{id}")
+	public @ResponseBody String updatePatient(@PathVariable("id") Long id, @RequestBody Patient newPatient) {
+		newPatient.setId(id);
+		patientRepository.save(newPatient);
+		return "Saved";
 	}
 }

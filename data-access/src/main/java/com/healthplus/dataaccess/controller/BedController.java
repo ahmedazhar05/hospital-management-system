@@ -15,32 +15,32 @@ import com.healthplus.dataaccess.domain.Bed;
 import com.healthplus.dataaccess.repo.BedRepository;
 
 @Controller
-@RequestMapping(path="/bed")
+@RequestMapping(path = "/bed")
 public class BedController {
-@Autowired
-public BedRepository bedRepository;
+	@Autowired
+	public BedRepository bedRepository;
 
-@PostMapping(path="/")
-public @ResponseBody String addNewBed(@RequestParam String room,@RequestParam String type,@RequestParam String facility) {
-  Bed bed=new Bed();
-  bed.setRoom(room);
-  bed.setType(type);
-  bed.setFacility(facility);
-return "Alloted";
-}
+	@PostMapping(path = "/")
+	public @ResponseBody String addNewBed(@RequestParam String room, @RequestParam String type, @RequestParam String facility) {
+		Bed bed = new Bed();
+		bed.setRoom(room);
+		bed.setType(type);
+		bed.setFacility(facility);
+		return "Alloted";
+	}
 
-@GetMapping(path="/")
-public List<Bed> listBeds(){
-	return bedRepository.findAll();
-}
+	@GetMapping(path = "/")
+	public List<Bed> listBeds() {
+		return bedRepository.findAll();
+	}
 
-@GetMapping(path="/{id}")
-public List<Bed> getBedBy(@PathVariable("id") Long id){
-	return bedRepository.findAll();
-}
+	@GetMapping(path = "/{id}")
+	public List<Bed> getBedBy(@PathVariable("id") Long id) {
+		return bedRepository.findAll();
+	}
 
-@GetMapping(path="/search", params= {"patient"})
-public List<Bed> getBedBy(@RequestParam("patient") Integer id ){
-	return bedRepository.getBedByPatient(id);
-}
+	@GetMapping(path = "/search", params = { "patient" })
+	public List<Bed> getBedBy(@RequestParam("patient") Integer id) {
+		return bedRepository.getBedByPatient(id);
+	}
 }

@@ -14,20 +14,20 @@ import com.healthplus.dataaccess.domain.Timeslot;
 import com.healthplus.dataaccess.repo.TimeslotRepository;
 
 @Controller
-@RequestMapping(path="/timeslots")
+@RequestMapping(path = "/timeslots")
 public class TimeslotController {
-@Autowired
-private TimeslotRepository timeslotRepository;
-@GetMapping (path="/search", params= {"doctor"})
-public List<Timeslot> getTimeslotby(@RequestParam("doctor") Long id){
+	@Autowired
+	private TimeslotRepository timeslotRepository;
+
+	@GetMapping(path = "/search", params = { "doctor" })
+	public List<Timeslot> getTimeslotby(@RequestParam("doctor") Long id) {
 		return timeslotRepository.getTimeslotByDoctor(id);
-}
-@GetMapping(path = "/search", params = {"doctor", "date"})
-public List<Timeslot> getTimeslotsByDoctorAndDate(@RequestParam("doctor") Long doctorId, @RequestParam("date") String date) {
-    return timeslotRepository.getTimeslotsByDoctorAndDate(doctorId, date);
-}
-@PostMapping(path = "/")
+	}
 
+	@GetMapping(path = "/search", params = { "doctor", "date" })
+	public List<Timeslot> getTimeslotsByDoctorAndDate(@RequestParam("doctor") Long doctorId,
+			@RequestParam("date") String date) {
+		return timeslotRepository.getTimeslotsByDoctorAndDate(doctorId, date);
+	}
 
-	
 }
