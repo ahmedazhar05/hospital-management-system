@@ -7,13 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.healthplus.dataaccess.domain.MedicinePlan;
 import com.healthplus.dataaccess.repo.MedicinePlanRepository;
 
 import src.main.java.com.healthplus.dataaccess.controller.ReportRepository;
 
-@Controller
+@RestController
 @RequestMapping(path="medicines")
 public class MedicinePlanController {
     @Autowired

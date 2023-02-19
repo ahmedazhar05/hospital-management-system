@@ -8,12 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.healthplus.dataaccess.domain.Scheme;
 
 import src.main.java.com.healthplus.dataaccess.repo.ReportRepository;
 
-@Controller
+@RestController
 @RequestMapping(path="/schemes")
 public class SchemeController {
     private ReportRepository reportRepository;

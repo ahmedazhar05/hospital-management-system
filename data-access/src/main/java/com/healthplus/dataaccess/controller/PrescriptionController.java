@@ -7,12 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.healthplus.dataaccess.domain.Patient;
 import com.healthplus.dataaccess.domain.Prescription;
 import com.healthplus.dataaccess.repo.PrescriptionRepository;
 
-@Controller
+@RestController
 @RequestMapping(path = "/prescription")
 public class PrescriptionController {
     private PrescriptionRepository prescriptionRepository;

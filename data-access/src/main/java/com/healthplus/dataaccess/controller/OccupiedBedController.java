@@ -7,13 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.healthplus.dataaccess.domain.OccupiedBed;
 import com.healthplus.dataaccess.domain.Patient;
 import com.healthplus.dataaccess.repo.OccupiedBedRepository;
 import com.healthplus.dataaccess.repo.TimeslotRepository;
 
-@Controller
+@RestController
 @RequestMapping(path = "/bed")
 public class OccupiedBedController {
     @Autowired

@@ -8,12 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.healthplus.dataaccess.domain.Doctor;
 import com.healthplus.dataaccess.domain.Timeslot;
 import com.healthplus.dataaccess.repo.TimeslotRepository;
 
-@Controller
+@RestController
 @RequestMapping(path = "/timeslots")
 public class TimeslotController {
     @Autowired
