@@ -4,17 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.healthplus.dataaccess.domain.Appointment;
 import com.healthplus.dataaccess.domain.Patient;
+import com.healthplus.dataaccess.domain.Prescription;
 import com.healthplus.dataaccess.repo.PatientRepository;
 
 @RestController
@@ -34,19 +35,35 @@ public class PatientController {
     }
     
     @GetMapping(path="/search", params={"email"})
-    public Optional<Patient> getPatientBy(@RequestParam("email") String email){
+    public Patient getPatientBy(@RequestParam("email") String email){
         return patientRepository.getPatientByEmail(email);
     }
     
     @GetMapping(path="/search", params={"contact"})
-    public Optional<Patient> getPatientByContact(@RequestParam("contact") Long contact){
+    public Patient getPatientByContact(@RequestParam("contact") Long contact){
         return patientRepository.getPatientByContact(contact);
     }
     
+    @PostMapping(path="/")
+    public String addNewPatient(@RequestBody Patient p) {
+    	patientRepository.save(p);
+    	return "Saved";
+    }
+    
     @PutMapping(path="/{id}")
-    public @ResponseBody String updatePatient(@PathVariable("id") Long id, @RequestBody Patient newPatient) {
+    public String updatePatient(@PathVariable("id") Long id, @RequestBody Patient newPatient) {
         newPatient.setId(id);
         patientRepository.save(newPatient);
-        return "Saved";
+        return "Updated";
+    }
+    
+    @GetMapping(path="/{id}/appointments")
+    public List<Appointment> getAppointmentByPatient(@PathVariable("id") Long id){
+        return new AppointmentController().getAppointmentByPatient(id);
+    }
+    
+    @GetMapping(path="/{id}/prescription")
+    public List<Prescription> getPrescriptionByPatient(@PathVariable("id") Long id){
+        return new PrescriptionController().getPrescriptionByPatient(id);
     }
 }

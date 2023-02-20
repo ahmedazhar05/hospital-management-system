@@ -151,6 +151,10 @@ public class Patient implements Serializable {
     @Enumerated(EnumType.STRING)
     private BLOOD_GROUP bloodGroup;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private STATUS status = STATUS.UNVERIFIED;
+
     public Patient() {
         super();
     }
@@ -175,10 +179,6 @@ public class Patient implements Serializable {
         this.bloodGroup = bloodGroup;
         this.status = status;
     }
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private STATUS status = STATUS.UNVERIFIED;
 
     public Long getId() {
         return id;

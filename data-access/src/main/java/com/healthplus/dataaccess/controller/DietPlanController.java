@@ -16,22 +16,20 @@ import com.healthplus.dataaccess.domain.DietPlan;
 import com.healthplus.dataaccess.domain.Prescription;
 import com.healthplus.dataaccess.repo.DietPlanRepository;
 
-
 @RestController
-@RequestMapping(path="/diet")
-public class DietPlanController{
-@Autowired
-public DietPlanRepository dietPlanRepository;
+@RequestMapping(path = "/diet")
+public class DietPlanController {
+	@Autowired
+	public DietPlanRepository dietPlanRepository;
 
-@GetMapping(path="/search", params="{prescription}")
-public List<DietPlan> getDietPlanByPrescription(@RequestParam("prescription")Long id){
-    return dietPlanRepository.getDietPlanByPrescription(id);
-    
-}
+	@GetMapping(path = "/search", params = { "prescription" })
+	public List<DietPlan> getDietPlanByPrescription(@RequestParam("prescription") Long id) {
+		return dietPlanRepository.getDietPlanByPrescription(id);
+	}
 
-@PostMapping(path="/")
-public @ResponseBody String addNewDiet(@RequestBody DietPlan newDietPlan) {
-dietPlanRepository.save(newDietPlan);
-return "Added";
-}
+	@PostMapping(path = "/")
+	public @ResponseBody String addNewDiet(@RequestBody DietPlan newDietPlan) {
+		dietPlanRepository.save(newDietPlan);
+		return "Added";
+	}
 }
