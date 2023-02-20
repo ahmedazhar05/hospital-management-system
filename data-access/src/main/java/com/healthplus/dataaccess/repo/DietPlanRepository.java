@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.healthplus.dataaccess.domain.DietPlan;
 
-public interface DietPlanRepository extends JpaRepository<DietPlan, Integer> {
+public interface DietPlanRepository extends JpaRepository<DietPlan, Long> {
 	
-	@Query(value = "SELECT * FROM dietplan WHERE prescription = ?1 ")
+	@Query(value = "SELECT * FROM diet_plan WHERE prescription_id = ?1 ", nativeQuery = true)
 	List<DietPlan> getDietPlanByPrescription(Long id);
 
 }

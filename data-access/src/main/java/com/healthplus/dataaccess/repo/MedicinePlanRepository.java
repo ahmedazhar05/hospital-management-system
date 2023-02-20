@@ -9,6 +9,6 @@ import com.healthplus.dataaccess.domain.MedicinePlan;
 
 public interface MedicinePlanRepository extends JpaRepository<MedicinePlan, Long> {
 
-	@Query(value = "SELECT * FROM medicine_plan WHERE prescription = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM medicine_plan WHERE prescription_id = ?1", nativeQuery = true)
 	List<MedicinePlan> getMedicinePlanByPrescription(Long id);
 }
