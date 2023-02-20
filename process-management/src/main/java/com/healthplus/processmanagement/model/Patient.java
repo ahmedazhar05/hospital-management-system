@@ -92,7 +92,7 @@ public class Patient implements Serializable {
     private Integer weight;
     private BLOOD_GROUP bloodGroup;
     private STATUS status = STATUS.UNVERIFIED;
-    
+
     public Patient() {
         super();
     }
