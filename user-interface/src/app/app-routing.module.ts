@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
 import { SchemeComponent } from './scheme/scheme.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -12,15 +13,14 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    title: 'Health+ Book Appointment',
+    path: 'book-appointment',
+    component: BookAppointmentComponent
+  },
+  {
     title: 'Health+ Signup',
     path: 'register',
     component: SignupComponent
-  },
-  {
-    title: 'Health+ Home',
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
   },
   {
     title: 'Health+ Schemes',
@@ -31,6 +31,12 @@ const routes: Routes = [
     title: 'Health+ Prescription',
     path: 'prescription',
     component: PrescriptionComponent
+  },
+  {
+    title: 'Health+ Home',
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
   }
 ];
 
