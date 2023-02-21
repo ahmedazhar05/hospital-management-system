@@ -25,8 +25,6 @@ public class AppointmentController {
 	private RestTemplate restTemplate;
 	@Autowired
 	private ReportService reportService;
-	@Autowired
-	private GenericUtility utility;
 
 	@GetMapping(path = "appointment/getDefaults", params = { "patient" })
 	public List<Map<String, String>> getAppointmentDefaults(@RequestParam("patient") Long patient) {
@@ -39,7 +37,7 @@ public class AppointmentController {
 		Patient p = restTemplate.getForObject(PATIENT_URI + "/" + a.getPatient(), Patient.class);
 		List<Map<String, String>> r = reportService.getReportsByPatient(p.getId());
 		
-		Integer age = utility.getYearsBetween(p.getDateOfBirth(), new Date());
+		Integer age = (int) GenericUtility.getYearsBetween(p.getDateOfBirth(), new Date());
 
 		Map<String, Object> map = new HashMap();
 		map.put("firstname", p.getFirstName());

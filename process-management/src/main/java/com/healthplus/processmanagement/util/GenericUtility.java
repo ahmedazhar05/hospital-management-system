@@ -1,14 +1,20 @@
 package com.healthplus.processmanagement.util;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
-public class GenericUtility {
-
-	public int getYearsBetween(Date date, Date date2) {
-		return date2.getYear() - date.getYear();
+public abstract class GenericUtility {
+	
+	private static long getDays(Date date1, Date date2) {
+		long diff = date2.getTime() - date1.getTime();
+		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 	}
 
-	public int getDaysBetween(Date date, Date date2) {
-		return 0;
+	public static long getYearsBetween(Date date1, Date date2) {
+		return getDays(date1, date2) / 365;
+	}
+
+	public static long getDaysBetween(Date date1, Date date2) {
+		return getDays(date1, date2);
 	}
 }

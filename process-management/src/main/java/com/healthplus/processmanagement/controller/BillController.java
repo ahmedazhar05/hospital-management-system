@@ -35,9 +35,6 @@ public class BillController {
 	
 	@Autowired
 	private PatientService patientService;
-	
-	@Autowired
-	private GenericUtility utility;
 
 	@GetMapping(path = "bill/getPrescriptions", params = { "credential" })
 	public Map<String, List> getPrescriptionDefaults(@RequestParam("credential") String credential) {
@@ -69,7 +66,7 @@ public class BillController {
 			
 			// calculating cost
 			Date start = o.getStartTime();
-			Integer daysCount = utility.getDaysBetween(start, new Date());
+			Integer daysCount = (int) GenericUtility.getDaysBetween(start, new Date());
 			Integer cost = daysCount * o.getRate();
 			bedmap.put("charge", cost);
 			
