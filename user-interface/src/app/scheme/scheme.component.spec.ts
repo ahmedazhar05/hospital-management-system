@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GovSchemeComponent } from './gov-scheme.component';
+import { SchemeComponent } from './scheme.component';
 
-describe('GovSchemeComponent', () => {
-  let component: GovSchemeComponent;
-  let fixture: ComponentFixture<GovSchemeComponent>;
+describe('SchemeComponent', () => {
+  let component: SchemeComponent;
+  let fixture: ComponentFixture<SchemeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GovSchemeComponent ]
+      declarations: [ SchemeComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GovSchemeComponent);
+    fixture = TestBed.createComponent(SchemeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

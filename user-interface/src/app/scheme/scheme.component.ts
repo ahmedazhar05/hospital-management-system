@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-gov-scheme',
-  templateUrl: './gov-scheme.component.html',
-  styleUrls: ['./gov-scheme.component.css']
+  selector: 'app-scheme',
+  templateUrl: './scheme.component.html',
+  styleUrls: ['./scheme.component.css']
 })
-export class GovSchemeComponent {
+export class SchemeComponent {
   dataType = "Health Scheme"
 
   dlist = [

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GovSchemeComponent } from './gov-scheme/gov-scheme.component';
+import { SchemeComponent } from './scheme/scheme.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
@@ -16,9 +16,9 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    title: 'Health+ Scheme',
+    title: 'Health+ Schemes',
     path: 'scheme',
-    component: GovSchemeComponent
+    component: SchemeComponent
   }
 ];
 
