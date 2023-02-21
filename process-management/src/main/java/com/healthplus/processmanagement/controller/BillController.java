@@ -1,10 +1,10 @@
 package com.healthplus.processmanagement.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +17,7 @@ import com.healthplus.processmanagement.model.Doctor;
 import com.healthplus.processmanagement.model.MedicinePlan;
 import com.healthplus.processmanagement.model.Patient;
 import com.healthplus.processmanagement.model.Prescription;
+import com.healthplus.processmanagement.service.PatientService;
 
 @RestController
 public class BillController {
@@ -26,59 +27,43 @@ public class BillController {
 
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	private PatientService patientService;
 
 	@GetMapping(path = "bill/getPrescriptions", params = { "credential" })
 	public List<Prescription> getPrescriptionDefaults(@RequestParam("credential") String credential) {
-		Patient p;
-		if (Pattern.matches("[A-Za-z0-9_.]+@[A-Za-z]+\\.[A-Za-z]+", credential)) {
-			p = restTemplate.getForObject(PATIENT_URI + "/search?email=" + credential, Patient.class);
-		}
-
-		else {
-			p = restTemplate.getForObject(PATIENT_URI + "/search?contact=" + credential, Patient.class);
-		}
-
+		Patient p = patientService.getPatientByCredential(credential);
 		if (p == null) {
 			// TODO: Create HTTP Response and return
-		}
-
-		else {
-			List<Prescription> pr = restTemplate.getForObject(PATIENT_URI + "/" + p.getId() + "/prescriptions",
-					Prescription.class);
-			return pr;
+		} else {
+			Prescription[] pr = restTemplate.getForObject(PATIENT_URI + "/" + p.getId() + "/prescriptions", Prescription[].class);
+			return Arrays.asList(pr);
 		}
 		return new ArrayList(0);
 	}
-	
-	
+
 	private final String MEDICINE_URI = "http://localhost:8080/medicines";
 	private final String PRESCRIPTION_URI = "http://localhost:8080/prescriptions";
 	private final String DOCTOR_URI = "http://localhost:8080/doctors";
+
 	@GetMapping(path = "/bill/prescription/{id}")
-	
-	public Map<String, Integer> getPrescription(@PathVariable("id") Long prescription){
-		/*    Output:    {        "medicines_cost" : 123        "professional_fees": 213    }    */
-		List<MedicinePlan> medicines;
+	public Map<String, Integer> getPrescriptionCosts(@PathVariable("id") Long prescription) {
+		MedicinePlan[] medicines = restTemplate.getForObject(MEDICINE_URI + "/search?prescription=" + prescription, MedicinePlan[].class);
+		int count = medicines.length;
+		Integer medTotal = count * 100;
+
+		Prescription pr = restTemplate.getForObject(PRESCRIPTION_URI + "/" + prescription, Prescription.class);
+
+		Doctor dr = restTemplate.getForObject(DOCTOR_URI + "/" + pr.getDoctor(), Doctor.class);
+		Integer fee = dr.getFees();
 		
-		medicines=restTemplate.getForObject(MEDICINE_URI + "/search?prescription=" + prescription, MedicinePlan.class);
+		Map<String, Integer> t = new HashMap();
 		
-		int count=medicines.size();
+		t.put("medicines_cost", medTotal);
+		t.put("professional_fees", fee);
 		
-		 int medTotal=count*100;
-		 
-		 Prescription pr;
-		 pr=restTemplate.getForObject(PRESCRIPTION_URI + "/" + prescription, Prescrption.class);
-		 
-		 Doctor dr;
-		 dr=restTemplate.getForObject(DOCTOR_URI + "/" + pr.getDoctor(), Doctor.class);
-		 int fee=dr.getFees();
-		 Map <String, Object> t = new HashMap();
-		 t.put("Medicines",count );
-		 t.put("Professional fees",fee );
-		 }
-	
-	
-	
-	
+		return t;
+	}
 
 }
