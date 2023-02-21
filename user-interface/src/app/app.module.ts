@@ -10,6 +10,7 @@ import { SchemeComponent } from './scheme/scheme.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     SchemeComponent,
     SignupComponent,
     PrescriptionComponent,
-    CalendarComponent
+    CalendarComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
