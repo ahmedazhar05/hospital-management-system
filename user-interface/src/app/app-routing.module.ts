@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     title: 'Health+ Schemes',
     path: 'scheme',
-    component: SchemeComponent'
+    component: SchemeComponent
   },
   {
     title: 'Health+ Prescription',
