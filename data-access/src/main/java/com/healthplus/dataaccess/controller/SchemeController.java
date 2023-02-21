@@ -19,9 +19,9 @@ import com.healthplus.dataaccess.repo.SchemeRepository;
 @RestController
 @RequestMapping(path = "/schemes")
 public class SchemeController {
+	@Autowired
 	private SchemeRepository schemeRepository;
 
-	@Autowired
 	@GetMapping(path = "/")
 	public List<Scheme> listScheme() {
 		return schemeRepository.findAll();
