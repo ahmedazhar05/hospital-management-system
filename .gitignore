@@ -5,6 +5,9 @@ docs/MFRP/GenC ADM FSE MFPE Design Considerations.pdf
 
 docs/*/*/*
 !docs/*/*/*.pdf
+data-access
+.metadata
+process-management
 secrets
 data-access
 process-management
