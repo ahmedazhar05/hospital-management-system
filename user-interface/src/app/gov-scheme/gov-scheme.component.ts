@@ -6,7 +6,9 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./gov-scheme.component.css']
 })
 export class GovSchemeComponent {
-  schemes = [
+  dataType = "Health Scheme"
+
+  dlist = [
     {
       name: 'Rajiv Gandhi Jeevandayee yojana',
       description: 'blah blah blah1'
@@ -33,13 +35,13 @@ export class GovSchemeComponent {
     }
   ];
 
-  selected: number = this.schemes.length > 0 ? 0 : -1;
+  selected: number = this.dlist.length > 0 ? 0 : -1;
 
   @ViewChild('searchinput')
   search: any = "";
 
   highlight(){
-    this.selected = this.schemes.map(s => s.name).indexOf(this.search.nativeElement.value);
+    this.selected = this.dlist.map(s => s.name).indexOf(this.search.nativeElement.value);
     this.search.nativeElement.value = '';
   }
 

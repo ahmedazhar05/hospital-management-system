@@ -1,29 +1,29 @@
 <div class="d-flex align-items-center py-3 px-2 px-sm-5">
   <div class="container text-center border p-3">
-    <h1>Health Scheme</h1>
+    <h1>{{dataType}}</h1>
     <div class="d-flex flex-column flex-sm-row mt-2">
       <label for="search-scheme" class="d-none d-sm-inline-block form-label align-self-center m-0"><b>Name: </b></label>
-      <input list="scheme_list" type="text" #searchinput class="ms-sm-3 form-control" placeholder="Search Health Scheme" id="search-scheme">
+      <input list="scheme_list" type="text" #searchinput class="ms-sm-3 form-control" placeholder="Search {{dataType}}" id="search-scheme">
       <button class="btn btn-primary ms-0 mt-2 mt-sm-0 ms-sm-3" (click)="highlight()">Search</button>
     </div>
     <datalist id="scheme_list">
-      <option *ngFor="let scheme of schemes; index as i" value="{{scheme.name}}">
+      <option *ngFor="let scheme of dlist; index as i" value="{{scheme.name}}">
     </datalist>
   </div>
   <div class="ms-sm-4 ms-1">
-    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#addModal">Add Scheme</button>
+    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#addModal">Add {{dataType}}</button>
   </div>
 </div>
 <div class="m-2 p-4 border rounded">
-  <h3>Schemes</h3>
+  <h3>{{dataType}}</h3>
   <div id="viewer" class="d-flex flex-column flex-md-row align-items-stretch">
     <div class="overflow-auto flex-shrink-0">
       <ul class="nav flex-column list-group" id="v-tab" role="tablist" aria-orientation="vertical">
-        <li *ngFor="let scheme of schemes; index as i" class="nav-link list-group-item" [class.active]="selected == i" id="scheme-tab-{{i}}" data-bs-toggle="pill" attr.data-bs-target="#scheme-{{i}}" type="button" role="tab" attr.aria-controls="scheme-{{i}}" aria-selected="false">{{scheme.name}}</li>
+        <li *ngFor="let scheme of dlist; index as i" class="nav-link list-group-item" [class.active]="selected == i" id="scheme-tab-{{i}}" data-bs-toggle="pill" attr.data-bs-target="#scheme-{{i}}" type="button" role="tab" attr.aria-controls="scheme-{{i}}" aria-selected="false">{{scheme.name}}</li>
       </ul>
     </div>
     <div class="tab-content border flex-grow-1 p-3 ms-md-3 mt-3 mt-md-0 overflow-auto" id="v-tabContent">
-      <div *ngFor="let scheme of schemes; index as i" class="tab-pane fade" [class.show]="selected == i" [class.active]="selected == i" id="scheme-{{i}}" role="tabpanel" tabindex="0">{{scheme.description}}</div>
+      <div *ngFor="let scheme of dlist; index as i" class="tab-pane fade" [class.show]="selected == i" [class.active]="selected == i" id="scheme-{{i}}" role="tabpanel" tabindex="0">{{scheme.description}}</div>
     </div>
   </div>
 </div>
@@ -31,7 +31,7 @@
   <div class="modal-dialog">
     <form class="modal-content" (ngSubmit)="addEntry()" #data="ngForm">
       <div class="modal-header">
-        <h5 class="modal-title" id="addModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="addModalLabel">{{dataType}}</h5>
         <button type="button" class="btn-close" #modalClose data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

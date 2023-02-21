@@ -14,6 +14,11 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
+  },
+  {
+    title: 'Health+ Scheme',
+    path: 'scheme',
+    component: GovSchemeComponent
   }
 ];
 
