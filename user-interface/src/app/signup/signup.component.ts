@@ -23,8 +23,8 @@ export class SignupComponent implements BasePage {
     }
   ];
   
-  firstname="amar"
-  lastname="kumar"
+  firstname = "Amar"
+  lastname = "Kumar"
   
   @ViewChild('f') form: any;
 
