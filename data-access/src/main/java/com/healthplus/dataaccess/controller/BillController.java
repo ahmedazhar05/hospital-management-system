@@ -34,7 +34,7 @@ public class BillController {
 		return billRepository.getBillByPatient(id);
 	}
 
-	@PostMapping(path = "/")
+	@PostMapping(path = "")
 	public @ResponseBody String addNewBill(@RequestBody Bill newBill) {
 		billRepository.save(newBill);
 		return "Added";

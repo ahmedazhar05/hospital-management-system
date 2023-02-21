@@ -27,16 +27,16 @@ public class AdminController {
     }
 
     @GetMapping(path = "/search", params = { "email" })
-    public Admin getAdminBy(@RequestParam("email") String email) {
+    public Admin getAdminByEmail(@RequestParam("email") String email) {
         return adminRepository.getAdminByEmail(email);
     }
 
     @GetMapping(path = "/search", params = { "contact" })
-    public Admin getAdminBy(@RequestParam("contact") Long contact) {
+    public Admin getAdminByContact(@RequestParam("contact") String contact) {
         return adminRepository.getAdminByContact(contact);
     }
 
-    @PostMapping(path = "/")
+    @PostMapping(path = "")
     public String addNewAdmin(@RequestBody Admin newAdmin) {
         adminRepository.save(newAdmin);
         return "Added";

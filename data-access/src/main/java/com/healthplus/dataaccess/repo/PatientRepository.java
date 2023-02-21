@@ -11,5 +11,5 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     public Patient getPatientByEmail(String email);
 
     @Query(value = "SELECT * FROM patient WHERE contact = ?1", nativeQuery = true)
-    public Patient getPatientByContact(Long contact);
+    public Patient getPatientByContact(String contact);
 }

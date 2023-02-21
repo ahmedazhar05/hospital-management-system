@@ -13,7 +13,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 	Doctor getDoctorByEmail(String email);
 
 	@Query(value = "SELECT * FROM doctor WHERE contact = ?1", nativeQuery = true)
-	Doctor getDoctorByContact(Long contact);
+	Doctor getDoctorByContact(String contact);
 
 	@Query(value = "SELECT * FROM doctor WHERE department_id = ?1", nativeQuery = true)
 	List<Doctor> getDoctorByDepartmentId(Long id);

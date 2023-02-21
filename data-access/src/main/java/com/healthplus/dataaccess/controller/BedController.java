@@ -32,7 +32,7 @@ public class BedController {
 	@Autowired
     private OccupiedBedRepository occupiedBedRepository;
 
-	@GetMapping(path = "/")
+	@GetMapping(path = "")
 	public List<Bed> listBeds() {
 		return bedRepository.findAll();
 	}
@@ -63,7 +63,7 @@ public class BedController {
 		return bedRepository.getBedByPatient(id);
 	}
 
-	@PostMapping(path = "/")
+	@PostMapping(path = "")
 	public String addNewBed(@RequestBody OccupiedBed newBed) {
 		occupiedBedRepository.save(newBed);
 		return "Added";

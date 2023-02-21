@@ -10,5 +10,5 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
     Admin getAdminByEmail(String email);
 
     @Query(value = "SELECT * FROM admin WHERE contact = ?1", nativeQuery = true)
-    Admin getAdminByContact(Long contact);
+    Admin getAdminByContact(String contact);
 }

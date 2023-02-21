@@ -22,7 +22,7 @@ public class SchemeController {
 	@Autowired
 	private SchemeRepository schemeRepository;
 
-	@GetMapping(path = "/")
+	@GetMapping(path = "")
 	public List<Scheme> listScheme() {
 		return schemeRepository.findAll();
 	}
@@ -32,7 +32,7 @@ public class SchemeController {
 		return schemeRepository.findById(id);
 	}
 	
-	@PostMapping(path = "/")
+	@PostMapping(path = "")
 	public String addNewScheme(@RequestBody Scheme r) {
 		schemeRepository.save(r);
 		return "Saved";

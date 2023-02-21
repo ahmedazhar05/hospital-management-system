@@ -19,7 +19,7 @@ public class DepartmentController {
 	@Autowired
 	public DepartmentRepository departmentRepository;
 
-	@GetMapping(path = "/")
+	@GetMapping(path = "")
 	public List<Department> listDepartments() {
 		return departmentRepository.findAll();
 	}

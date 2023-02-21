@@ -25,7 +25,7 @@ public class DoctorController {
 	@Autowired
 	private DoctorRepository doctorRepository;
 
-	@GetMapping(path = "/")
+	@GetMapping(path = "")
 	public List<Doctor> listDoctors() {
 		return doctorRepository.findAll();
 	}
@@ -41,7 +41,7 @@ public class DoctorController {
 	}
 
 	@GetMapping(path = "/search", params = { "contact" })
-	public Doctor getDoctorByContact(@RequestParam("contact") Long contact) {
+	public Doctor getDoctorByContact(@RequestParam("contact") String contact) {
 		return doctorRepository.getDoctorByContact(contact);
 	}
 
@@ -50,7 +50,7 @@ public class DoctorController {
 		return doctorRepository.getDoctorByDepartmentId(id);
 	}
 
-	@PostMapping(path = "/")
+	@PostMapping(path = "")
 	public String addNewDoctor(@RequestBody Doctor newDoctor) {
 		doctorRepository.save(newDoctor);
 		return "Added";

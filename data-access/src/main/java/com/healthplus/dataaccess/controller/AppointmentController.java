@@ -49,7 +49,7 @@ public class AppointmentController {
         return appointmentRepository.findByPatientAndDate(id, date);
     }
     
-    @PostMapping(path = "/")
+    @PostMapping(path = "")
     public String addAppointment(@RequestBody Appointment newApp) {
         appointmentRepository.save(newApp);
         return "Saved";

@@ -27,7 +27,7 @@ public class DietPlanController {
 		return dietPlanRepository.getDietPlanByPrescription(id);
 	}
 
-	@PostMapping(path = "/")
+	@PostMapping(path = "")
 	public @ResponseBody String addNewDiet(@RequestBody DietPlan newDietPlan) {
 		dietPlanRepository.save(newDietPlan);
 		return "Added";

@@ -33,7 +33,7 @@ public class ReportController {
 		return reportRepository.findById(id);
     }
 	
-	@PostMapping(path = "/")
+	@PostMapping(path = "")
 	public String addNewReport(@RequestBody Report r) {
 		reportRepository.save(r);
 		return "Saved";

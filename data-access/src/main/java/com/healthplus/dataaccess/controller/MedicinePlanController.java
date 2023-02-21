@@ -24,7 +24,7 @@ public class MedicinePlanController {
 		return medicinePlanRepository.getMedicinePlanByPrescription(id);
 	}
 
-	@PostMapping(path = "/")
+	@PostMapping(path = "")
 	public String addNewMedicinePlan(@RequestBody MedicinePlan mp) {
 		medicinePlanRepository.save(mp);
 		return "Saved";

@@ -21,7 +21,7 @@ public class Patient implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public static enum DOCUMENT_TYPE{
-        AADHAR,
+        AADHAAR,
         PAN,
         VOTER_ID,
         DRIVING_LICENSE
@@ -139,10 +139,10 @@ public class Patient implements Serializable {
     private DOCUMENT_TYPE documentType;
 
     @NotNull(message="ID document number is required")
-    @Pattern(regexp="[A-Z]{3}[PCHABGJLFT][A-Z][0-9]{4}[A-Z]") // PAN Card
-    @Pattern(regexp="[2-9][0-9]{11}") // Aadhaar Card
-    @Pattern(regexp="[A-Z]{3}[0-9]{7}") // VoterID
-    @Pattern(regexp="[A-Z]{2}[0-9]{13}") // Driving License
+    // @Pattern(regexp="[A-Z]{3}[PCHABGJLFT][A-Z][0-9]{4}[A-Z]") // PAN Card
+    // @Pattern(regexp="[2-9][0-9]{11}") // Aadhaar Card
+    // @Pattern(regexp="[A-Z]{3}[0-9]{7}") // VoterID
+    // @Pattern(regexp="[A-Z]{2}[0-9]{13}") // Driving License
     private String documentNumber;
 
     @Digits(fraction = 0, integer = 3, message ="Patient weight should be in Kilograms")

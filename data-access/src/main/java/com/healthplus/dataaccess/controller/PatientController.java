@@ -24,7 +24,7 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
     
-    @GetMapping(path="/")
+    @GetMapping(path="")
     public List<Patient> listPatients(){
         return patientRepository.findAll();
     }
@@ -40,11 +40,11 @@ public class PatientController {
     }
     
     @GetMapping(path="/search", params={"contact"})
-    public Patient getPatientByContact(@RequestParam("contact") Long contact){
+    public Patient getPatientByContact(@RequestParam("contact") String contact){
         return patientRepository.getPatientByContact(contact);
     }
     
-    @PostMapping(path="/")
+    @PostMapping(path="")
     public String addNewPatient(@RequestBody Patient p) {
     	patientRepository.save(p);
     	return "Saved";

@@ -32,7 +32,7 @@ public class TimeslotController {
         return timeslotRepository.getTimeslotByDoctorDate(doctorId, date);
     }
 	
-	@PostMapping(path = "/")
+	@PostMapping(path = "")
 	public String addNewTimeslot(@RequestBody Timeslot ts) {
 		timeslotRepository.save(ts);
 		return "Saved";
