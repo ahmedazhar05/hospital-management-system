@@ -322,6 +322,12 @@ Bed:
             path: /
             method: GET
             
+        - bed by id:
+            path: /{id}
+            path variable:
+                - id
+            method: GET
+            
         - update bed details:
             path: /{id}
             path variables: 

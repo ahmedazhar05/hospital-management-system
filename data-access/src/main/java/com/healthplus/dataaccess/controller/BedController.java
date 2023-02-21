@@ -36,6 +36,11 @@ public class BedController {
 	public List<Bed> listBeds() {
 		return bedRepository.findAll();
 	}
+	
+	@GetMapping(path="/{id}")
+	public Optional<Bed> getBedBy(@PathVariable("id") Long bed) {
+		return bedRepository.findById(bed);
+	}
 
 	@PutMapping(path = "/{id}", params = { "availability" })
 	public String updateBedAvailability(@PathVariable("availability") Long id, @RequestParam Integer availability) {
