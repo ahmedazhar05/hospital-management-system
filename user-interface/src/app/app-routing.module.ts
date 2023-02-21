@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SchemeComponent } from './scheme/scheme.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
+  },
+  {
+    title: 'Health+ Schemes',
+    path: 'scheme',
+    component: SchemeComponent'
   },
   {
     title: 'Health+ Prescription',
