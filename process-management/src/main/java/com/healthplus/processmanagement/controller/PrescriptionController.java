@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.healthplus.processmanagement.model.Doctor;
 import com.healthplus.processmanagement.model.Patient;
+import com.healthplus.processmanagement.util.GenericUtility;
 
 @RestController
 public class PrescriptionController {
