@@ -5,6 +5,7 @@ import { SchemeComponent } from './scheme/scheme.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
+import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   {
@@ -35,8 +36,7 @@ const routes: Routes = [
   {
     title: 'Health+ Home',
     path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
+    component: MainComponent
   }
 ];
 

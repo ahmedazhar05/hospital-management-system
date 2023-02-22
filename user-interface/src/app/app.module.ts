@@ -11,6 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CarouselComponent } from './carousel/carousel.component';
     SignupComponent,
     PrescriptionComponent,
     CalendarComponent,
-    CarouselComponent
+    CarouselComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

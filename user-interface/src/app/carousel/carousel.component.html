@@ -2,7 +2,7 @@
     <div class="carousel-inner">
         <div *ngFor="let banner of carousels" style="max-height: 50vh;" class="carousel-item active">
             <img src="{{banner.image}}" class="d-block w-100" alt="img1">
-            <div *ngIf="banner.title || banner.description" class="carousel-caption d-sm-block d-none">
+            <div *ngIf="banner.title || banner.description" class="carousel-caption text-dark fs-5 fw-bold d-sm-block d-none">
                 <h5 *ngIf="banner.title">{{banner.title}}</h5>
                 <p *ngIf="banner.description">{{banner.description}}</p>
             </div>

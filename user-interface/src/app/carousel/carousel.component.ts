@@ -18,17 +18,15 @@ export class CarouselComponent implements OnInit {
     if(this.carousels.length == 0){
       this.carousels = [
         {
-          image: "https://png.pngtree.com/thumb_back/fh260/back_pic/02/50/63/71577e1cf59d802.jpg",
-          title: "Doctor",
-          description: "Some representative placeholder content for the first slide."
+          image: "https://www.rubyhospital.com/images/departments/general-medicine.jpg",
         },
         {
-          image: "https://png.pngtree.com/thumb_back/fh260/back_pic/03/51/70/585791ffa147edc.jpg",
-          description: "Some representative placeholder content for the second slide."
+          image: "https://www.rubyhospital.com/images/departments/interventional-cardiology.jpg",
+          description: "All the hospital facilities at your fingertips."
         },
         {
-          image: "https://png.pngtree.com/thumb_back/fh260/back_pic/03/51/70/585791ffa147edc.jpg",
-          title: "Patient"
+          image: "https://thumbs.dreamstime.com/b/doctor-office-banner-background-healthcare-hospital-background-concept-87323968.jpg",
+          title: "Our Doctors"
         }
       ];
     }
