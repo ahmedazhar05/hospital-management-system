@@ -21,8 +21,9 @@ import com.healthplus.processmanagement.util.GenericUtility;
 public class AppointmentController {
 	private final String APPOINTMENT_URI = "http://localhost:8080/appointments";
 	private final String PATIENT_URI = "http://localhost:8080/patients";
-	@Autowired
-	private RestTemplate restTemplate;
+	
+	private RestTemplate restTemplate = new RestTemplate();
+	
 	@Autowired
 	private ReportService reportService;
 

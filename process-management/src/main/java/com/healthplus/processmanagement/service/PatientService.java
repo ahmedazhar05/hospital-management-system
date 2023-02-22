@@ -13,8 +13,7 @@ public class PatientService {
 
 	private final String PATIENT_URI = "http://localhost:8080/patients";
 	
-	@Autowired
-	private RestTemplate restTemplate;
+	private RestTemplate restTemplate = new RestTemplate();
 	
 	public Patient getPatientByCredential(String credential) {
 		Patient p;

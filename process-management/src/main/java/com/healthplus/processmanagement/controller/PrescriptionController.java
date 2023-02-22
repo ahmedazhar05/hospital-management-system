@@ -22,8 +22,7 @@ public class PrescriptionController {
 	private final String PATIENT_URI = "http://localhost:8080/patients";
 	private final String DOCTOR_URI = "http://localhost:8080/doctors";
 	
-	@Autowired
-	private RestTemplate restTemplate;
+	private RestTemplate restTemplate = new RestTemplate();
 	
 	@GetMapping(path = "prescription/getDefaults", params = { "patient", "doctor" })
 	public Map<String, Object> getPrescriptionDefaults(@RequestParam("patient") Long patient, @RequestParam("doctor") Long doctor){

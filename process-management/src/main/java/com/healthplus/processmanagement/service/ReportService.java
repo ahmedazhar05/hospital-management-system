@@ -13,8 +13,8 @@ import com.healthplus.processmanagement.model.Report;
 
 @Service
 public class ReportService {
-	@Autowired
-	private RestTemplate restTemplate;
+
+	private RestTemplate restTemplate = new RestTemplate();
 
 	private final String REPORT_URI = "http://localhost:8080/reports";
 	

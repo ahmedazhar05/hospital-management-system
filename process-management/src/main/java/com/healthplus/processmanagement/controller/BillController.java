@@ -30,8 +30,7 @@ public class BillController {
 	private final String PATIENT_URI = "http://localhost:8080/patients";
 	private final String BED_URI = "http://localhost:8080/beds";
 
-	@Autowired
-	private RestTemplate restTemplate;
+	private RestTemplate restTemplate = new RestTemplate();
 	
 	@Autowired
 	private PatientService patientService;
