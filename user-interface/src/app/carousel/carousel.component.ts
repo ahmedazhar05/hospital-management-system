@@ -8,7 +8,12 @@ export type Carousel = {
 
 @Component({
   selector: 'app-carousel',
-  templateUrl: './carousel.component.html'
+  templateUrl: './carousel.component.html',
+  styles: [`
+  .carousel-caption > * {
+    text-shadow: 0 0 10px white;
+  }
+  `]
 })
 export class CarouselComponent implements OnInit {
   

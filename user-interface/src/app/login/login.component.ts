@@ -1,11 +1,15 @@
 import { Component, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { BasePage } from '../app.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements BasePage {
+
+  constructor(private authService: AuthService, private router: Router){ }
   
   @Output()
   options = [
@@ -27,7 +31,12 @@ export class LoginComponent implements BasePage {
   
   onLogin(){
     if(this.form.valid){
-      console.log(this.form.value);
+      this.authService.login(this.form.value.login, this.form.value.password).subscribe(
+        () => {
+          this.router.navigateByUrl('/dashboard');
+        }
+      );
+      // console.log(this.form.value);
       // TODO: perform the necessary login process with these form values
       this.form.reset();
     }
