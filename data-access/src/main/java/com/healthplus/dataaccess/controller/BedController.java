@@ -16,40 +16,61 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.healthplus.dataaccess.domain.Bed;
+import com.healthplus.dataaccess.domain.Bed.BED;
+import com.healthplus.dataaccess.domain.Bed.FACILITY;
+import com.healthplus.dataaccess.domain.Bed.ROOM;
 import com.healthplus.dataaccess.domain.Doctor;
+import com.healthplus.dataaccess.domain.OccupiedBed;
 import com.healthplus.dataaccess.repo.BedRepository;
+import com.healthplus.dataaccess.repo.OccupiedBedRepository;
 
 @RestController
-@RequestMapping(path = "/bed")
+@RequestMapping(path = "/beds")
 public class BedController {
-    @Autowired
-    public BedRepository bedRepository;
+	@Autowired
+	public BedRepository bedRepository;
+	@Autowired
+    private OccupiedBedRepository occupiedBedRepository;
 
-    @PostMapping(path = "/")
-    public @ResponseBody String addNewBed(@RequestBody Bed newBed) {
-        bedRepository.save(newBed);
-        return "Added";
-    }
+	@GetMapping(path = "")
+	public List<Bed> listBeds() {
+		return bedRepository.findAll();
+	}
+	
+	@GetMapping(path="/{id}")
+	public Optional<Bed> getBedBy(@PathVariable("id") Long bed) {
+		return bedRepository.findById(bed);
+	}
 
-    @GetMapping(path = "/")
-    public List<Bed> listBeds() {
-        return bedRepository.findAll();
-    }
+	@PutMapping(path = "/{id}", params = { "availability" })
+	public String updateBedAvailability(@PathVariable("availability") Long id, @RequestParam Integer availability) {
+		Bed b = new Bed();
+		b.setId(id);
+		b.setAvailability(availability);
+		bedRepository.save(b);
+		return "Saved";
+	}
 
-    @GetMapping(path = "/{id}")
-    public Optional<Bed> getBedBy(@PathVariable("id") Long id) {
-        return bedRepository.findById(id);
-    }
+	@PutMapping(path = "/{id}")
+	public String updateOccupiedBed(@PathVariable("id") Long id, @RequestBody OccupiedBed newBed) {
+		newBed.setId(id);
+		occupiedBedRepository.save(newBed);
+		return "Saved";
+	}
 
-    @GetMapping(path = "/search", params = { "patient" })
-    public List<Bed> getBedBy1(@RequestParam("patient") Long id) {
-        return bedRepository.getBedByPatient(id);
-    }
-    
-    @PutMapping(path="/{id}")
-    public @ResponseBody String updateBed(@PathVariable("id") Long id, @RequestBody Bed newBed) {
-        newBed.setId(id);
-        bedRepository.save(newBed);
-        return "Saved";
-    }
+	@GetMapping(path = "/search", params = { "patient" })
+	public List<Bed> getBedByPatient(@RequestParam("patient") Long id) {
+		return bedRepository.getBedByPatient(id);
+	}
+
+	@PostMapping(path = "")
+	public String addNewBed(@RequestBody OccupiedBed newBed) {
+		occupiedBedRepository.save(newBed);
+		return "Added";
+	}
+
+	@GetMapping(path = "/search", params = { "room", "bed", "facility" })
+	public Bed getBedByFilter(@RequestParam("patient") ROOM room, @RequestParam("patient") BED bed, @RequestParam("patient") FACILITY facility) {
+		return bedRepository.getBedByFilter(room, bed, facility);
+	}
 }
