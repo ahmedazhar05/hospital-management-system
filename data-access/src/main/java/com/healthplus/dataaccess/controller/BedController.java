@@ -59,8 +59,8 @@ public class BedController {
 	}
 
 	@GetMapping(path = "/search", params = { "patient" })
-	public List<Bed> getBedByPatient(@RequestParam("patient") Long id) {
-		return bedRepository.getBedByPatient(id);
+	public List<OccupiedBed> getBedByPatient(@RequestParam("patient") Long id) {
+		return occupiedBedRepository.getOccupiedBedByPatient(id);
 	}
 
 	@PostMapping(path = "")
