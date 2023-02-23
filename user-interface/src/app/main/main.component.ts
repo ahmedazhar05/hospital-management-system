@@ -22,10 +22,6 @@ export class MainComponent implements BasePage {
     {
       text: 'Register',
       href: '/register'
-    },
-    {
-      text: 'Get Info',
-      href: '/info'
     }
   ];
 

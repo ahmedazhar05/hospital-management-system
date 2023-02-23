@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { MainComponent } from './main/main.component';
+import { AuthGuard } from './auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -14,29 +16,62 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    title: 'Health+ Book Appointment',
-    path: 'book-appointment',
-    component: BookAppointmentComponent
-  },
-  {
     title: 'Health+ Signup',
     path: 'register',
     component: SignupComponent
   },
   {
-    title: 'Health+ Schemes',
-    path: 'scheme',
-    component: SchemeComponent
-  },
-  {
-    title: 'Health+ Prescription',
-    path: 'prescription',
-    component: PrescriptionComponent
+    title: 'Health+ Dashboard',
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    /*
+    children: [
+      {
+        path: 'patient',
+        component: PatientDashboardComponent,
+        children: [
+          {
+            title: 'Health+ Book Appointment',
+            path: 'book',
+            component: BookAppointmentComponent
+          }
+        ]
+      },
+      {
+        path: 'doctor',
+        component: DoctorDashboardComponent,
+        children: [
+          {
+            title: 'Health+ Prescription',
+            path: 'prescription',
+            component: PrescriptionComponent,
+          }
+        ]
+      },
+      {
+        path: 'admin',
+        component: AdminDashboardComponent,
+        children: [
+          {
+            title: 'Health+ Schemes',
+            path: 'scheme',
+            component: SchemeComponent,
+          }
+        ]
+      },
+    ]
+    */
   },
   {
     title: 'Health+ Home',
     path: '',
     component: MainComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/',
+    pathMatch: 'full'
   }
 ];
 

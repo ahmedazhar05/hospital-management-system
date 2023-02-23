@@ -25,12 +25,12 @@ export class SignupComponent implements BasePage {
       href: '/'
     },
     {
-      text: 'Register',
-      href: '/register'
+      text: 'Login',
+      href: '/login'
     },
     {
-      text: 'Get Info',
-      href: '/info'
+      text: 'Register',
+      href: '/register'
     }
   ];
   

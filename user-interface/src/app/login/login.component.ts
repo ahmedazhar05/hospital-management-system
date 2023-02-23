@@ -22,8 +22,8 @@ export class LoginComponent implements BasePage {
       href: '/login'
     },
     {
-      text: 'Get Info',
-      href: '/info'
+      text: 'Register',
+      href: '/register'
     }
   ];
 
@@ -31,11 +31,12 @@ export class LoginComponent implements BasePage {
   
   onLogin(){
     if(this.form.valid){
-      this.authService.login(this.form.value.login, this.form.value.password).subscribe(
-        () => {
-          this.router.navigateByUrl('/dashboard');
-        }
-      );
+      this.authService.login(this.form.value.login, this.form.value.password)
+      .subscribe(() => {
+        // this.router.navigate(['/prescription'])
+        this.router.navigateByUrl('/prescription');
+      });
+
       // console.log(this.form.value);
       // TODO: perform the necessary login process with these form values
       this.form.reset();
