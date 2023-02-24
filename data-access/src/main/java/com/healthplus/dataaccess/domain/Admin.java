@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Admin implements Serializable {
+public class Admin extends User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

@@ -2,6 +2,8 @@ package com.healthplus.dataaccess.domain;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,14 +21,17 @@ public class Appointment implements Serializable {
 
     @NotNull(message="Patient is required")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Patient patient;
 
     @NotNull(message="Doctor is required")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Doctor doctor;
 
     @NotNull(message="Timeslot is required")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Timeslot timeslot;
 
     private String symptom;

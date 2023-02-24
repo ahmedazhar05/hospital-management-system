@@ -3,6 +3,8 @@ package com.healthplus.dataaccess.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +18,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Doctor implements Serializable {
+public class Doctor extends User implements Serializable {
     private static final long serialVersionUID = 1L;
     
     public static enum GENDER{
@@ -51,6 +53,7 @@ public class Doctor implements Serializable {
 
     @NotNull(message="Department is required")
     @ManyToOne(optional=false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Department department;
 
     @NotNull(message="Degree is required")

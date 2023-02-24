@@ -7,5 +7,7 @@ docs/*/*/*
 !docs/*/*/*.pdf
 user-interface
 process-management
+auth
+backup
 secrets
 .metadata
