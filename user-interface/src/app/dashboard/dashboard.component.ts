@@ -21,7 +21,7 @@ export class DashboardComponent implements BasePage, OnInit {
   ];
 
   userId: number = 0;
-  userType: string = "patient";
+  userType: string = "doctor";
 
   links: {
     name: string;

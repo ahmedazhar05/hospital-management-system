@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
+import Utilities from '../utilities/utility';
 
 @Component({
   selector: 'app-calendar',
@@ -86,21 +87,13 @@ export class CalendarComponent implements OnInit {
     this.getAppointments(new Date().getDate());
   }
 
-  formatDate(date: Date){
-    return date.toLocaleString('en-US', {
-      year:'numeric',
-      month:'2-digit',
-      day:'2-digit'
-    }).split('/').reverse().join('-');
-  }
-
   getAppointments(day: number){
     // TODO: implement the process of fetching appointments of that day
     this.selected = new Date(this.calendar.year, this.calendar.month, day);
     // console.log(this.selected);
     this.server.get('/reports/search', {
       [this.userType]: this.userId,
-      date: this.formatDate(this.selected)
+      date: Utilities.formatDate(this.selected)
     })
     .subscribe((data: any) => this.appointments = data);
     // ?' + this.userType + "=" + this.userId + "&date=" + this.formatDate(this.selected)

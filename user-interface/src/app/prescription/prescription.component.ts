@@ -3,6 +3,7 @@ import { NgForm, NgModelGroup } from '@angular/forms';
 import { BasePage } from '../app.component';
 import { AuthService } from '../auth.service';
 import { ServerService } from '../server.service';
+import Utilities from '../utilities/utility';
 
 enum DOSAGE {
   MORNING = "morning",
@@ -97,7 +98,33 @@ export class PrescriptionComponent implements BasePage, OnInit {
   onPrescribe() {
     // Note: only consider diet plan values if the `dietEnabled` is true, otherwise ignore all the inputted values
     if (this.form.valid) {
-      console.log(this.form.value);
+
+      let pres = {
+        diagnosis: this.form.value.diagnosis,
+        investigation: this.form.value.investigation,
+        avoidables: this.form.value.avoidables,
+        date: Utilities.formatDate(new Date()),
+        isIpd: 0,
+        patient: {
+          id: 1 // TODO: need to fetch
+        },
+        doctor: {
+          id: this.auth.getUserId()
+        }
+      };
+      this.server.post('prescriptions', pres)
+      .subscribe((data: any) => {
+        console.log(data);
+      });
+      
+      for(let dp of this.prescription.dietPlan) this.server.post('diet', dp).subscribe((data: any) => {
+        console.log(data);
+      });
+      for(let mp of this.prescription.medicinePlan) this.server.post('medicine', mp).subscribe((data: any) => {
+        console.log(data);
+      });
+      
+      console.log(pres);
       // TODO: perform the necessary login process with these form values
       this.form.reset();
     }
@@ -107,9 +134,5 @@ export class PrescriptionComponent implements BasePage, OnInit {
     this.uid = this.auth.getUserId();
     this.userType = this.auth.getUserType();
 
-    this.server.get('/patients/' + this.uid)
-    .subscribe(data => {
-      
-    })
   }
 }

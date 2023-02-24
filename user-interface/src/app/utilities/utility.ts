@@ -1,6 +1,6 @@
-export class Utilities {
+export default class Utilities {
 
-    formatDate(date: Date){
+    static formatDate(date: Date){
         return date.toLocaleString('en-US', {
             year:'numeric',
             month:'2-digit',

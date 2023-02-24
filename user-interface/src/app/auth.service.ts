@@ -31,7 +31,7 @@ export class AuthService {
     const token = authResult.token;
     localStorage.setItem('id_token', token);
     localStorage.setItem("expires_at", JSON.stringify(expiresAt));
-    localStorage.setItem("user_type", JSON.stringify(userType));
+    localStorage.setItem("user_type", userType);
     localStorage.setItem("user_id", JSON.stringify(userId));
   }
 
@@ -64,8 +64,6 @@ export class AuthService {
   }
 
   getUserType() {
-    const item = localStorage.getItem("user_type") + "";
-    const userType = JSON.parse(item);
-    return userType;
+    return localStorage.getItem("user_type") + "";
   }
 }
