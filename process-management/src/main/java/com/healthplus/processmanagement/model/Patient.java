@@ -7,7 +7,7 @@ public class Patient implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public static enum DOCUMENT_TYPE{
-        AADHAR,
+        AADHAAR,
         PAN,
         VOTER_ID,
         DRIVING_LICENSE

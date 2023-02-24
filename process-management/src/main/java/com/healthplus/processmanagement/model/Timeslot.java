@@ -77,4 +77,8 @@ public class Timeslot implements Serializable {
     public String toString() {
         return "Timeslot [id=" + id + ", doctor=" + doctor + ", dayOfWeek=" + dayOfWeek + ", time=" + time + ", hours=" + hours + "]";
     }
+    
+    public String valueString() {
+    	return time.toString();
+    }
 }

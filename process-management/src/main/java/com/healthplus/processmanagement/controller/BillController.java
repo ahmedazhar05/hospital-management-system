@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,17 +26,21 @@ import com.healthplus.processmanagement.util.GenericUtility;
 
 @RestController
 public class BillController {
-
-	private final String BILL_URI = "http://localhost:8080/bills";
-	private final String PATIENT_URI = "http://localhost:8080/patients";
-	private final String BED_URI = "http://localhost:8080/beds";
+	@Value("${jpa.domain}")
+	private String DOMAIN;
+	
+	private final String BILL_URI = DOMAIN + "bills/";
+	private final String PATIENT_URI = DOMAIN + "patients/";
+	private final String BED_URI = DOMAIN + "beds/";
+	
+	private final Integer MEDICINE_COST = 100;
 
 	private RestTemplate restTemplate = new RestTemplate();
 	
 	@Autowired
 	private PatientService patientService;
 
-	@GetMapping(path = "bill/getPrescriptions", params = { "credential" })
+	@GetMapping(path = "/bill/getPrescriptions", params = { "credential" })
 	public Map<String, List> getPrescriptionDefaults(@RequestParam("credential") String credential) {
 		Patient patient = patientService.getPatientByCredential(credential);
 		if (patient == null) {
@@ -43,7 +48,7 @@ public class BillController {
 			return new HashMap(0);
 		}
 		
-		Prescription[] pr = restTemplate.getForObject(PATIENT_URI + "/" + patient.getId() + "/prescriptions", Prescription[].class);
+		Prescription[] pr = restTemplate.getForObject(PATIENT_URI + patient.getId() + "/prescriptions", Prescription[].class);
 		
 		List<Map<String, Object>> plist = new ArrayList();
 		for(Prescription pres: pr) {
@@ -53,7 +58,7 @@ public class BillController {
 			plist.add(prescription);
 		}
 		
-		OccupiedBed[] occupiedBed = restTemplate.getForObject(BED_URI + "/search?patient=" + patient.getId(), OccupiedBed[].class);
+		OccupiedBed[] occupiedBed = restTemplate.getForObject(BED_URI + "search?patient=" + patient.getId(), OccupiedBed[].class);
 		List<Map<String, Object>> oblist = new ArrayList();
 		for(OccupiedBed o: occupiedBed) {
 			Map<String, Object> bedmap = new HashMap();
@@ -85,13 +90,13 @@ public class BillController {
 
 	@GetMapping(path = "/bill/prescription/{id}")
 	public Map<String, Integer> getPrescriptionCosts(@PathVariable("id") Long prescription) {
-		MedicinePlan[] medicines = restTemplate.getForObject(MEDICINE_URI + "/search?prescription=" + prescription, MedicinePlan[].class);
+		MedicinePlan[] medicines = restTemplate.getForObject(MEDICINE_URI + "search?prescription=" + prescription, MedicinePlan[].class);
 		int count = medicines.length;
-		Integer medTotal = count * 100;
+		Integer medTotal = count * MEDICINE_COST;
 
-		Prescription pr = restTemplate.getForObject(PRESCRIPTION_URI + "/" + prescription, Prescription.class);
+		Prescription pr = restTemplate.getForObject(PRESCRIPTION_URI + prescription, Prescription.class);
 
-		Doctor dr = restTemplate.getForObject(DOCTOR_URI + "/" + pr.getDoctor(), Doctor.class);
+		Doctor dr = pr.getDoctor(); //restTemplate.getForObject(DOCTOR_URI + pr.getDoctor(), Doctor.class);
 		Integer fee = dr.getFees();
 		
 		Map<String, Integer> t = new HashMap();
