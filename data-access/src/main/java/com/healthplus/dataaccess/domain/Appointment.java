@@ -44,11 +44,12 @@ public class Appointment implements Serializable {
         super();
     }
 
-    public Appointment(Patient patient, Doctor doctor, Timeslot timeslot, String symptom) {
+    public Appointment(Patient patient, Doctor doctor, Timeslot timeslot, String symptom, Date date) {
         this.patient = patient;
         this.doctor = doctor;
         this.timeslot = timeslot;
         this.symptom = symptom;
+        this.date = date;
     }
 
     public Long getId() {

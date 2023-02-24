@@ -31,16 +31,16 @@ public class DoctorController {
 	public List<Map<String, Object>> getAppointmentsByDoctor(@RequestParam("doctor") Long id, @RequestParam("date") String dateSt) {
 		System.out.println(APPOINTMENT_URI);
 		List<Map<String, Object>> ap = new ArrayList();
-		
+		/*
 		Date date;
 		try {
 			date = new SimpleDateFormat("yyyy-MM-dd").parse(dateSt);
 		} catch (Exception e) {
 			System.out.print("Invalid date: " + dateSt);
 			return new ArrayList(0);
-		}
+		}*/
 		
-		Appointment[] appointments = restTemplate.getForObject(APPOINTMENT_URI + "search?doctor=" + id + "&date=" + date, Appointment[].class);
+		Appointment[] appointments = restTemplate.getForObject(APPOINTMENT_URI + "search?doctor=" + id + "&date=" + dateSt, Appointment[].class);
 		for (Appointment a : appointments) {
 			Doctor dr = a.getDoctor();
 			String doctorName = dr.getFirstName() + " " + dr.getLastName();
