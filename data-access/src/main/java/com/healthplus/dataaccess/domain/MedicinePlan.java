@@ -2,6 +2,8 @@ package com.healthplus.dataaccess.domain;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,78 +15,81 @@ import jakarta.validation.constraints.Positive;
 
 @Entity
 public class MedicinePlan implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+	private static final long serialVersionUID = 1L;
 
-    @NotNull(message="Prescription is required")
-    @ManyToOne(optional=false)
-    private Prescription prescription;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @NotNull(message="Name is required")
-    private String name;
+	@NotNull(message = "Prescription is required")
+	@ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Prescription prescription;
 
-    @NotNull(message="Dosage is required")
-    private String dosage;
-    
-    @Min(value = -1, message="Duration cannot be negative")
-    private Integer duration = -1;
+	@NotNull(message = "Name is required")
+	private String name;
 
-    public MedicinePlan() {
-        super();
-    }
+	@NotNull(message = "Dosage is required")
+	private String dosage;
 
-    public MedicinePlan(@NotNull Prescription prescription, @NotNull String name, @NotNull String dosage, @Positive Integer duration) {
-        this.prescription = prescription;
-        this.name = name;
-        this.dosage = dosage;
-        this.duration = duration;
-    }
+	@Min(value = -1, message = "Duration cannot be negative")
+	private Integer duration = -1;
 
-    public Long getId() {
-        return id;
-    }
+	public MedicinePlan() {
+		super();
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public MedicinePlan(@NotNull Prescription prescription, @NotNull String name, @NotNull String dosage,
+			@Positive Integer duration) {
+		this.prescription = prescription;
+		this.name = name;
+		this.dosage = dosage;
+		this.duration = duration;
+	}
 
-    public Prescription getPrescription() {
-        return prescription;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setPrescription(Prescription prescription) {
-        this.prescription = prescription;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Prescription getPrescription() {
+		return prescription;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setPrescription(Prescription prescription) {
+		this.prescription = prescription;
+	}
 
-    public String getDosage() {
-        return dosage;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setDosage(String dosage) {
-        this.dosage = dosage;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Integer getDuration() {
-        return duration;
-    }
+	public String getDosage() {
+		return dosage;
+	}
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
+	public void setDosage(String dosage) {
+		this.dosage = dosage;
+	}
 
-    @Override
-    public String toString() {
-        return "MedicinePlan [id=" + id + ", prescription=" + prescription + ", name=" + name + ", dosage=" + dosage + ", duration=" + duration + "]";
-    }
+	public Integer getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+
+	@Override
+	public String toString() {
+		return "MedicinePlan [id=" + id + ", prescription=" + prescription + ", name=" + name + ", dosage=" + dosage
+				+ ", duration=" + duration + "]";
+	}
 }

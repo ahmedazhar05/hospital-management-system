@@ -271,7 +271,7 @@ Timeslot:
             method: DELETE
 
 Bill:
-    path: /bill
+    path: /bills
     subpaths:
         - bill by id:
             path: /{id}
@@ -303,7 +303,7 @@ MedicinePlan:
             method: POST
 
 DietPlan:
-    path: /diet
+    path: /diets
     subpaths:
         - list all diet plans in a prescription id:
             path: /search
@@ -316,13 +316,27 @@ DietPlan:
             method: POST
 
 Bed:
-    path: /bed
+    path: /beds
     subpaths:
         - list of all beds:
             path: /
             method: GET
             
-        - update bed id:
+        - bed by id:
+            path: /{id}
+            path variable:
+                - id
+            method: GET
+            
+        - update bed details:
+            path: /{id}
+            path variables: 
+                - id
+            request params:
+                - availability
+            method: PUT
+            
+        - update booked bed details:
             path: /{id}
             path variables: 
                 - id
@@ -337,6 +351,14 @@ Bed:
         - book a bed:
             path: /
             method: POST
+            
+        - bed by room; bed_type; facility:
+            path: /search
+            request params:
+                - room
+                - bed
+                - facility
+            method: GET
 
 Scheme:
     path: /schemes

@@ -2,6 +2,8 @@ package com.healthplus.dataaccess.domain;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,66 +15,68 @@ import jakarta.validation.constraints.Positive;
 
 @Entity
 public class DietPlan implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+	private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "Prescription is required")
-    @ManyToOne(optional=false)
-    private Prescription prescription;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @NotNull(message = "Diet plan food is required")
-    private String food;
-    
-    @Min(value = 0, message = "Duration cannot be negative")
-    private Integer duration;
+	@NotNull(message = "Prescription is required")
+	@ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Prescription prescription;
 
-    public DietPlan() {
-        super();
-    }
+	@NotNull(message = "Diet plan food is required")
+	private String food;
 
-    public DietPlan(@NotNull Prescription prescription, @NotNull String food, @Positive Integer duration) {
-        this.prescription = prescription;
-        this.food = food;
-        this.duration = duration;
-    }
+	@Min(value = 0, message = "Duration cannot be negative")
+	private Integer duration;
 
-    public Long getId() {
-        return id;
-    }
+	public DietPlan() {
+		super();
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public DietPlan(@NotNull Prescription prescription, @NotNull String food, @Positive Integer duration) {
+		this.prescription = prescription;
+		this.food = food;
+		this.duration = duration;
+	}
 
-    public Prescription getPrescription() {
-        return prescription;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setPrescription(Prescription prescription) {
-        this.prescription = prescription;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getFood() {
-        return food;
-    }
+	public Prescription getPrescription() {
+		return prescription;
+	}
 
-    public void setFood(String food) {
-        this.food = food;
-    }
+	public void setPrescription(Prescription prescription) {
+		this.prescription = prescription;
+	}
 
-    public Integer getDuration() {
-        return duration;
-    }
+	public String getFood() {
+		return food;
+	}
 
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
+	public void setFood(String food) {
+		this.food = food;
+	}
 
-    @Override
-    public String toString() {
-        return "DietPlan [id=" + id + ", prescription=" + prescription + ", food=" + food + ", duration=" + duration + "]";
-    }
+	public Integer getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+
+	@Override
+	public String toString() {
+		return "DietPlan [id=" + id + ", prescription=" + prescription + ", food=" + food + ", duration=" + duration
+				+ "]";
+	}
 }

@@ -3,6 +3,8 @@ package com.healthplus.dataaccess.domain;
 import java.io.Serializable;
 import java.sql.Time;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -34,6 +36,7 @@ public class Timeslot implements Serializable {
 
     @NotNull(message="Doctor is required")
     @ManyToOne(optional=false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Doctor doctor;
     
     @NotNull(message="Day of the week is required")

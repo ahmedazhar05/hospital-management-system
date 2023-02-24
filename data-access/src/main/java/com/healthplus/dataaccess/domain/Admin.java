@@ -11,21 +11,21 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Admin implements Serializable {
+public class Admin extends User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message="Password is required")
+    @NotNull(message = "Password is required")
     private String hash;
 
-    @NotNull(message="Email is required")
-    @Email(message="Email should be valid")
+    @NotNull(message = "Email is required")
+    @Email(message = "Email should be valid")
     private String email;
 
-    @NotNull(message="Contact number is required")
+    @NotNull(message = "Contact number is required")
     @Size(min = 10, max = 10, message = "Contact number should be a valid 10 digit number")
     private String contact;
 
