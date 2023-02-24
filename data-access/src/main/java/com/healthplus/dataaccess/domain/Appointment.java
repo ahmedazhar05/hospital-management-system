@@ -1,6 +1,7 @@
 package com.healthplus.dataaccess.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -15,7 +16,7 @@ import jakarta.validation.constraints.NotNull;
 public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -23,6 +24,9 @@ public class Appointment implements Serializable {
     @ManyToOne(optional = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Patient patient;
+
+    @NotNull(message="Date is required")
+    private Date date;
 
     @NotNull(message="Doctor is required")
     @ManyToOne(optional = false)
@@ -86,6 +90,14 @@ public class Appointment implements Serializable {
     public void setSymptom(String symptom) {
         this.symptom = symptom;
     }
+
+    public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
     @Override
     public String toString() {

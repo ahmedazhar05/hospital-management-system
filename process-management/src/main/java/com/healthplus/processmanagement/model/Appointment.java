@@ -1,6 +1,7 @@
 package com.healthplus.processmanagement.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -9,17 +10,19 @@ public class Appointment implements Serializable {
     private Patient patient;
     private Doctor doctor;
     private Timeslot timeslot;
+    private Date date;
     private String symptom;
 
-    public Appointment() {
+	public Appointment() {
         super();
     }
 
-    public Appointment(Patient patient, Doctor doctor, Timeslot timeslot, String symptom) {
+    public Appointment(Patient patient, Doctor doctor, Timeslot timeslot, String symptom, Date date) {
         this.patient = patient;
         this.doctor = doctor;
         this.timeslot = timeslot;
         this.symptom = symptom;
+        this.date = date;
     }
 
     public Long getId() {
@@ -53,6 +56,14 @@ public class Appointment implements Serializable {
     public void setTimeslot(Timeslot timeslot) {
         this.timeslot = timeslot;
     }
+
+    public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
     public String getSymptom() {
         return symptom;
