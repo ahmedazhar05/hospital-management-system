@@ -26,8 +26,8 @@ import com.healthplus.processmanagement.util.GenericUtility;
 
 @RestController
 public class BillController {
-	@Value("${jpa.domain}")
-	private String DOMAIN;
+	// @Value("${jpa.domain}")
+	private String DOMAIN = "http://localhost:8080/";
 	
 	private final String BILL_URI = DOMAIN + "bills/";
 	private final String PATIENT_URI = DOMAIN + "patients/";

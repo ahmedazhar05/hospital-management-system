@@ -4,15 +4,21 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class Bill implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private Integer total;
     private Date date;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Scheme appliedScheme;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Insurance appliedInsurance;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private OccupiedBed occupiedBed;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Set<Prescription> prescriptions;
     private Integer otCharge;
 

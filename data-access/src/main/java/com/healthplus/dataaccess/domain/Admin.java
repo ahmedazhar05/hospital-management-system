@@ -28,6 +28,8 @@ public class Admin extends User implements Serializable {
     @NotNull(message = "Contact number is required")
     @Size(min = 10, max = 10, message = "Contact number should be a valid 10 digit number")
     private String contact;
+    
+    private String role = "admin";
 
     public Admin() {
         super();

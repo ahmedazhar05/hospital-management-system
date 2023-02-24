@@ -2,10 +2,13 @@ package com.healthplus.processmanagement.model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class MedicinePlan implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private Long id;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Prescription prescription;
     private String name;
     private String dosage;

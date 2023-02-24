@@ -154,6 +154,8 @@ public class Patient extends User implements Serializable {
     @NotNull
     @Enumerated(EnumType.STRING)
     private STATUS status = STATUS.UNVERIFIED;
+    
+    private String role = "patient";
 
     public Patient() {
         super();

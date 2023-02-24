@@ -3,12 +3,17 @@ package com.healthplus.processmanagement.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Patient patient;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Doctor doctor;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Timeslot timeslot;
     private Date date;
     private String symptom;

@@ -75,6 +75,8 @@ public class Doctor extends User implements Serializable {
     private Integer fees;
 
     private String description = "<em>No description available</em>";
+    
+    private String role = "doctor";
 
     public Doctor() {
         super();

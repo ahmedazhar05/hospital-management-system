@@ -16,8 +16,9 @@ import com.healthplus.processmanagement.model.Doctor;
 import com.healthplus.processmanagement.model.Patient;
 
 public class PatientController {
-	@Value("${jpa.domain}")
-	private String DOMAIN;
+	// @Value("${jpa.domain}")
+	private String DOMAIN = "http://localhost:8080/";
+	
 	private final String PATIENT_URI = DOMAIN + "patients/";
 	private final String APPOINTMENT_URI = DOMAIN + "appointments/";
 
