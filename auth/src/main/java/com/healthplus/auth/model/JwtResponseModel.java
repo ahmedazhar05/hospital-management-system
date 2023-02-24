@@ -14,4 +14,9 @@ public class JwtResponseModel implements Serializable {
 	public String getToken() {
 		return token;
 	}
+
+	@Override
+	public String toString() {
+		return "JwtResponseModel [token=" + token + "]";
+	}
 }

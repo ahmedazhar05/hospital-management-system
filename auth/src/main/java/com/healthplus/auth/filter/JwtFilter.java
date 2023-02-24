@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.healthplus.auth.manager.TokenManager;
+import com.healthplus.auth.model.HospitalUser;
 import com.healthplus.auth.service.JwtUserDetailsService;
 
 import io.jsonwebtoken.ExpiredJwtException;
@@ -30,6 +31,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+		System.out.println("JwtFilter::doFilterInternal()");
 
 		String tokenHeader = request.getHeader("Authorization");
 		
@@ -50,8 +52,10 @@ public class JwtFilter extends OncePerRequestFilter {
 		}
 		
 		if (null != username && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+			HospitalUser userDetails = (HospitalUser) userDetailsService.loadUserByUsername(username);
+			System.out.println(userDetails);
 			if (tokenManager.validateJwtToken(token, userDetails)) {
+				System.out.println(true);
 				UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
 						userDetails, null, userDetails.getAuthorities());
 				authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
