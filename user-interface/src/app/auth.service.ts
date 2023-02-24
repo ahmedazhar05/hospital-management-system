@@ -23,22 +23,27 @@ export class AuthService {
     //.shareReplay();
   }
 
-  private setSession(authResult: { userType: string; expiresIn: number; idToken: string; }) {
-    //const expiresAt = moment().add(authResult.expiresIn,'second');
-    const expiresAt: number = new Date().valueOf() + authResult.expiresIn;
-    const token = authResult.idToken;
+  private setSession(authResult: { token: string; }) {
+    const token_payload = JSON.parse(atob(authResult.token.split('.')[1]));
+    const expiresAt: number = token_payload.exp * 1000;
+    const userType: string = token_payload.user;
+    const userId: number = token_payload.id;
+    const token = authResult.token;
     localStorage.setItem('id_token', token);
     localStorage.setItem("expires_at", JSON.stringify(expiresAt));
-    localStorage.setItem("user_type", JSON.stringify(authResult.userType));
+    localStorage.setItem("user_type", JSON.stringify(userType));
+    localStorage.setItem("user_id", JSON.stringify(userId));
   }
 
   logout() {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
+    localStorage.removeItem("user_type");
+    localStorage.removeItem("user_id");
   }
 
   public isLoggedIn() {
-    return new Date().valueOf() < this.getExpiration();
+    return new Date().valueOf() < this.getExpiration().valueOf();
     //moment().isBefore(this.getExpiration());
   }
 
@@ -49,7 +54,13 @@ export class AuthService {
   getExpiration() {
     const expiration = localStorage.getItem("expires_at") + "";
     const expiresAt = JSON.parse(expiration);
-    return new Date(expiresAt).valueOf();
+    return new Date(expiresAt);
+  }
+
+  getUserId() {
+    const item = localStorage.getItem("user_id") + "";
+    const userType = JSON.parse(item);
+    return userType;
   }
 
   getUserType() {

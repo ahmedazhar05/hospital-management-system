@@ -1,5 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm, NgModelGroup } from '@angular/forms';
+import { BasePage } from '../app.component';
+import { AuthService } from '../auth.service';
+import { ServerService } from '../server.service';
 
 enum DOSAGE {
   MORNING = "morning",
@@ -15,7 +18,19 @@ enum DOSAGE {
   templateUrl: './prescription.component.html',
   styleUrls: ['./prescription.component.css']
 })
-export class PrescriptionComponent {
+export class PrescriptionComponent implements BasePage, OnInit {
+  @Output()
+  options: { text: string; href: string; }[] = [
+    {
+      text: 'Dashboard',
+      href: '/dashboard'
+    }
+  ];
+  uid: any;
+  userType: any;
+
+  constructor(private auth: AuthService, private server: ServerService) { }
+
   address = "Mumbai, Matoshree Nagar, Nashik, Maharashtra 422002"
   mob_no = "8087030000"
   phn_no = "1234567891"
@@ -28,7 +43,7 @@ export class PrescriptionComponent {
     patientAge: number;
     diagnosis: string;
     investigation: string;
-    medPlan: {
+    medicinePlan: {
       name: string,
       dosage: string,
       duration: number
@@ -42,19 +57,8 @@ export class PrescriptionComponent {
     patientAge: 25,
     diagnosis: "",
     investigation: "",
-    medPlan: [
-      {
-        name: "Calpol",
-        dosage: DOSAGE.FEEL_SICK,
-        duration: 3
-      }
-    ],
-    dietPlan: [
-      {
-        name: "Calpol",
-        duration: 3
-      }
-    ]
+    medicinePlan: [],
+    dietPlan: []
   }
 
   @ViewChild("f")
@@ -65,7 +69,7 @@ export class PrescriptionComponent {
 
   appendMedPlan(){
     // if(Object.entries(this.medicine) == Object.entries({ name: "", dosage: "", duration: 0 }))
-    this.prescription.medPlan.push(this.form.value.medPlan);
+    this.prescription.medicinePlan.push(this.form.value.medPlan);
     this.form.value.medPlan = {
       name: "",
       dosage: "",
@@ -83,7 +87,7 @@ export class PrescriptionComponent {
   }
 
   deleteMedPlan(index: number){
-    this.prescription.medPlan.splice(index, 1);
+    this.prescription.medicinePlan.splice(index, 1);
   }
   
   deleteDietPlan(index: number){
@@ -97,5 +101,15 @@ export class PrescriptionComponent {
       // TODO: perform the necessary login process with these form values
       this.form.reset();
     }
+  }
+
+  ngOnInit(): void {
+    this.uid = this.auth.getUserId();
+    this.userType = this.auth.getUserType();
+
+    this.server.get('/patients/' + this.uid)
+    .subscribe(data => {
+      
+    })
   }
 }

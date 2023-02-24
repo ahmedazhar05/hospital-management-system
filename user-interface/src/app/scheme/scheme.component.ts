@@ -1,11 +1,20 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Output, ViewChild } from '@angular/core';
+import { BasePage } from '../app.component';
 
 @Component({
   selector: 'app-scheme',
   templateUrl: './scheme.component.html',
   styleUrls: ['./scheme.component.css']
 })
-export class SchemeComponent {
+export class SchemeComponent implements BasePage {
+  @Output()
+  options: { text: string; href: string; }[] = [
+    {
+      text: "Dashboard",
+      href: "/dashboard"
+    }
+  ];
+
   dataType = "Health Scheme"
 
   dlist = [

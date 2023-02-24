@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ServerService } from '../server.service';
 
 @Component({
   selector: 'app-calendar',
@@ -6,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+  @Input()
+  userId = 0;
+  @Input()
+  userType = '';
+
+  constructor(private server: ServerService) { }
+
   order: (number | null)[][] = [];
   calendar: {
     month: number;
@@ -74,19 +82,28 @@ export class CalendarComponent implements OnInit {
       year: today.getFullYear()
     }
     this.shiftCalendar(0);
+
+    this.getAppointments(new Date().getDate());
   }
 
-  getAppointments(day: number){
-    /*
-    console.log(new Date(this.calendar.year, this.calendar.month, day).toLocaleString('en-US', {
+  formatDate(date: Date){
+    return date.toLocaleString('en-US', {
       year:'numeric',
       month:'2-digit',
       day:'2-digit'
-    }))
-    */
+    }).split('/').reverse().join('-');
+  }
+
+  getAppointments(day: number){
     // TODO: implement the process of fetching appointments of that day
     this.selected = new Date(this.calendar.year, this.calendar.month, day);
-    console.log(this.selected);
+    // console.log(this.selected);
+    this.server.get('/reports/search', {
+      [this.userType]: this.userId,
+      date: this.formatDate(this.selected)
+    })
+    .subscribe((data: any) => this.appointments = data);
+    // ?' + this.userType + "=" + this.userId + "&date=" + this.formatDate(this.selected)
   }
 
   isSelected(date: number){

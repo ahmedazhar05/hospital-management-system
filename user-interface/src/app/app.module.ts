@@ -13,6 +13,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CalendarComponent,
     CarouselComponent,
     MainComponent,
-    DashboardComponent
+    DashboardComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

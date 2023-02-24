@@ -10,20 +10,8 @@ export class BookAppointmentComponent implements BasePage, OnInit {
   @Output()
   options: { text: string; href: string; }[] = [
     {
-      text: 'Home',
-      href: '/'
-    },
-    {
-      text: 'Doctors',
-      href: '/doctors'
-    },
-    {
-      text: 'Departmentss',
-      href: '/departments'
-    },
-    {
-      text: 'Get Info',
-      href: '/info'
+      text: 'Dashboard',
+      href: '/dashboard'
     }
   ];
 

@@ -8,6 +8,7 @@ import { PrescriptionComponent } from './prescription/prescription.component';
 import { MainComponent } from './main/main.component';
 import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {
@@ -23,45 +24,30 @@ const routes: Routes = [
   {
     title: 'Health+ Dashboard',
     path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-    /*
+    // canActivate: [AuthGuard],
     children: [
       {
-        path: 'patient',
-        component: PatientDashboardComponent,
-        children: [
-          {
-            title: 'Health+ Book Appointment',
-            path: 'book',
-            component: BookAppointmentComponent
-          }
-        ]
+        title: 'Health+ Dashboard',
+        path: '',
+        pathMatch: 'full',
+        component: DashboardComponent
       },
       {
-        path: 'doctor',
-        component: DoctorDashboardComponent,
-        children: [
-          {
-            title: 'Health+ Prescription',
-            path: 'prescription',
-            component: PrescriptionComponent,
-          }
-        ]
+        title: 'Health+ Book Appointment',
+        path: 'book-appointment',
+        component: BookAppointmentComponent
       },
       {
-        path: 'admin',
-        component: AdminDashboardComponent,
-        children: [
-          {
-            title: 'Health+ Schemes',
-            path: 'scheme',
-            component: SchemeComponent,
-          }
-        ]
+        title: 'Health+ Prescription',
+        path: 'prescription',
+        component: PrescriptionComponent
       },
+      {
+        title: 'Health+ Schemes',
+        path: 'scheme',
+        component: SchemeComponent,
+      }
     ]
-    */
   },
   {
     title: 'Health+ Home',
@@ -69,10 +55,15 @@ const routes: Routes = [
     component: MainComponent
   },
   {
+    title: 'Health+ Logout',
+    path: 'logout',
+    component: LogoutComponent
+  },
+  /*{
     path: '**',
     redirectTo: '/',
     pathMatch: 'full'
-  }
+  }*/
 ];
 
 @NgModule({

@@ -1,11 +1,11 @@
 import { Component, Output, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BasePage } from '../app.component';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
+  templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements BasePage, OnInit {
   @Output()
@@ -20,23 +20,57 @@ export class DashboardComponent implements BasePage, OnInit {
     }
   ];
 
-  constructor(private authService: AuthService, private router: Router){ }
+  userId: number = 0;
+  userType: string = "patient";
+
+  links: {
+    name: string;
+    href: string;
+  }[] = [];
+
+  constructor(private authService: AuthService, private router: Router, public route: ActivatedRoute){ }
 
   ngOnInit(): void {
-    const isLoggedIn: boolean = this.authService.isLoggedIn();
+    const isLoggedIn: boolean = true;// this.authService.isLoggedIn();
 
     if(isLoggedIn){
-      const userType: string = this.authService.getUserType();
-
-      switch(userType){
-        case 'PATIENT': 
-          this.router.navigate(['/dashboard', '/patient']);
+      // this.userType = this.authService.getUserType();
+      // this.userId = this.authService.getUserId();
+      switch(this.userType){
+        case 'patient': 
+          this.links = [
+            {
+              name: 'Book Appointment',
+              href: 'book-appointment'
+            },
+            {
+              name: 'View Prescriptions',
+              href: 'prescription'
+            }
+          ]
+          //this.router.navigate(['patient'], { relativeTo: this.route });
           break;
-        case 'DOCTOR':  
-          this.router.navigate(['/dashboard', '/doctor']);
+        case 'doctor': 
+          this.links = [
+            {
+              name: 'Create Prescription',
+              href: 'prescription'
+            }
+          ]
+          //this.router.navigate(['doctor'], { relativeTo: this.route });
           break;
-        case 'ADMIN':   
-          this.router.navigate(['/dashboard', '/admin']);
+        case 'admin': 
+          this.links = [
+            {
+              name: 'Add schemes',
+              href: 'scheme'
+            },
+            {
+              name: 'Book Hospital Bed',
+              href: 'book-bed'
+            }
+          ]
+          //this.router.navigate(['admin'], { relativeTo: this.route });
           break;
         default: 
           this.authService.logout();
