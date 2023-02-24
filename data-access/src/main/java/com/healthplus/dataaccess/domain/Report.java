@@ -3,6 +3,8 @@ package com.healthplus.dataaccess.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class Report implements Serializable {
 
     @NotNull(message="Patient is required")
     @ManyToOne(optional=false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Patient patient;
 
     @NotNull(message="Name is required")
