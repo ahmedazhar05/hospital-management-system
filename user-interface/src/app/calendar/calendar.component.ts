@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 import { ServerService } from '../server.service';
 import Utilities from '../utilities/utility';
 
@@ -8,12 +9,8 @@ import Utilities from '../utilities/utility';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  @Input()
-  userId = 0;
-  @Input()
-  userType = '';
 
-  constructor(private server: ServerService) { }
+  constructor(private server: ServerService, private auth: AuthService) { }
 
   order: (number | null)[][] = [];
   calendar: {
@@ -27,26 +24,22 @@ export class CalendarComponent implements OnInit {
   }
   selected = new Date();
   appointments: {
-    name: string;
-    time: string;
-    href: string
-  }[] = [
-    {
-      name: 'Dr. Mohammed Azhar Ahmed',
-      time: '7am',
-      href: '#'
+    doctor: {
+      firstName: string;
+      lastName: string;
+      id: number
     },
-    {
-      name: 'Dr. Kuber Saiprabhu Kanade',
-      time: '9am',
-      href: '#'
+    patient: {
+      firstName: string;
+      lastName: string;
+      id: number
     },
-    {
-      name: 'Dr. Vishal Pasumarthi',
-      time: '12pm',
-      href: '#'
-    }
-  ]
+    timeslot: {
+      time: string;
+    };
+    href: any;
+    id: number;
+  }[] = []
 
   shiftCalendar(m: number){
     this.order = [];
@@ -75,7 +68,22 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  userId: number = 0;
+  userType: string = "";
+
+  toggle: any = 'modal';
+  mod: any = '#deleteModal';
+
   ngOnInit(): void {
+    this.userId = this.auth.getUserId();
+    this.userType = this.auth.getUserType();
+    if(this.userType == 'doctor'){
+      this.toggle = this.mod = null;
+    } else {
+      this.toggle = 'modal';
+      this.mod = '#deleteModal';
+    }
+
     const today = new Date();
     this.calendar = {
       month: today.getMonth(),
@@ -87,15 +95,36 @@ export class CalendarComponent implements OnInit {
     this.getAppointments(new Date().getDate());
   }
 
+  appToDelete = -1;
+
+  delete(id: number){
+    if(this.userType == 'doctor') return;
+    this.appToDelete = id;
+  }
+
+  yesDelete(){
+    this.appToDelete = -1;
+    this.server.delete('appointments/' + this.appToDelete)
+    .subscribe((d: any) => {
+      console.log(d);
+    });
+  }
+
   getAppointments(day: number){
     // TODO: implement the process of fetching appointments of that day
     this.selected = new Date(this.calendar.year, this.calendar.month, day);
     // console.log(this.selected);
-    this.server.get('/reports/search', {
+
+    this.server.get('appointments/search', {
       [this.userType]: this.userId,
       date: Utilities.formatDate(this.selected)
     })
-    .subscribe((data: any) => this.appointments = data);
+    .subscribe((data: any) => {
+      let val: any[] = JSON.parse(data);
+      val.map(x => x.href = this.userType == 'patient' ? null : ['prescription', 'create', x.id]);
+      console.log(val);
+      this.appointments = val;
+    });
     // ?' + this.userType + "=" + this.userId + "&date=" + this.formatDate(this.selected)
   }
 

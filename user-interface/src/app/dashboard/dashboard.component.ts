@@ -21,7 +21,7 @@ export class DashboardComponent implements BasePage, OnInit {
   ];
 
   userId: number = 0;
-  userType: string = "doctor";
+  userType: string = "";
 
   links: {
     name: string;
@@ -31,6 +31,9 @@ export class DashboardComponent implements BasePage, OnInit {
   constructor(private authService: AuthService, private router: Router, public route: ActivatedRoute){ }
 
   ngOnInit(): void {
+    this.userId = this.authService.getUserId();
+    this.userType = this.authService.getUserType();
+
     const isLoggedIn: boolean = true;// this.authService.isLoggedIn();
 
     if(isLoggedIn){
@@ -44,7 +47,7 @@ export class DashboardComponent implements BasePage, OnInit {
               href: 'book-appointment'
             },
             {
-              name: 'View Prescriptions',
+              name: 'All Prescriptions',
               href: 'prescription'
             }
           ]
@@ -54,7 +57,7 @@ export class DashboardComponent implements BasePage, OnInit {
           this.links = [
             {
               name: 'Create Prescription',
-              href: 'prescription'
+              href: 'prescription/create'
             }
           ]
           //this.router.navigate(['doctor'], { relativeTo: this.route });
@@ -62,12 +65,8 @@ export class DashboardComponent implements BasePage, OnInit {
         case 'admin': 
           this.links = [
             {
-              name: 'Add schemes',
-              href: 'scheme'
-            },
-            {
-              name: 'Book Hospital Bed',
-              href: 'book-bed'
+              name: 'Verify Patient',
+              href: 'verify'
             }
           ]
           //this.router.navigate(['admin'], { relativeTo: this.route });

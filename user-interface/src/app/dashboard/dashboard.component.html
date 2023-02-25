@@ -3,7 +3,7 @@
 <!-- <ng-container  *ngIf="route.children.length === 0">
 </ng-container> -->
 <div class="container mt-4" *ngIf="userType == 'patient' || userType == 'doctor'">
-    <app-calendar [userType]="userType" [userId]="userId"></app-calendar>
+    <app-calendar></app-calendar>
     <div class="w-50 mt-3 bg-warning-subtle p-3 rounded">
         <h3 class="mb-2">More Links:</h3>
         <div class="list-group">
@@ -14,7 +14,7 @@
 
 <div class="container mt-4" *ngIf="userType == 'admin'">
     <div class="w-50 mt-3 bg-warning-subtle p-3 rounded">
-        <h3 class="mb-2">More Links:</h3>
+        <h3 class="mb-2"><span *ngIf="userType != 'admin'">More </span>Links:</h3>
         <div class="list-group">
             <a *ngFor="let opt of links" routerLink="{{opt.href}}" class="list-group-item list-group-item-action">{{opt.name}}</a>
         </div>

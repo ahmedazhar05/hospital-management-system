@@ -14,6 +14,7 @@ import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
+import { VerifyComponent } from './verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LogoutComponent } from './logout/logout.component';
     CarouselComponent,
     MainComponent,
     DashboardComponent,
-    LogoutComponent
+    LogoutComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,

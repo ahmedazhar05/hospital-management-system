@@ -3,112 +3,114 @@
         <section>
             <h1>Health+</h1>
             <h6>{{address}}</h6>
-            <h6>Mobile No. {{mob_no}} | Phone No. {{phn_no}} | E-mail: {{mail_id}} </h6>
+            <h6>Mobile No. {{mob_no}} | E-mail: {{mail_id}} </h6>
             <br>
             <h4>{{name}}</h4>
             <h6>{{degree}}</h6>
         </section>
         <hr>
         <form (ngSubmit)="onPrescribe()" #f="ngForm">
-            <div class="row mb-3">
-                <label for="inputName" class="col-sm-3 col-form-label">Patient name:</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="inputName" name="patientName" [(ngModel)]="prescription.patientName">
+            <fieldset [disabled]="userType == 'patient'">
+                <div class="row mb-3">
+                    <label for="inputName" class="col-sm-3 col-form-label">Patient name:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputName" name="patientName" [(ngModel)]="prescription.patientName">
+                    </div>
                 </div>
-            </div>
-            <div class="row mb-3">
-                <label for="inputAge" class="col-sm-3 col-form-label">Age:</label>
-                <div class="col-sm-6">
-                    <input type="number" class="form-control" id="inputAge" name="patientAge" [(ngModel)]="prescription.patientAge">
+                <div class="row mb-3" *ngIf="userType == 'doctor'">
+                    <label for="inputAge" class="col-sm-3 col-form-label">Age:</label>
+                    <div class="col-sm-6">
+                        <input type="number" class="form-control" id="inputAge" name="patientAge" [(ngModel)]="prescription.patientAge">
+                    </div>
                 </div>
-            </div>
-            <div class="row mb-3">
-                <label for="inputDiagnosis" class="col-sm-3 col-form-label">Diagnosis:</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="inputDiagnosis" name="diagnosis" [(ngModel)]="prescription.diagnosis">
+                <div class="row mb-3">
+                    <label for="inputDiagnosis" class="col-sm-3 col-form-label">Diagnosis:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputDiagnosis" name="diagnosis" [(ngModel)]="prescription.diagnosis">
+                    </div>
                 </div>
-            </div>
-            <div class="row mb-3">
-                <label for="inputInvestigation" class="col-sm-3 col-form-label">Investigation:</label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" id="inputInvestigation" name="investigation" [(ngModel)]="prescription.investigation">
+                <div class="row mb-3">
+                    <label for="inputInvestigation" class="col-sm-3 col-form-label">Investigation:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputInvestigation" name="investigation" [(ngModel)]="prescription.investigation">
+                    </div>
                 </div>
-            </div>
-            <div class="row mb-3">
-                <h4>Medicine Plan</h4>
-                <div>
-                    <fieldset ngModelGroup="medPlan">
-                        <table class="table table-striped">
+                <div class="row mb-3">
+                    <h4>Medicine Plan</h4>
+                    <div>
+                        <fieldset ngModelGroup="medPlan">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="col-7">Medicine Name</th>
+                                        <th scope="col" class="col-3">Dosage</th>
+                                        <th scope="col" class="col-1">Duration</th>
+                                        <th scope="col" class="col-1" *ngIf="userType == 'doctor'"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let medi of prescription.medicinePlan; index as i">
+                                        <td>{{medi.name}}</td>
+                                        <td>{{medi.dosage}}</td>
+                                        <td>{{medi.duration}}</td>
+                                        <td *ngIf="userType == 'doctor'"><button type="button" class="btn-close" aria-label="Close" (click)="deleteMedPlan(i)"></button></td>
+                                    </tr>
+                                    <tr *ngIf="userType == 'doctor'">
+                                        <td><input type="text" class="form-control" (keyup.enter)="$event.preventDefault()" name="name" ngModel></td>
+                                        <td>
+                                            <select class="form-select" name="dosage" ngModel>
+                                                <option *ngFor="let d of dosage_list" value="{{d}}">{{d}}</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="number" class="form-control" (keyup.enter)="appendMedPlan()" name="duration" ngModel></td>
+                                        <td><input type="button" value="Add" class="btn btn-primary" (click)="appendMedPlan()"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="form-check ms-3" *ngIf="dietEnabled || userType == 'doctor'">
+                        <input class="form-check-input" type="checkbox" (change)="dietEnabled = !dietEnabled" [checked]="dietEnabled" id="use-diet-plan">
+                        <h4><label class="form-check-label" for="use-diet-plan">Diet Plan</label></h4>
+                    </div>
+                    <fieldset [hidden]="!dietEnabled" ngModelGroup="dietPlan" *ngIf="(userType == 'patient' && dietEnabled) || userType == 'doctor'">
+                        <table class=" table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="col-7">Medicine Name</th>
-                                    <th scope="col" class="col-3">Dosage</th>
+                                    <th scope="col" class="col-10">Food Name</th>
                                     <th scope="col" class="col-1">Duration</th>
-                                    <th scope="col" class="col-1"></th>
+                                    <th scope="col" class="col-1" *ngIf="userType == 'doctor'"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let medi of prescription.medicinePlan; index as i">
-                                    <td>{{medi.name}}</td>
-                                    <td>{{medi.dosage}}</td>
-                                    <td>{{medi.duration}}</td>
-                                    <td><button type="button" class="btn-close" aria-label="Close" (click)="deleteMedPlan(i)"></button></td>
+                                <tr *ngFor="let diet of prescription.dietPlan; index as i">
+                                    <td>{{diet.food}}</td>
+                                    <td>{{diet.duration}}</td>
+                                    <td *ngIf="userType == 'doctor'"><button type="button" class="btn-close" aria-label="Close" (click)="deleteDietPlan(i)"></button></td>
                                 </tr>
-                                <tr>
-                                    <td><input type="text" class="form-control" (keyup.enter)="$event.preventDefault()" name="name" ngModel></td>
-                                    <td>
-                                        <select class="form-select" name="dosage" ngModel>
-                                            <option *ngFor="let d of dosage_list" value="{{d}}">{{d}}</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="number" class="form-control" (keyup.enter)="appendMedPlan()" name="duration" ngModel></td>
-                                    <td><input type="button" value="Add" class="btn btn-primary" (click)="appendMedPlan()"></td>
+                                <tr *ngIf="userType == 'doctor'">
+                                    <td><input type="text" class="form-control" name="food" (keyup.enter)="$event.preventDefault()" ngModel></td>
+                                    <td><input type="number" class="form-control" name="duration" (keyup.enter)="$event.preventDefault()" ngModel></td>
+                                    <td><input type="button" value="Add" class="btn btn-primary" (click)="appendDietPlan()"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </fieldset>
-                </div>
-                <div class="form-check ms-3">
-                    <input class="form-check-input" type="checkbox" (change)="dietEnabled = !dietEnabled" [checked]="dietEnabled" id="use-diet-plan">
-                    <h4><label class="form-check-label" for="use-diet-plan">Diet Plan</label></h4>
-                </div>
-                <fieldset [hidden]="!dietEnabled" ngModelGroup="dietPlan">
-                    <table class=" table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="col-10">Food Name</th>
-                                <th scope="col" class="col-1">Duration</th>
-                                <th scope="col" class="col-1"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let diet of prescription.dietPlan; index as i">
-                                <td>{{diet.name}}</td>
-                                <td>{{diet.duration}}</td>
-                                <td><button type="button" class="btn-close" aria-label="Close" (click)="deleteDietPlan(i)"></button></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" class="form-control" name="name" (keyup.enter)="$event.preventDefault()" ngModel></td>
-                                <td><input type="number" class="form-control" name="duration" (keyup.enter)="$event.preventDefault()" ngModel></td>
-                                <td><input type="button" value="Add" class="btn btn-primary" (click)="appendDietPlan()"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </fieldset>
-                <div class="row mb-3">
-                    <label for="inputAvoid" class="col-sm-2 col-form-label">Avoid:</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="inputAvoid" name="avoidables" ngModel>
+                    <div class="row mb-3">
+                        <label for="inputAvoid" class="col-sm-2 col-form-label">Avoid:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="inputAvoid" name="avoidables" [(ngModel)]="prescription.avoidables">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <span class="col-sm-2">Signature: </span>
+                        <h3 class="col-sm-10" id="signature">{{name}}</h3>
+                    </div>
+                    <div class="col-12" *ngIf="userType == 'doctor'">
+                        <button class="btn btn-primary" type="text">Submit</button>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <span class="col-sm-2">Signature: </span>
-                    <h3 class="col-sm-10" id="signature">{{name}}</h3>
-                </div>
-                <div class="col-12">
-                    <button class="btn btn-primary" type="text">Submit</button>
-                </div>
-            </div>
+            </fieldset>
         </form>
     </div>
 </div>

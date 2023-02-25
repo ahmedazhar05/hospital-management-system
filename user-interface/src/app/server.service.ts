@@ -27,5 +27,9 @@ export class ServerService {
   post(uri: string, body: any = {}){
     return this.http.get(this.domain + uri, body);
   }
+
+  delete(uri: string){
+    return this.http.delete(this.domain + uri);
+  }
 }
 

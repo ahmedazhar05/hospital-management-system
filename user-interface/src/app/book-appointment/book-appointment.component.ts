@@ -71,7 +71,7 @@ export class BookAppointmentComponent implements BasePage, OnInit {
   }[] = [];
   allSlots = [];
   selectedSlot: number = 0;
-  selectedDate: number = 0;
+  selectedDay: any;
 
   @ViewChild('f') form: any;
 
@@ -88,13 +88,15 @@ export class BookAppointmentComponent implements BasePage, OnInit {
     .subscribe((data: any) => {
       this.allSlots = JSON.parse(data);
     })
+    this.slots = [];
+    this.selectedDay = -1;
   }
 
   onCh(val: any){
+    this.selectedDay = val;
     this.slots = this.allSlots.filter((x: any) => 
-      x.dayOfWeek.toLowerCase().startsWith(val.toLowerCase())
+      x.dayOfWeek.toLowerCase().startsWith(this.days[val].toLowerCase())
     )
-    console.log(this.slots);
   }
 
   onBooking() {
@@ -103,12 +105,23 @@ export class BookAppointmentComponent implements BasePage, OnInit {
 
       delete obj['speciality'];
       obj.patient = { id: this.auth.getUserId() };
-      obj.doctor = { id: obj.doctor };
-      obj.date = Utilities.formatDate(this.today);
-      obj.timeslot = { timeslot: this.selectedSlot };
+      obj.doctor = { id: Number(obj.doctor) };
+      obj.date = this.calculateDate(this.allSlots.filter((x: any) => x.id == this.selectedSlot)[0]);
+      obj.timeslot = { id: this.selectedSlot };
+
+      console.log(obj);
+      
+      this.selectedDay = 0;
+      this.slots = [];
       // TODO: perform the necessary login process with these form values
       this.form.reset();
     }
+  }
+
+  calculateDate(val: any): any {
+    let st = val.dayOfWeek;
+    let dow: number = this.days.indexOf(st[0] + (st[1] + st[2]).toLowerCase());
+    return Utilities.formatDate(new Date(this.today.valueOf() + (dow + 1) * 1000 * 60 * 60 * 24));
   }
 
   ngOnInit(): void {

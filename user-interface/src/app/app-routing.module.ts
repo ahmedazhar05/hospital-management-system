@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
+import { VerifyComponent } from './verify/verify.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
   {
     title: 'Health+ Dashboard',
     path: 'dashboard',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         title: 'Health+ Dashboard',
@@ -38,14 +39,31 @@ const routes: Routes = [
         component: BookAppointmentComponent
       },
       {
-        title: 'Health+ Prescription',
+        title: 'Health+ All Prescriptions',
         path: 'prescription',
-        component: PrescriptionComponent
+        component: PrescriptionComponent,
+        children: [
+          {
+            title: 'Health+ Create Appointment Prescription',
+            path: 'create/:id',
+            component: PrescriptionComponent
+          },
+          {
+            title: 'Health+ View Prescription',
+            path: 'view/:id',
+            component: PrescriptionComponent
+          },
+          {
+            title: 'Health+ Create Prescription',
+            path: 'create',
+            component: PrescriptionComponent
+          }
+        ]
       },
       {
-        title: 'Health+ Schemes',
-        path: 'scheme',
-        component: SchemeComponent,
+        title: 'Health+ Verify Patient',
+        path: 'verify',
+        component: VerifyComponent,
       }
     ]
   },

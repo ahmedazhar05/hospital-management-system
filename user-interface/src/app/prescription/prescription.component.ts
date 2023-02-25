@@ -4,6 +4,7 @@ import { BasePage } from '../app.component';
 import { AuthService } from '../auth.service';
 import { ServerService } from '../server.service';
 import Utilities from '../utilities/utility';
+import { ActivatedRoute, Router } from '@angular/router'
 
 enum DOSAGE {
   MORNING = "morning",
@@ -27,21 +28,21 @@ export class PrescriptionComponent implements BasePage, OnInit {
       href: '/dashboard'
     }
   ];
-  uid: any;
+  userId: any;
   userType: any;
+  access: string = "";
 
-  constructor(private auth: AuthService, private server: ServerService) { }
+  constructor(private auth: AuthService, private server: ServerService, private route: ActivatedRoute, private router: Router) { }
 
   address = "Mumbai, Matoshree Nagar, Nashik, Maharashtra 422002"
   mob_no = "8087030000"
-  phn_no = "1234567891"
   mail_id = "ahmedazhar@gmail.com"
   name = "Dr. Vishal Pasumarthi"
   degree = "MBBS, DNB(Gen. Surgeon)"
 
   prescription: {
     patientName: string;
-    patientAge: number;
+    patientAge: number | string;
     diagnosis: string;
     investigation: string;
     medicinePlan: {
@@ -50,16 +51,18 @@ export class PrescriptionComponent implements BasePage, OnInit {
       duration: number
     }[];
     dietPlan: {
-      name: string;
+      food: string;
       duration: number
-    }[]
+    }[];
+    avoidables: string;
   } = {
-    patientName: "Sunil Chawla",
-    patientAge: 25,
+    patientName: "",
+    patientAge: "",
     diagnosis: "",
     investigation: "",
     medicinePlan: [],
-    dietPlan: []
+    dietPlan: [],
+    avoidables: ""
   }
 
   @ViewChild("f")
@@ -82,7 +85,7 @@ export class PrescriptionComponent implements BasePage, OnInit {
     //if(Object.entries(this.diet) == Object.entries({ name: "", duration: 0 }))
     this.prescription.dietPlan.push(this.form.value.dietPlan);
     this.form.value.dietPlan = {
-      name: "",
+      food: "",
       duration: 0
     };
   }
@@ -109,7 +112,7 @@ export class PrescriptionComponent implements BasePage, OnInit {
           id: 1 // TODO: need to fetch
         },
         doctor: {
-          id: this.auth.getUserId()
+          id: this.userId
         }
       };
       this.server.post('prescriptions', pres)
@@ -131,8 +134,59 @@ export class PrescriptionComponent implements BasePage, OnInit {
   }
 
   ngOnInit(): void {
-    this.uid = this.auth.getUserId();
+    this.userId = this.auth.getUserId();
     this.userType = this.auth.getUserType();
 
+    let url = this.router.url.split('/');
+    let pid = Number(url[url.length - 1]);
+    this.access = url[url.length - 2];
+
+    if(this.access == 'view'){
+      this.server.get('prescriptions/' + pid)
+      .subscribe((d: any) => {
+        let data = JSON.parse(d);
+        this.prescription.patientName = data.patient.firstName + ' ' + data.patient.lastName;
+        this.prescription.diagnosis = data.diagnosis;
+        this.prescription.investigation = data.investigation;
+        this.prescription.avoidables = data.avoidables;
+
+        this.fillDoctor(data.doctor);
+      })
+
+      this.server.get('medicines/search', {
+        prescription: pid
+      }).subscribe((d: any) => {
+        this.prescription.medicinePlan = JSON.parse(d);
+      })
+      this.server.get('diet/search', {
+        prescription: pid
+      }).subscribe((d: any) => {
+        let data = JSON.parse(d);
+        if(this.dietEnabled = data.length > 0){
+          this.prescription.dietPlan = data;
+        }
+      })
+
+    } else if(this.access == 'create') {
+      this.server.get('appointments/' + pid)
+      .subscribe((d: any) => {
+        let data = JSON.parse(d);
+        this.prescription.patientName = data.patient.firstName + ' ' + data.patient.lastName;
+        this.prescription.patientAge = Utilities.calculateAge(data.patient.dateOfBirth);
+
+        this.fillDoctor(data.doctor);
+      })
+    } else {
+      this.server.get('doctors/' + this.userId)
+      .subscribe((d: any) => this.fillDoctor(JSON.parse(d)))
+    }
+  }
+
+  fillDoctor(data: any){
+    this.name = data.firstName + ' ' + data.lastName;
+    this.degree = data.degrees;
+    this.mob_no = data.contact;
+    this.mail_id = data.email;
   }
 }
+
