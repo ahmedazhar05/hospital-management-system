@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.healthplus.dataaccess.domain.Bill;
 import com.healthplus.dataaccess.domain.Doctor;
 import com.healthplus.dataaccess.repo.BillRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/bills")
 public class BillController {

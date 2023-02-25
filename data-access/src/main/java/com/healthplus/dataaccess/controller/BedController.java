@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.healthplus.dataaccess.domain.Bed;
 import com.healthplus.dataaccess.domain.Bed.BED;
@@ -25,6 +26,7 @@ import com.healthplus.dataaccess.domain.OccupiedBed;
 import com.healthplus.dataaccess.repo.BedRepository;
 import com.healthplus.dataaccess.repo.OccupiedBedRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/beds")
 public class BedController {

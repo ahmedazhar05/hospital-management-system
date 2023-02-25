@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.healthplus.dataaccess.domain.Appointment;
 import com.healthplus.dataaccess.domain.Doctor;
 import com.healthplus.dataaccess.domain.Prescription;
 import com.healthplus.dataaccess.repo.DoctorRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/doctors")
 public class DoctorController {

@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.healthplus.dataaccess.domain.Department;
 import com.healthplus.dataaccess.domain.Doctor;
 import com.healthplus.dataaccess.repo.DepartmentRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/departments")
 public class DepartmentController {

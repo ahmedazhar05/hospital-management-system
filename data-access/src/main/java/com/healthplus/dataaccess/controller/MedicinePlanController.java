@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.healthplus.dataaccess.domain.MedicinePlan;
 import com.healthplus.dataaccess.repo.MedicinePlanRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/medicines")
 public class MedicinePlanController {
