@@ -6,6 +6,8 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -68,6 +70,7 @@ public class Doctor extends User implements Serializable {
     private String language = "English";
 
     @NotNull(message="Gender is required")
+    @Enumerated(EnumType.STRING)
     private GENDER gender;
 
     @NotNull(message="Doctor fees is required")

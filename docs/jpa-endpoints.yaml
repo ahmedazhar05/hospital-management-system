@@ -45,6 +45,12 @@ Patient:
             path variables: 
                 - id
             method: GET
+            
+        - get all reports of a patient id:
+            path: /{id}/reports
+            path variables: 
+                - id
+            method: GET
 
 Admin:
     path: /admins
@@ -340,6 +346,8 @@ Bed:
             path: /{id}
             path variables: 
                 - id
+            request params:
+                - endDate
             method: PUT
             
         - ‌list of all beds booked by a patient id:

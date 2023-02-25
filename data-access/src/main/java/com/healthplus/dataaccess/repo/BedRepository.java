@@ -16,6 +16,6 @@ public interface BedRepository extends JpaRepository<Bed, Long> {
 	List<Bed> getBedByPatient(Long id);
 
 	@Query(value = "SELECT * FROM bed WHERE room = ?1 AND type = ?2 AND facility = ?3", nativeQuery = true)
-	Bed getBedByFilter(ROOM room, BED bed, FACILITY facility);
+	Bed filterBedBy(ROOM room, BED bed, FACILITY facility);
 
 }

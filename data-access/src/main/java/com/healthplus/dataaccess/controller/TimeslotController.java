@@ -29,7 +29,9 @@ public class TimeslotController {
 
     @GetMapping(path = "/search", params = { "doctor", "date" })
     public List<Timeslot> getTimeslotByDoctorDate(@RequestParam("doctor") Long doctorId, @RequestParam("date") Date date) {
-        return timeslotRepository.getTimeslotByDoctorDate(doctorId, date);
+    	Date d = new Date();
+    	String days[] = {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"}; 
+        return timeslotRepository.getTimeslotByDoctorDate(doctorId, days[d.getDay()]);
     }
 	
 	@PostMapping(path = "")

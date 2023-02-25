@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.healthplus.dataaccess.domain.Appointment;
 import com.healthplus.dataaccess.domain.Patient;
 import com.healthplus.dataaccess.domain.Prescription;
+import com.healthplus.dataaccess.domain.Report;
 import com.healthplus.dataaccess.repo.PatientRepository;
 
 @RestController
@@ -62,8 +63,13 @@ public class PatientController {
         return new AppointmentController().getAppointmentByPatient(id);
     }
     
-    @GetMapping(path="/{id}/prescription")
+    @GetMapping(path="/{id}/prescriptions")
     public List<Prescription> getPrescriptionByPatient(@PathVariable("id") Long id){
         return new PrescriptionController().getPrescriptionByPatient(id);
+    }
+    
+    @GetMapping(path="/{id}/reports")
+    public List<Report> getReportByPatient(@PathVariable("id") Long id){
+        return new ReportController().getReportsByPatient(id);
     }
 }
