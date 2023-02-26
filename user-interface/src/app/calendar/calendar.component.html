@@ -1,0 +1,63 @@
+<div class="d-flex flex-column flex-md-row border rounded mx-sm-3 mx-1">
+  <div class="table-responsive container p-3" id="calendar">
+    <table class="table table-bordered mb-0">
+      <thead>
+        <tr>
+          <td><button class="btn btn-lg btn-outline-primary" (click)="shiftCalendar(-1)">&lt;</button></td>
+          <th colspan="2" class="text-center">{{calendar.monthName}}</th>
+          <td><button class="btn btn-lg btn-outline-primary" (click)="shiftCalendar(+1)">&gt;</button></td>
+          <td><button class="btn btn-lg btn-outline-primary" (click)="shiftCalendar(-12)">&lt;</button></td>
+          <th class="text-center">{{calendar.year}}</th>
+          <td><button class="btn btn-lg btn-outline-primary" (click)="shiftCalendar(+12)">&gt;</button></td>
+        </tr>
+        <tr>
+          <th scope="col">Sun</th>
+          <th scope="col">Mon</th>
+          <th scope="col">Tue</th>
+          <th scope="col">Wed</th>
+          <th scope="col">Thu</th>
+          <th scope="col">Fri</th>
+          <th scope="col">Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let week of order">
+          <td *ngFor="let day of week">
+            <div class="form-check p-0 m-0" *ngIf="day">
+              <input class="btn-check" type="radio" name="date" value="{{day}}" [checked]="isSelected(day)" (click)="getAppointments(day)" id="date-{{day}}">
+              <label for="date-{{day}}" class="btn btn-outline-dark">{{day}}</label>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr class="d-block d-md-none">
+  <div class="container overflow-auto p-3 ps-md-5 text-center" id="ap-list">
+    <h3>Appointments List</h3>
+    <div class="list-group text-start">
+      <a [routerLink]="apt.href" class="list-group-item list-group-item-action" attr.data-bs-toggle="{{toggle}}" attr.data-bs-target="{{mod}}" *ngFor="let apt of appointments" (click)="delete(apt.id)">
+        <span *ngIf="userType == 'doctor'" class="d-inline-block col-10">{{apt.patient.firstName + ' ' + apt.patient.lastName}}</span>
+        <span *ngIf="userType == 'patient'" class="d-inline-block col-10">{{apt.doctor.firstName + ' ' + apt.doctor.lastName}}</span>
+        <span class="d-inline-block col-2 ps-3">{{apt.timeslot.time}}</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="deleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Appointment?</h5>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this appointment?</p>
+      </div>
+      <div class="modal-footer d-flex justify-items-between">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" (click)="yesDelete()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

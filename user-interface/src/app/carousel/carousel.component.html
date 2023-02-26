@@ -1,0 +1,19 @@
+<div id="carouselContainer" class="carousel slide overflow-hidden" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div *ngFor="let banner of carousels" style="max-height: 50vh;" class="carousel-item active">
+            <img src="{{banner.image}}" class="d-block w-100" alt="img1">
+            <div *ngIf="banner.title || banner.description" class="carousel-caption text-dark fs-5 fw-bold d-sm-block d-none">
+                <h5 *ngIf="banner.title">{{banner.title}}</h5>
+                <p *ngIf="banner.description">{{banner.description}}</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselContainer" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselContainer" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-sm sticky-top">
+  <div class="container-lg px-5">
+    <a class="navbar-brand me-5 fs-1 text-danger" href="#"><b>H+</b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li *ngFor="let nav of options">
+          <a class="nav-link mx-sm-3" routerLink="{{nav.href}}" routerLinkActive="active" ariaCurrentWhenActive="page">{{nav.text}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-lg px-0 mb-5">
+  <router-outlet (activate)="setNavbarNavigations($event)"></router-outlet>
+</div>
