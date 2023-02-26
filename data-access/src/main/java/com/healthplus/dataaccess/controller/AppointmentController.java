@@ -1,6 +1,5 @@
 package com.healthplus.dataaccess.controller;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,12 +41,12 @@ public class AppointmentController {
     }
     
     @GetMapping(path = "/search", params = { "doctor", "date" })
-    public Appointment getAppointmentByDoctorDate(@RequestParam("doctor") Long id, @RequestParam("date") Date date) {
+    public List<Appointment> getAppointmentByDoctorDate(@RequestParam("doctor") Long id, @RequestParam("date") String date) {
         return appointmentRepository.findByDoctorAndDate(id, date);
     }
     
     @GetMapping(path = "/search", params = { "patient", "date" })
-    public Appointment getAppointmentByPatientDate(@RequestParam("patient") Long id, @RequestParam("date") Date date) {
+    public List<Appointment> getAppointmentByPatientDate(@RequestParam("patient") Long id, @RequestParam("date") String date) {
         return appointmentRepository.findByPatientAndDate(id, date);
     }
     

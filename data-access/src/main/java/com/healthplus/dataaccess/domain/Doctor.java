@@ -65,7 +65,7 @@ public class Doctor extends User implements Serializable {
     @Past(message="Degree Certification Date cannot be in the future")
     private Date degreeCertificationDate;
 
-    private String imageUrl; // TODO: assign a default image URL to this
+    private String imageUrl = "https://www.fortischennai.com/frontend/docimage/M-dtr-1554189149.png";
 
     private String language = "English";
 

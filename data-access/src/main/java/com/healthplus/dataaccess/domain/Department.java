@@ -19,7 +19,7 @@ public class Department implements Serializable {
     @NotNull(message = "Department name is required")
     private String name;
 
-    private String imageUrl; // TODO: assign a default image URL to this
+    private String imageUrl = "https://thumbs.dreamstime.com/b/medical-staff-clinic-banner-copy-space-right-side-hospital-healthcare-background-87324362.jpg";
 
     public Department() {
         super();

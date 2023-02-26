@@ -1,6 +1,5 @@
 package com.healthplus.dataaccess.repo;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +13,6 @@ public interface TimeslotRepository extends JpaRepository<Timeslot, Long> {
     List<Timeslot> getTimeslotByDoctor(Long id);
 
     @Query(value = "SELECT * FROM timeslot WHERE doctor_id = ?1 AND dayOfWeek = ?2", nativeQuery = true)
-    List<Timeslot> getTimeslotByDoctorDate(Long Id, String date);
+    List<Timeslot> getTimeslotByDoctorDay(Long Id, String date);
 
 }
