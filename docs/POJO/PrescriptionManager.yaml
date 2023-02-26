@@ -1,6 +1,6 @@
 class: PrescriptionManager
 member variables:
-	-appointments: Prescription[]
+	-prescriptions: Prescription[]
 
 methods:
 	+createPrescription(Prescription p): boolean
