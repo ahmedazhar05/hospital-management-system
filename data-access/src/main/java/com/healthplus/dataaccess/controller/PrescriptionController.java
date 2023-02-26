@@ -39,9 +39,9 @@ public class PrescriptionController {
 	}
 
 	@PostMapping(path = "")
-	public String addNewPrescription(@RequestBody Prescription p) {
-		prescriptionRepository.save(p);
-		return "Added";
+	public Prescription addNewPrescription(@RequestBody Prescription p) {
+		Prescription pr = prescriptionRepository.saveAndFlush(p);
+		return pr;
 	}
 
 }
