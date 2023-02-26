@@ -134,8 +134,6 @@ rectangle "Health+"{
     (Upload Reports) as (updR)
     (Add Details) as (addD)
     (Select Symptoms,\nspecialization,\nDoctor and Timeslot) as (input)
-    (Create Bills) as (createB)
-    (add prescriptions\nto the bill) as (addP)
     
     P -- (Login)
     P -- (Register)
@@ -153,12 +151,7 @@ rectangle "Health+"{
     (viewP) <-.- (createP) : <<include>>
     P -- (viewP)
     
-    (Add/Delete/\nUpdate Doctor) -up- A
-    (createB) -up- A
-    (createB) -.-> (select Patient) : <<include>>
-    (select Patient) -.-> (addP) : <<include>>
-    (Book\nhospital\nbed) -up- A
-    (addP) -.-> (calculate amount) : <<include>>
+    (Verify/Block) -up- A
 }
 
 @enduml

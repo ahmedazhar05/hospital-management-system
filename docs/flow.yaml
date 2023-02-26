@@ -39,32 +39,9 @@ Doctor:
 	- get list of attending doctors under him/her (depends on a doctor-position)
 	- &get-emergency-ping (this is only a popup)
 
-Nurses:
-	- get/fetch patient records
-	- get shift details
-	- *get-emergency-ping
-
-Helpdesk:
-	- ping emergency to the relevant doctors and nurses
-	- accept chat: # (chat people online through the chat box)
-		- send response messages
-		- close chat
-
 Admin:
-	- add/remove/edit doctors/nurses/staff (staff management)
-	- add/remove/edit departments
-	- define prices for admitting room:
-		- for general beds
-		- for ICU beds
-	- define surgery prices
-	# - update shifts of doctor/nurse
-	- billing system:
-		- get prescription:
-			- get surgery details:
-				- get insurance ID and check claimability and scheme applicability
-			- calculate amount on the basis of prescription
-		- create a bill
-	- add/remove govt. schemes and insurances
+	- Verify/Block/Patient (staff management)
+
 
 # Optional Additions that can be done:
 # 1. free appointments

@@ -1,5 +1,4 @@
 @startuml
-Bill *-- PrescriptionManager: composed of
 Prescription *-- MedicinePlan: composed of
 
 Doctor -- AppointmentManager: can access
@@ -9,10 +8,11 @@ AppointmentManager *-- Appointment: composed of
 
 Doctor -- PrescriptionManager: can prescribe
 Patient -- PrescriptionManager: can access
+Admin -- Patient: can verify
 
 PrescriptionManager *-- Prescription: composed of
 
-Admin *-- Bill: can create
+
 
 class PrescriptionManager{
     -prescriptions: Prescription[]
@@ -28,40 +28,39 @@ class AppointmentManager{
     +getDoctorAppointments(Doctor p): Appointment[]
 }
 class Appointment{
-    -id: int
+    -id: Long
     -doctor: Doctor
     -patient: Patient
-    -specialityType: String
-    -subSpecialityType: String
-    -day: String
-    -time: DateTime
+    -timeslot: Timeslot
     -symptoms: String[]
+    -date: Date
 }
 class Report{
-    -id: int
+    -id: Long
     -name: String
+    -patient: Patient
     -url: String
+    -date: Date
 }
 class Admin{
-    -id: int
-    -fullname: String
-    -username: String
+    -id: Long
+    -role:admin
     -hash: String
     -contact: long
     -email: String
 }
 class Doctor{
-    -id: int
-    -fullname: String
-    -username: String
+    -id: Long
+    -firstName: String
+    -lastName: String
     -hash: String
     -designation: String
     -department: String
     -degrees: String[]
-    -experience: int
+    -degreeCertificationDate: Date
     -imageUrl: String
     -language: String[]
-    -mobile: long
+    -contact: String
     -description: String
     -gender: char
     -fees: int
@@ -72,26 +71,32 @@ class Patient{
     -lastName: String
     -email: String
     -hash: String
+    -role: Patient
     -dateOfBirth: Date
     -gender: char
     -weight: int
-    -contact: long
-    -address: String[3]
+    -contact: String
+    -addressLine1: String
+    -addressLine2: String
+    -addressLine3: String
     -state: String
     -city: String
     -zip: int
     -bloodGroup: String
-    -verificationDocumentType: String
-    -verificationDocumentNumber: String
+    -documentType: DOCUMENT_TYPE
+    -documentNumber: String
     -status: boolean
     -is_blocked: boolean
-    bloodGroup: String
+    -bloodGroup: BLOOD_GROUP
 }
 class Prescription{
-    -id: int
-    -assignedDoctor: Doctor
+    -id: Long
+    -doctor: Doctor
+    -patient: Patient
     -diagnosis: String
     -investigation: String[]
+    -date: Date
+    -isIpd: Boolean
     -medicinePlan: MedicinePlan[]
     -dietPlan: Map<String, int>
     -avoidables: String[]
@@ -99,25 +104,10 @@ class Prescription{
     +addDietPlan(String food, int duration): void
 }
 class MedicinePlan{
+    -id: Long
     -name: String
-    -dosage: Map<String, int>
-    -durationDays: int
-    +addDosage(String timeOfDay, int numberOfPills): void
-}
-class Bill{
-    -id: int
-    -patient: Patient
-    -prescriptions: Prescription[]
-    -roomCharge: int
-    -surgeryCharge: int
-    -insuranceID: String
-    -schemeID: String
-    -insuranceDeduction: int
-    -schemeDeduction: int
-    -totalAmount: int
-    -paid: boolean
-    +calculateTotal(): int
-    +addPrescription(Prescription p): boolean
-    +removePrescription(Prescription p): boolean
+    -prescription: Prescription
+    -duration: int
+    -dosage: String
 }
 @enduml

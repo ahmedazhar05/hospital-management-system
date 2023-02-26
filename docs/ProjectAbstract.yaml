@@ -2,13 +2,12 @@ Hospital Management System:
 	Title: Health+
 	
 	Overview: |
-		Health+ is a Hospital Management System which is an integrated information system for managing all aspects of a hospital’s operations such as medical, billing, administrative and compliance. It includes electronic health records, appointment scheduling, and customer billing management. Hospitals and healthcare facilities improve the quality of healthcare services, reduce operating costs, and improve the revenue cycle by using such hospital management systems. This Hospital Management System typically includes Online Scheduling, Doctor and Patient Portals, Accounting/Billing, Alert Software and Dietary.
+		Health+ is a Hospital Management System which is an integrated information system for managing all aspects of a hospital’s operations such as medical, administrative and compliance. It includes electronic health records, appointment scheduling. Hospitals and healthcare facilities improve the quality of healthcare services, reduce operating costs, and improve the revenue cycle by using such hospital management systems. This Hospital Management System typically includes Online Scheduling, Doctor and Patient Portals, Alert Software and Dietary.
 	
 	Requirements:
 		- Appointment Booking management
 		- Should have information of all the doctors and the departments they are involved in.
 		- Should have a calendar like schedule for all types of users to track their scheduled appointment dates.
-		- Should have an integrated customer billing system.
 		- Should have a system for doctors to prescribe patients.
 	
 	Users and features:
@@ -17,14 +16,10 @@ Hospital Management System:
 			- Should be able to upload their reports to the portal.
 			- Should be able to check his/her appointment history.
 			
-		Helpdesk:
-			- show all types of information about the hospital including surgery charges and room/bed prices
-			
 		Doctors:
 			- Should be able to check their daily schedules with patients, etc
 			- Should be able to create a prescription for patients prescribing medicines, diet chart and related tests
 			- Should be able to check his/her appointment history.
 		
 		Admin:
-			- Should be able to create Departments, add Doctors, add Nurses, add Staffs
-			- Should be able to define surgery prices
+			- Should be able to verify or block of a patient can whether they can allowed or not for the appoinment.

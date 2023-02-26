@@ -147,7 +147,7 @@ entity departments{
 	image_url: varchar
 }
 entity doctors{
-    * id: int <<PK>>
+    * id: Long <<PK>>
     * hash: varchar
     * email: varchar
     * contact: char
@@ -162,26 +162,26 @@ entity doctors{
     description: varchar
 }
 entity timeslots{
-    * id: int <<PK>>
+    * id: Long <<PK>>
     * doctor_id: int <<FK>>
     * slot: datetime
     * hours: int
 }
 entity admins{
-    * id: int <<PK>>
+    * id: Long <<PK>>
     * hash: varchar
     * email: varchar
     contact: char
 }
 entity reports{
-    * id: int <<PK>>
+    * id: Long <<PK>>
     * patient_id: int <<FK>>
     * name: varchar
     date: datetime
     * file_url: varchar
 }
 entity appointments{
-    * id: int <<PK>>
+    * id: Long <<PK>>
     * patient_id: int <<FK>>
     * doctor_id: int <<FK>>
     * timeslot: int <<FK>>
@@ -189,7 +189,7 @@ entity appointments{
 }
 entity prescriptions{
     * id: int <<PK>>
-    * patient_id: int <<FK>>
+    * patient_id: Long <<FK>>
     * doctor_id: int <<FK>>
     * diagnosis: varchar
     investigation: varchar
@@ -198,14 +198,14 @@ entity prescriptions{
     * is_ipd: boolean
 }
 entity medicine_plans{
-    * id: int <<PK>>
+    * id: Long <<PK>>
     * prescription_id: int <<FK>>
     * name: varchar
     * dosage: varchar
     duration: int
 }
 entity diet_plans{
-    * id: int <<PK>>
+    * id: Long <<PK>>
     * prescription_id: int <<FK>>
     * food: varchar
     duration: int
