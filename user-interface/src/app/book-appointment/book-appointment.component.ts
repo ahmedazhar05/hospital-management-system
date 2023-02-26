@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { BasePage } from '../app.component';
 import { AuthService } from '../auth.service';
 import { ServerService } from '../server.service';
+import { ToastComponent } from '../toast/toast.component';
 import Utilities from '../utilities/utility';
 
 @Component({
@@ -77,7 +79,7 @@ export class BookAppointmentComponent implements BasePage, OnInit {
 
   today = new Date();
 
-  constructor(private server: ServerService, private auth: AuthService) { }
+  constructor(private server: ServerService, private auth: AuthService, private router: Router) { }
 
   onDoctorChange(){
     let doctorId = this.form.value.doctor;
@@ -99,6 +101,9 @@ export class BookAppointmentComponent implements BasePage, OnInit {
     )
   }
 
+  @ViewChild(ToastComponent)
+  private notify!: ToastComponent;
+
   onBooking() {
     if (this.form.valid) {
       let obj: any = { ...this.form.value };
@@ -109,11 +114,15 @@ export class BookAppointmentComponent implements BasePage, OnInit {
       obj.date = this.calculateDate(this.allSlots.filter((x: any) => x.id == this.selectedSlot)[0]);
       obj.timeslot = { id: this.selectedSlot };
 
-      console.log(obj);
+      this.server.post('appointments', obj).subscribe((d: any) => {
+        this.notify.showToast('Appointment Booked', 'success', 5000);
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+        }, 5000);
+      })
       
       this.selectedDay = 0;
       this.slots = [];
-      // TODO: perform the necessary login process with these form values
       this.form.reset();
     }
   }

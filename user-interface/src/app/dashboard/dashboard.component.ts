@@ -34,32 +34,29 @@ export class DashboardComponent implements BasePage, OnInit {
     this.userId = this.authService.getUserId();
     this.userType = this.authService.getUserType();
 
-    const isLoggedIn: boolean = true;// this.authService.isLoggedIn();
+    const isLoggedIn: boolean = this.authService.isLoggedIn();
 
     if(isLoggedIn){
-      // this.userType = this.authService.getUserType();
-      // this.userId = this.authService.getUserId();
       switch(this.userType){
         case 'patient': 
           this.links = [
             {
-              name: 'Book Appointment',
+              name: 'Book an Appointment',
               href: 'book-appointment'
             },
             {
-              name: 'All Prescriptions',
-              href: 'prescription'
+              name: 'View All Prescriptions',
+              href: 'prescription/all'
+            },
+            {
+              name: 'View All Reports',
+              href: 'reports'
             }
           ]
           //this.router.navigate(['patient'], { relativeTo: this.route });
           break;
         case 'doctor': 
-          this.links = [
-            {
-              name: 'Create Prescription',
-              href: 'prescription/create'
-            }
-          ]
+          this.links = []
           //this.router.navigate(['doctor'], { relativeTo: this.route });
           break;
         case 'admin': 

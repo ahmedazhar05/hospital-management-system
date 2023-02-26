@@ -1,4 +1,4 @@
-<div class="d-flex flex-column flex-md-row border rounded mx-sm-3 mx-1">
+<div class="d-flex flex-column flex-lg-row border rounded mx-sm-3 mx-1 bg-info-subtle">
   <div class="table-responsive container p-3" id="calendar">
     <table class="table table-bordered mb-0">
       <thead>
@@ -34,7 +34,8 @@
   </div>
   <hr class="d-block d-md-none">
   <div class="container overflow-auto p-3 ps-md-5 text-center" id="ap-list">
-    <h3>Appointments List</h3>
+    <h3 class="mb-3">Appointments List</h3>
+    <div class="text-muted" *ngIf="appointments.length <= 0">No appointments</div>
     <div class="list-group text-start">
       <a [routerLink]="apt.href" class="list-group-item list-group-item-action" attr.data-bs-toggle="{{toggle}}" attr.data-bs-target="{{mod}}" *ngFor="let apt of appointments" (click)="delete(apt.id)">
         <span *ngIf="userType == 'doctor'" class="d-inline-block col-10">{{apt.patient.firstName + ' ' + apt.patient.lastName}}</span>
@@ -56,7 +57,7 @@
       </div>
       <div class="modal-footer d-flex justify-items-between">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn btn-danger" (click)="yesDelete()">Yes</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="yesDelete()">Yes</button>
       </div>
     </div>
   </div>

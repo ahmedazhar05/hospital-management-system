@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
-import { SchemeComponent } from './scheme/scheme.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
@@ -10,6 +9,7 @@ import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
 import { VerifyComponent } from './verify/verify.component';
+import { PrescriptionListComponent } from './prescription-list/prescription-list.component';
 
 const routes: Routes = [
   {
@@ -39,9 +39,13 @@ const routes: Routes = [
         component: BookAppointmentComponent
       },
       {
-        title: 'Health+ All Prescriptions',
+        title: 'Health+ All Reports',
+        path: 'reports',
+        component: PrescriptionListComponent
+      },
+      {
         path: 'prescription',
-        component: PrescriptionComponent,
+        //component: PrescriptionComponent,
         children: [
           {
             title: 'Health+ Create Appointment Prescription',
@@ -54,10 +58,17 @@ const routes: Routes = [
             component: PrescriptionComponent
           },
           {
+            title: 'Health+ All Prescriptions',
+            path: 'all',
+            component: PrescriptionListComponent
+          },
+          /*
+          {
             title: 'Health+ Create Prescription',
             path: 'create',
             component: PrescriptionComponent
           }
+          */
         ]
       },
       {
@@ -70,6 +81,7 @@ const routes: Routes = [
   {
     title: 'Health+ Home',
     path: '',
+    pathMatch: 'full',
     component: MainComponent
   },
   {
