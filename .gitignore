@@ -3,7 +3,8 @@ docs/*.odp
 
 docs/MFRP/GenC ADM FSE MFPE Design Considerations.pdf
 
-docs/*/*/*
+docs/MFRP/*/*
 !docs/*/*/*.pdf
 user-interface
 secrets
+data-access
