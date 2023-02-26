@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.healthplus.auth.manager.TokenManager;
-import com.healthplus.auth.model.HospitalUser;
 import com.healthplus.auth.model.JwtRequestModel;
 import com.healthplus.auth.model.JwtResponseModel;
 import com.healthplus.auth.service.JwtUserDetailsService;
@@ -42,7 +41,7 @@ public class JwtController {
 			throw new Exception("INVALID_CREDENTIALS", e);
 		}
 		System.out.println(request);
-		final HospitalUser userDetails = (HospitalUser) userDetailsService.loadUserByUsername(request.getUsername());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
 		System.out.println(userDetails);
 		final String jwtToken = tokenManager.generateJwtToken(userDetails);
 		
