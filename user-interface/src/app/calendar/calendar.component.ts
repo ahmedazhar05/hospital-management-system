@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ServerService } from '../server.service';
+import { ToastComponent } from '../toast/toast.component';
 import Utilities from '../utilities/utility';
 
 @Component({
@@ -22,7 +23,7 @@ export class CalendarComponent implements OnInit {
     monthName: "",
     year: 0
   }
-  selected = new Date();
+  selected: Date | null = new Date();
   appointments: {
     doctor: {
       firstName: string;
@@ -102,11 +103,16 @@ export class CalendarComponent implements OnInit {
     this.appToDelete = id;
   }
 
+  @ViewChild(ToastComponent)
+  private notify!: ToastComponent;
+
   yesDelete(){
-    this.appToDelete = -1;
     this.server.delete('appointments/' + this.appToDelete)
     .subscribe((d: any) => {
-      console.log(d);
+      this.appToDelete = -1;
+      this.notify.showToast('Appointment Deleted', 'white', 5000);
+      this.appointments = [];
+      this.selected = null;
     });
   }
 
@@ -122,13 +128,13 @@ export class CalendarComponent implements OnInit {
     .subscribe((data: any) => {
       let val: any[] = JSON.parse(data);
       val.map(x => x.href = this.userType == 'patient' ? null : ['prescription', 'create', x.id]);
-      console.log(val);
       this.appointments = val;
     });
     // ?' + this.userType + "=" + this.userId + "&date=" + this.formatDate(this.selected)
   }
 
   isSelected(date: number){
+    if(this.selected == null) return false;
     return this.selected.getFullYear() == this.calendar.year && this.selected.getMonth() == this.calendar.month && this.selected.getDate() == date;
   }
 }

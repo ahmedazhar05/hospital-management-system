@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { ServerService } from '../server.service';
 import Utilities from '../utilities/utility';
 import { ActivatedRoute, Router } from '@angular/router'
+import { ToastComponent } from '../toast/toast.component';
 
 enum DOSAGE {
   MORNING = "morning",
@@ -33,6 +34,9 @@ export class PrescriptionComponent implements BasePage, OnInit {
   access: string = "";
 
   constructor(private auth: AuthService, private server: ServerService, private route: ActivatedRoute, private router: Router) { }
+
+  @ViewChild(ToastComponent)
+  private notify!: ToastComponent;
 
   address = "Mumbai, Matoshree Nagar, Nashik, Maharashtra 422002"
   mob_no = "8087030000"
@@ -70,6 +74,7 @@ export class PrescriptionComponent implements BasePage, OnInit {
 
   dosage_list = Object.values(DOSAGE);
   dietEnabled = false;
+  patientId: number = 0;
 
   appendMedPlan(){
     // if(Object.entries(this.medicine) == Object.entries({ name: "", dosage: "", duration: 0 }))
@@ -108,27 +113,40 @@ export class PrescriptionComponent implements BasePage, OnInit {
         avoidables: this.form.value.avoidables,
         date: Utilities.formatDate(new Date()),
         isIpd: 0,
-        patient: {
-          id: 1 // TODO: need to fetch
-        },
-        doctor: {
-          id: this.userId
-        }
+        patient: { id: this.patientId },
+        doctor: { id: this.userId }
       };
       this.server.post('prescriptions', pres)
       .subscribe((data: any) => {
-        console.log(data);
+        let pid = JSON.parse(data).id;
+        console.log(pid);
+        if(pid > 0){
+          
+          for(let dp of this.prescription.dietPlan) {
+            console.log(dp);
+            this.server.post('diet', {
+              ...dp,
+              prescription: { id: pid }
+            }).subscribe((d: any) => {
+              console.log(d);
+            });
+          }
+          for(let mp of this.prescription.medicinePlan) {
+            console.log(mp);
+            this.server.post('medicines', {
+              ...mp,
+              prescription: { id: pid }
+            }).subscribe((d: any) => {
+              console.log(d);
+            });
+          }
+
+          this.notify.showToast('Prescription Saved', 'success', 10000);
+          setTimeout(() => {
+            this.router.navigate(['/dashboard']);
+          }, 5000);
+        }
       });
-      
-      for(let dp of this.prescription.dietPlan) this.server.post('diet', dp).subscribe((data: any) => {
-        console.log(data);
-      });
-      for(let mp of this.prescription.medicinePlan) this.server.post('medicine', mp).subscribe((data: any) => {
-        console.log(data);
-      });
-      
-      console.log(pres);
-      // TODO: perform the necessary login process with these form values
       this.form.reset();
     }
   }
@@ -173,6 +191,7 @@ export class PrescriptionComponent implements BasePage, OnInit {
         let data = JSON.parse(d);
         this.prescription.patientName = data.patient.firstName + ' ' + data.patient.lastName;
         this.prescription.patientAge = Utilities.calculateAge(data.patient.dateOfBirth);
+        this.patientId = data.patient.id;
 
         this.fillDoctor(data.doctor);
       })

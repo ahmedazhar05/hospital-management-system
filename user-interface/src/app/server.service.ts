@@ -25,11 +25,15 @@ export class ServerService {
   }
 
   post(uri: string, body: any = {}){
-    return this.http.get(this.domain + uri, body);
+    return this.http.post(this.domain + uri, body, { responseType: 'text'});
   }
 
   delete(uri: string){
     return this.http.delete(this.domain + uri);
+  }
+
+  put(uri: string, body: any = {}){
+    return this.http.put(this.domain + uri, body, { responseType: 'text'});
   }
 }
 

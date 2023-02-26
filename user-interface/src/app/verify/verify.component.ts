@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { BasePage } from '../app.component';
 import { ServerService } from '../server.service';
 import Utilities from '../utilities/utility';
 
@@ -7,7 +8,7 @@ import Utilities from '../utilities/utility';
   templateUrl: './verify.component.html',
   styleUrls: ['./verify.component.css']
 })
-export class VerifyComponent implements OnInit {
+export class VerifyComponent implements OnInit, BasePage {
   patient: {
     id: number;
     hash: string;
@@ -56,6 +57,12 @@ export class VerifyComponent implements OnInit {
   dob: string = '';
 
   constructor(private server: ServerService){ }
+  options: { text: string; href: string; }[] = [
+    {
+      text: 'Dashboard',
+      href: '/dashboard'
+    }
+  ];
 
   plist: any[] = [];
 
@@ -80,7 +87,10 @@ export class VerifyComponent implements OnInit {
 
   verify(){
     if(this.form.valid){
-      console.log(this.form.value);
+      this.server.put('patient/' + this.patient.id + "?status=" + this.form.value.status, {})
+      .subscribe((d: any) => {
+        console.log(d);
+      })
     }
   }
 }

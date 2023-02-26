@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
 import { VerifyComponent } from './verify/verify.component';
+import { ToastComponent } from './toast/toast.component';
+import { PrescriptionListComponent } from './prescription-list/prescription-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { VerifyComponent } from './verify/verify.component';
     MainComponent,
     DashboardComponent,
     LogoutComponent,
-    VerifyComponent
+    VerifyComponent,
+    ToastComponent,
+    PrescriptionListComponent
   ],
   imports: [
     BrowserModule,

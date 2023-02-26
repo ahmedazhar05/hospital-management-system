@@ -101,17 +101,28 @@
                     <input type="text" class="form-control" id="inputverificationId" name="documentNumber" value="{{patient.documentNumber}}">
                 </div>
             </div>
+            <div class="row mb-3">
+                <label for="inp" class="col-sm-4 col-form-label">Status:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inp" name="statuses" value="{{patient.status}}">
+                </div>
+            </div>
         </fieldset>
         <div class="row mt-2 align-items-center">
-            <div class="col">
+            <div class="col-8">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="status" id="maleGender" value="VERIFIED" required ngModel/>
-                    <label class="form-check-label" for="maleGender">MARK AS VERIFIED</label>
+                    <input class="form-check-input" type="radio" name="status" id="femaleGender" value="UNVERIFIED" [checked]="patient.status == 'UNVERIFIED'" required ngModel/>
+                    <label class="form-check-label" for="femaleGender">Mark as not verified</label>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="status" id="femaleGender" value="BLOCKED" required ngModel/>
-                    <label class="form-check-label" for="femaleGender">BLOCK</label>
+                    <input class="form-check-input" type="radio" name="status" id="maleGender" value="VERIFIED" [checked]="patient.status == 'VERIFIED'" required ngModel/>
+                    <label class="form-check-label" for="maleGender">Mark as verified</label>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="ender" value="BLOCKED" [checked]="patient.status == 'BLOCKED'" required ngModel/>
+                    <label class="form-check-label" for="ender">Block</label>
                 </div>
             </div>
             <div class="col">
