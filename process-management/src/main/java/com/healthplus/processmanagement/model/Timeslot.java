@@ -3,6 +3,8 @@ package com.healthplus.processmanagement.model;
 import java.io.Serializable;
 import java.sql.Time;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class Timeslot implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -17,6 +19,7 @@ public class Timeslot implements Serializable {
     }
 
     private Long id;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Doctor doctor;
     private DAY_OF_WEEK dayOfWeek;
     private Time time;
@@ -76,5 +79,9 @@ public class Timeslot implements Serializable {
     @Override
     public String toString() {
         return "Timeslot [id=" + id + ", doctor=" + doctor + ", dayOfWeek=" + dayOfWeek + ", time=" + time + ", hours=" + hours + "]";
+    }
+    
+    public String valueString() {
+    	return time.toString();
     }
 }

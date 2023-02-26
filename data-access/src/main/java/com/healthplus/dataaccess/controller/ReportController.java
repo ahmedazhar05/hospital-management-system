@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.healthplus.dataaccess.domain.Report;
 
 import com.healthplus.dataaccess.repo.ReportRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/reports")
 public class ReportController {
@@ -24,7 +26,7 @@ public class ReportController {
 	private ReportRepository reportRepository;
 
 	@GetMapping(path = "/search", params = {"patient"})
-	public List<Report> getReportsBy(@RequestParam("patient") Long id) {
+	public List<Report> getReportsByPatient(@RequestParam("patient") Long id) {
 		return reportRepository.getReportByPatient(id);
 	}
 
@@ -36,7 +38,7 @@ public class ReportController {
 	@PostMapping(path = "")
 	public String addNewReport(@RequestBody Report r) {
 		reportRepository.save(r);
-		return "Saved";
+		return "Added";
 	}
 
 	@DeleteMapping(path = "/{id}")

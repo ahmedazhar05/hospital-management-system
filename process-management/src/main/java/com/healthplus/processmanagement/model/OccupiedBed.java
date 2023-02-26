@@ -3,11 +3,15 @@ package com.healthplus.processmanagement.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class OccupiedBed implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Bed bed;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Patient patient;
     private Date startTime;
     private Date endTime;

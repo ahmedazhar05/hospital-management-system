@@ -2,6 +2,8 @@ package com.healthplus.dataaccess.domain;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class MedicinePlan implements Serializable {
 
 	@NotNull(message = "Prescription is required")
 	@ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Prescription prescription;
 
 	@NotNull(message = "Name is required")

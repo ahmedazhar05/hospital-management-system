@@ -3,6 +3,8 @@ package com.healthplus.processmanagement.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class Doctor implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -19,6 +21,7 @@ public class Doctor implements Serializable {
     private String email;
     private String contact;
     private String designation;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Department department;
     private String degrees;
     private Date degreeCertificationDate;

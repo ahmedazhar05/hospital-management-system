@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.healthplus.dataaccess.domain.Appointment;
 import com.healthplus.dataaccess.domain.Patient;
 import com.healthplus.dataaccess.domain.Prescription;
+import com.healthplus.dataaccess.domain.Report;
 import com.healthplus.dataaccess.repo.PatientRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path="/patients")
 public class PatientController {
@@ -62,8 +65,13 @@ public class PatientController {
         return new AppointmentController().getAppointmentByPatient(id);
     }
     
-    @GetMapping(path="/{id}/prescription")
+    @GetMapping(path="/{id}/prescriptions")
     public List<Prescription> getPrescriptionByPatient(@PathVariable("id") Long id){
         return new PrescriptionController().getPrescriptionByPatient(id);
+    }
+    
+    @GetMapping(path="/{id}/reports")
+    public List<Report> getReportByPatient(@PathVariable("id") Long id){
+        return new ReportController().getReportsByPatient(id);
     }
 }

@@ -1,6 +1,9 @@
 package com.healthplus.dataaccess.domain;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,20 +16,26 @@ import jakarta.validation.constraints.NotNull;
 public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull(message="Patient is required")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Patient patient;
+
+    @NotNull(message="Date is required")
+    private Date date;
 
     @NotNull(message="Doctor is required")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Doctor doctor;
 
     @NotNull(message="Timeslot is required")
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Timeslot timeslot;
 
     private String symptom;
@@ -35,11 +44,12 @@ public class Appointment implements Serializable {
         super();
     }
 
-    public Appointment(Patient patient, Doctor doctor, Timeslot timeslot, String symptom) {
+    public Appointment(Patient patient, Doctor doctor, Timeslot timeslot, String symptom, Date date) {
         this.patient = patient;
         this.doctor = doctor;
         this.timeslot = timeslot;
         this.symptom = symptom;
+        this.date = date;
     }
 
     public Long getId() {
@@ -81,6 +91,14 @@ public class Appointment implements Serializable {
     public void setSymptom(String symptom) {
         this.symptom = symptom;
     }
+
+    public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
     @Override
     public String toString() {

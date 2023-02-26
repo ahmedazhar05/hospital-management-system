@@ -17,7 +17,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Patient implements Serializable {
+public class Patient extends User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public static enum DOCUMENT_TYPE{
@@ -154,6 +154,8 @@ public class Patient implements Serializable {
     @NotNull
     @Enumerated(EnumType.STRING)
     private STATUS status = STATUS.UNVERIFIED;
+    
+    private String role = "patient";
 
     public Patient() {
         super();

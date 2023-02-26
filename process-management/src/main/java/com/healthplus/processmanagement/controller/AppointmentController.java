@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +20,11 @@ import com.healthplus.processmanagement.util.GenericUtility;
 
 @RestController
 public class AppointmentController {
-	private final String APPOINTMENT_URI = "http://localhost:8080/appointments";
-	private final String PATIENT_URI = "http://localhost:8080/patients";
+	// @Value("${jpa.domain}")
+	private String DOMAIN = "http://localhost:8080/";
+	
+	private final String APPOINTMENT_URI = DOMAIN + "appointments/";
+	private final String PATIENT_URI = DOMAIN + "patients/";
 	
 	private RestTemplate restTemplate = new RestTemplate();
 	
@@ -34,8 +38,8 @@ public class AppointmentController {
 
 	@GetMapping(path = "appointment/schedule/{id}")
 	public Map<String, Object> getScheduleDefaults(@PathVariable("id") Long appointment) {
-		Appointment a = restTemplate.getForObject(APPOINTMENT_URI + "/" + appointment, Appointment.class);
-		Patient p = restTemplate.getForObject(PATIENT_URI + "/" + a.getPatient(), Patient.class);
+		Appointment a = restTemplate.getForObject(APPOINTMENT_URI + appointment, Appointment.class);
+		Patient p = a.getPatient(); // restTemplate.getForObject(PATIENT_URI + a.getPatient(), Patient.class);
 		List<Map<String, String>> r = reportService.getReportsByPatient(p.getId());
 		
 		Integer age = (int) GenericUtility.getYearsBetween(p.getDateOfBirth(), new Date());

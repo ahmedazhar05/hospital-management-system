@@ -3,7 +3,11 @@ package com.healthplus.dataaccess.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,7 +20,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Doctor implements Serializable {
+public class Doctor extends User implements Serializable {
     private static final long serialVersionUID = 1L;
     
     public static enum GENDER{
@@ -51,6 +55,7 @@ public class Doctor implements Serializable {
 
     @NotNull(message="Department is required")
     @ManyToOne(optional=false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Department department;
 
     @NotNull(message="Degree is required")
@@ -60,11 +65,12 @@ public class Doctor implements Serializable {
     @Past(message="Degree Certification Date cannot be in the future")
     private Date degreeCertificationDate;
 
-    private String imageUrl; // TODO: assign a default image URL to this
+    private String imageUrl = "https://www.fortischennai.com/frontend/docimage/M-dtr-1554189149.png";
 
     private String language = "English";
 
     @NotNull(message="Gender is required")
+    @Enumerated(EnumType.STRING)
     private GENDER gender;
 
     @NotNull(message="Doctor fees is required")
@@ -72,6 +78,8 @@ public class Doctor implements Serializable {
     private Integer fees;
 
     private String description = "<em>No description available</em>";
+    
+    private String role = "doctor";
 
     public Doctor() {
         super();

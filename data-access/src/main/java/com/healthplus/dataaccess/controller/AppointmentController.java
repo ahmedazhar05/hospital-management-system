@@ -1,6 +1,5 @@
 package com.healthplus.dataaccess.controller;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.healthplus.dataaccess.domain.Appointment;
 
 import com.healthplus.dataaccess.repo.AppointmentRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/appointments")
 public class AppointmentController {
@@ -40,12 +41,12 @@ public class AppointmentController {
     }
     
     @GetMapping(path = "/search", params = { "doctor", "date" })
-    public Appointment getAppointmentByDoctorDate(@RequestParam("doctor") Long id, @RequestParam("date") Date date) {
+    public List<Appointment> getAppointmentByDoctorDate(@RequestParam("doctor") Long id, @RequestParam("date") String date) {
         return appointmentRepository.findByDoctorAndDate(id, date);
     }
     
     @GetMapping(path = "/search", params = { "patient", "date" })
-    public Appointment getAppointmentByPatientDate(@RequestParam("patient") Long id, @RequestParam("date") Date date) {
+    public List<Appointment> getAppointmentByPatientDate(@RequestParam("patient") Long id, @RequestParam("date") String date) {
         return appointmentRepository.findByPatientAndDate(id, date);
     }
     

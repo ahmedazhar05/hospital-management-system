@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,16 +36,20 @@ public class Bill implements Serializable {
     private Date date;
 
     @ManyToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Scheme appliedScheme;
 
     @ManyToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Insurance appliedInsurance;
 
     @OneToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private OccupiedBed occupiedBed;
 
     @NotNull(message = "There should be atleast one prescription for billing")
     @OneToMany
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Set<Prescription> prescriptions;
 
     @Min(value = 0, message="OT charge cannot be negative")
