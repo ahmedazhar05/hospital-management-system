@@ -33,8 +33,7 @@ public class TimeslotController {
 	}
 
 	@GetMapping(path = "/search", params = { "doctor", "date" })
-	public List<Timeslot> getTimeslotByDoctorDate(@RequestParam("doctor") Long doctorId,
-			@RequestParam("date") String date) {
+	public List<Timeslot> getTimeslotByDoctorDate(@RequestParam("doctor") Long doctorId, @RequestParam("date") String date) {
 		Date d;
 		try {
 			d = new SimpleDateFormat("yyyy-MM-dd").parse(date);

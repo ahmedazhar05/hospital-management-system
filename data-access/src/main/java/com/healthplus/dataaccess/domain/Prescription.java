@@ -10,8 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 public class Prescription implements Serializable {
@@ -39,7 +39,7 @@ public class Prescription implements Serializable {
     private String avoidables;
 
     @NotNull(message="Date is required")
-    @FutureOrPresent(message="Date cannot be in the past")
+    @PastOrPresent(message="Date cannot be in the past")
     private Date date;
 
     @NotNull(message="Whether prescription is for IPD or not should be mentioned")
@@ -49,7 +49,7 @@ public class Prescription implements Serializable {
         super();
     }
 
-    public Prescription(@NotNull Patient patient, @NotNull Doctor doctor, @NotNull String diagnosis, String investigation, String avoidables, @NotNull @FutureOrPresent Date date, @NotNull Boolean isIpd) {
+    public Prescription(@NotNull Patient patient, @NotNull Doctor doctor, @NotNull String diagnosis, String investigation, String avoidables, @NotNull @PastOrPresent Date date, @NotNull Boolean isIpd) {
         this.patient = patient;
         this.doctor = doctor;
         this.diagnosis = diagnosis;
