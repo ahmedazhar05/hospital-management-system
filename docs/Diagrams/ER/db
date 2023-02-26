@@ -210,46 +210,6 @@ entity diet_plans{
     * food: varchar
     duration: int
 }
-entity occupied_beds{
-	* id: int <<PK>>
-    * bed_id: int <<FK>>
-    * patient_id: int <<FK>>
-	* start_time: datetime
-	end_time: datetime
-	* rate: int
-}
-entity beds{
-    * id: int <<PK>>
-    * room: varchar
-    * type: varchar
-    * facility: varchar
-    * availability: int
-}
-entity schemes{
-    * id: int <<PK>>
-    * name: varchar
-    description: varchar
-    * amount_redeemable: int
-}
-entity insurances{
-    * id: int <<PK>>
-    * company: varchar
-    description: varchar
-    * amount_redeemable: int
-}
-entity billed_prescriptions{
-	* bill_id: int <<FK>>
-	* prescription_id: int <<FK>>
-}
-entity bills{
-    * id: int <<PK>>
-    * total: int
-    * date: datetime
-    applied_scheme_id: int <<FK>>
-    applied_insurance_id: int <<FK>>
-    occupied_bed_id: int <<FK>>
-    ot_charge: int
-}
 
 departments ||-right-|| doctors
 patients ||--o{ reports
@@ -260,12 +220,5 @@ patients ||--o{ prescriptions
 prescriptions }o--|| doctors
 prescriptions ||--|{ medicine_plans
 prescriptions ||--o{ diet_plans
-prescriptions ||--|| billed_prescriptions
-bills ||--|{ billed_prescriptions
-patients ||--o{ bills
-insurances ||--|| bills
-schemes ||--|| bills
-occupied_beds ||--|| bills
-occupied_beds ||--|| beds
 
 @enduml

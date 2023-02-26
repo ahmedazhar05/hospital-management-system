@@ -130,45 +130,36 @@ node "Hospital\nManagement\nSystem" as hms
 rectangle Login
 rectangle "Login " as l
 rectangle Signup
-rectangle "Book\nAppointment" as ba
-rectangle "Upload\nReport" as upload
+rectangle "Add\nReport" as upload
 rectangle "View\nReport" as vr
 rectangle "View\nAppointment" as va
 rectangle "Create\nPrescription" as cp
 rectangle "View\nPrescription" as vp
-rectangle "Book hospital\nRoom beds" as bb
-rectangle "Add/Update/\nDelete Doctors" as add
-rectangle "Create\nBill" as cb
+rectangle "Verify\nPatients" as verify
 
 P -up-> l : credentials
 D --> Login : credentials
 A --> Login : credentials
+A --> verify
 
 P -up-> Signup : "patient\ndetails"
-P -up-> ba : "appointment\ndetails"
-P -up-> upload : "report\nimage"
+P -up-> upload : "report\nimage\nURL"
 P -up-> vp : "prescription\ndetails"
 
 D --> cp : "prescription\ndetails"
 D --> vr : "report\nimage"
 D --> va : "appointment\ndetails"
 
-A --> cb : "bill\ndetails"
-A --> bb : "bed\ndetails"
-A --> add : "doctor\ndetails"
+
 
 l -up-> hms
 Login --> hms
 Signup -up-> hms
-ba -up-> hms
 upload -up-> hms
 vp -up-> hms
 cp --> hms
 vr --> hms
 va --> hms
-cb --> hms
-bb --> hms
-add --> hms
-
+verify --> hms
 
 @enduml
