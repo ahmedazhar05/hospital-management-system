@@ -11,7 +11,6 @@ skinparam monochrome false
 skinparam shadowing false
 skinparam backgroundColor #ffffff
 skinparam roundCorner 7
-skinparam responseMessageBelowArrow true
 
 skinparam Arrow {
     Color #999999
@@ -118,35 +117,34 @@ skinparam sequence {
     GroupBackgroundColor #fff166
     GroupBodyBackgroundColor #f9f9f9
 }
+skinparam actorStyle awesome
 
+actor User
 
-autonumber
-participant "Angular UI" as A
-participant "Authentication\nController" as SC
-participant "Authentication\nManager" as SM
-participant "Authentication\nDAO" as SD
-participant "Utility" as SU
-
-A->SC: POST /login\n(username, password)
-SC->SM: verify user credentials\n(username, password)
-SM->SD: fetch user from DB (username)
-activate SD
-alt user found
-    SD->>SM: return new User() object\nthat contains a hash
-    SM->SU:  calculate Hash (password)
-	activate SU
-    return return hash
-    alt both password-hash and hash from user object are equal
-        Note left of SM: using a JWT library
-        SM->>SC: create and return a new JWT
-        SC->>A: redir to /home with JWT
-    else hashes are not equal
-        SM-[#red]>>SC: throw new InvalidUserException()
-        SC->>A: HTTP 401 Unauthorized
-    end
-else user not found
-    return return null
-    SM-[#red]>>SC: throw new UserNotFoundException()
-    SC->>A: HTTP 401 Unauthorized
-end
+card "Client"{
+    User -right- [Browser]
+}
+cloud "Amazon Web Service"{
+    node "User Interface"{
+        [Angular with\nBootstrap] as ang
+        [Browser] -right-> ang: "Request"
+        ang -left-> [Browser]: "Response"
+    }
+    node "Authentication/\nAuthorization"{
+        [SpringBoot with\nSpring Security] as sec
+        ang <-down-> sec
+    }
+    node "Service Layer"{
+        [SpringBoot with\nSpring REST] as rest
+        sec <-right-> rest
+    }
+    node "Data Access Layer"{
+        [Spring Data JPA] as jpa
+        rest <--> jpa
+    }
+    database "Database"{
+        jpa -right-> [mySQL]: "Query"
+        [mySQL] -left-> jpa: "Data"
+    }
+}
 @enduml
