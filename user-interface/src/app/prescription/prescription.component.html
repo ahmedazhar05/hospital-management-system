@@ -14,14 +14,14 @@
                 <div class="row mb-3">
                     <label for="inputName" class="col-sm-3 col-form-label">Patient name:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="inputName" name="patientName"
+                        <input disabled type="text" class="form-control" id="inputName" name="patientName"
                             [(ngModel)]="prescription.patientName">
                     </div>
                 </div>
                 <div class="row mb-3" *ngIf="userType == 'doctor'">
                     <label for="inputAge" class="col-sm-3 col-form-label">Age:</label>
                     <div class="col-sm-6">
-                        <input type="number" class="form-control" id="inputAge" name="patientAge"
+                        <input disabled type="number" class="form-control" id="inputAge" name="patientAge"
                             [(ngModel)]="prescription.patientAge">
                     </div>
                 </div>
