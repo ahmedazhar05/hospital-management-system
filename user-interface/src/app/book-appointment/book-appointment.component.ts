@@ -54,7 +54,7 @@ export class BookAppointmentComponent implements BasePage, OnInit {
     name: string;
     id: number;
   }[] = [];
-
+/*
   reports = [
     {
       name: "Blood Report",
@@ -65,7 +65,7 @@ export class BookAppointmentComponent implements BasePage, OnInit {
       url: "#"
     }
   ];
-
+*/
   days: string[] = [];
   slots: {
     time: string,

@@ -2,6 +2,7 @@ import { Component, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BasePage } from '../app.component';
 import { AuthService } from '../auth.service';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements BasePage {
 
-  constructor(private authService: AuthService, private router: Router){ }
-  
+  constructor(private authService: AuthService, private router: Router) { }
+
   @Output()
   options = [
     {
@@ -28,9 +29,11 @@ export class LoginComponent implements BasePage {
   ];
 
   @ViewChild('f') form: any;
-  
-  onLogin(){
-    if(this.form.valid){
+  @ViewChild(ToastComponent)
+  private notify!: ToastComponent;
+
+  onLogin() {
+    if (this.form.valid) {
       /*
       this.authService.login(this.form.value.login, this.form.value.password)
       .subscribe(() => {
@@ -38,7 +41,12 @@ export class LoginComponent implements BasePage {
         this.router.navigateByUrl('/dashboard');
       });
       */
-      this.router.navigateByUrl('/dashboard');
+      
+      let isLoggedIn: boolean = this.authService.login(this.form.value.login, this.form.value.password);
+      if(isLoggedIn) this.router.navigateByUrl('/dashboard');
+      else {
+        this.notify.showToast('Incorrect user details', 'danger', 2000);
+      }
       // console.log(this.form.value);
       // TODO: perform the necessary login process with these form values
       this.form.reset();

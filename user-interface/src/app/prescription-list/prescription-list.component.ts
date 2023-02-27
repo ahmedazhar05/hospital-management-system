@@ -12,7 +12,7 @@ import Utilities from '../utilities/utility';
 })
 export class PrescriptionListComponent implements OnInit, BasePage {
   
-  constructor(private auth: AuthService, private server: ServerService, private route: Router) { }
+  constructor(private auth: AuthService, private server: ServerService, private router: Router) { }
   options: { text: string; href: string; }[] = [
     {
       text: 'Dashboard',
@@ -32,7 +32,7 @@ export class PrescriptionListComponent implements OnInit, BasePage {
   ngOnInit(): void {
     let userId = this.uid;
 
-    let url: string = this.route.url + "";
+    let url: string = this.router.url + "";
     this.type = url.indexOf('/reports') >= 0 ? 'reports': 'prescriptions';
     
     this.server.get(this.type + '/search', {
@@ -62,9 +62,9 @@ export class PrescriptionListComponent implements OnInit, BasePage {
 
   yesDelete(){
     console.log(this.reports[this.selectDelete].id);
-    this.server.delete('report/' + this.reports[this.selectDelete].id)
+    this.server.delete('reports/' + this.reports[this.selectDelete].id)
     .subscribe((d: any) => {
-      this.route.navigate(['/dashboard/reports']);
+      window.location.reload();
     });
     this.selectDelete = -1;
   }

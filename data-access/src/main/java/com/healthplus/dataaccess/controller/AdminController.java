@@ -1,6 +1,7 @@
 package com.healthplus.dataaccess.controller;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,11 @@ import com.healthplus.dataaccess.repo.AdminRepository;
 public class AdminController {
     @Autowired
     public AdminRepository adminRepository;
+
+    @GetMapping(path = "")
+    public List<Admin> getAdmins() {
+        return adminRepository.findAll();
+    }
 
     @GetMapping(path = "/{id}")
     public Optional<Admin> getAdminById(@PathVariable("id") Long id) {
