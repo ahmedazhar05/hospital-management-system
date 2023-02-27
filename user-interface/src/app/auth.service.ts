@@ -9,9 +9,7 @@ import { ServerService } from './server.service';
 export class AuthService {
 
   constructor(private server: ServerService) { }
-
-  private ONE_HOUR = 1000 * 60 * 60;
-
+/*
   login(credential: string, password: string) {
 
     for(let t of ["patient", "doctor", "admin"]){
@@ -39,12 +37,12 @@ export class AuthService {
         tap((val: any) => this.setSession(val)),
         shareReplay()
       )
-      */
+      * /
     //.do((res: any) => this.setSession) 
     //.shareReplay();
   }
-
-  private setSession(expiresAt: number, userType: string, userId: number) {
+*/
+  setSession(expiresAt: number, userType: string, userId: number) {
     // const token_payload = JSON.parse(atob(authResult.token.split('.')[1]));
     // const expiresAt: number = token_payload.exp * 1000;
     // const userType: string = token_payload.user;

@@ -29,7 +29,7 @@ export class ServerService {
   }
 
   delete(uri: string){
-    return this.http.delete(this.domain + uri);
+    return this.http.delete(this.domain + uri, { responseType: 'text' });
   }
 
   put(uri: string, body: any = {}){

@@ -17,6 +17,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { VerifyComponent } from './verify/verify.component';
 import { ToastComponent } from './toast/toast.component';
 import { PrescriptionListComponent } from './prescription-list/prescription-list.component';
+import { ReportsListComponent } from './reports-list/reports-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PrescriptionListComponent } from './prescription-list/prescription-list
     LogoutComponent,
     VerifyComponent,
     ToastComponent,
-    PrescriptionListComponent
+    PrescriptionListComponent,
+    ReportsListComponent
   ],
   imports: [
     BrowserModule,

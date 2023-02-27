@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { BasePage } from '../app.component';
 import { ServerService } from '../server.service';
+import { ToastComponent } from '../toast/toast.component';
 import Utilities from '../utilities/utility';
 
 @Component({
@@ -56,7 +58,7 @@ export class VerifyComponent implements OnInit, BasePage {
   }
   dob: string = '';
 
-  constructor(private server: ServerService){ }
+  constructor(private server: ServerService, private router: Router){ }
   options: { text: string; href: string; }[] = [
     {
       text: 'Dashboard',
@@ -85,11 +87,21 @@ export class VerifyComponent implements OnInit, BasePage {
     this.dob = Utilities.formatDate(new Date(this.patient.dateOfBirth));
   }
 
+  @ViewChild(ToastComponent)
+  private notify!: ToastComponent;
+
   verify(){
     if(this.form.valid){
-      this.server.put('patient/' + this.patient.id + "?status=" + this.form.value.status, {})
+      this.server.put('patients/' + this.patient.id + "?status=" + this.form.value.status, {})
       .subscribe((d: any) => {
-        console.log(d);
+        if(d == 'Update'){
+          this.notify.showToast("Successfully updated patient status", "success", 2000);
+          setTimeout(() => {
+            this.router.navigate(['/dashboard']);
+          }, 2000);
+        } else {
+          this.notify.showToast("Failed to update the patient", "danger", 2000);
+        }
       })
     }
   }

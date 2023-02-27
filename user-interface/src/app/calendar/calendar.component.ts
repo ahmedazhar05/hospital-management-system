@@ -107,10 +107,11 @@ export class CalendarComponent implements OnInit {
   private notify!: ToastComponent;
 
   yesDelete(){
+    if(this.userType == 'doctor') return;
     this.server.delete('appointments/' + this.appToDelete)
     .subscribe((d: any) => {
       this.appToDelete = -1;
-      this.notify.showToast('Appointment Deleted', 'white', 5000);
+      this.notify.showToast('Appointment Deleted', 'success', 5000);
       this.appointments = [];
       this.selected = null;
     });

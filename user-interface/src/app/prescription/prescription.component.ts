@@ -151,6 +151,8 @@ export class PrescriptionComponent implements BasePage, OnInit {
     }
   }
 
+  reports: any[] = []
+
   ngOnInit(): void {
     this.userId = this.auth.getUserId();
     this.userType = this.auth.getUserType();
@@ -191,9 +193,15 @@ export class PrescriptionComponent implements BasePage, OnInit {
         let data = JSON.parse(d);
         this.prescription.patientName = data.patient.firstName + ' ' + data.patient.lastName;
         this.prescription.patientAge = Utilities.calculateAge(data.patient.dateOfBirth);
-        this.patientId = data.patient.id;
+        let id: number = this.patientId = data.patient.id;
 
         this.fillDoctor(data.doctor);
+
+        this.server.get('reports/search', {
+          patient: id
+        }).subscribe((d: any) => {
+          this.reports = JSON.parse(d);
+        })
       })
     } else {
       this.server.get('doctors/' + this.userId)

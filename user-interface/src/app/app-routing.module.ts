@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
 import { VerifyComponent } from './verify/verify.component';
 import { PrescriptionListComponent } from './prescription-list/prescription-list.component';
+import { ReportsListComponent } from './reports-list/reports-list.component';
 
 const routes: Routes = [
   {
@@ -41,7 +42,7 @@ const routes: Routes = [
       {
         title: 'Health+ All Reports',
         path: 'reports',
-        component: PrescriptionListComponent
+        component: ReportsListComponent
       },
       {
         path: 'prescription',
