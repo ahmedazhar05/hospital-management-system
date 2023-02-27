@@ -83,11 +83,11 @@ class Patient{
     -city: String
     -zip: int
     -bloodGroup: String
-    -documentType: DOCUMENT_TYPE
+    -documentType: String
     -documentNumber: String
     -status: boolean
     -is_blocked: boolean
-    -bloodGroup: BLOOD_GROUP
+    -bloodGroup: String
 }
 class Prescription{
     -id: Long
@@ -109,5 +109,12 @@ class MedicinePlan{
     -prescription: Prescription
     -duration: int
     -dosage: String
+}
+class Timeslot{
+    -id: Long
+    -doctor: Doctor
+    -dayOfWeek: DAY_OF_WEEK
+    -time: Time
+    -hours: Integer
 }
 @enduml

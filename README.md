@@ -1,5 +1,5 @@
 # Health+
-_Health+ is a Hospital Management System which is an integrated information system for managing all aspects of a hospital’s operations such as medical, administrative and compliance. It includes electronic health records and appointment scheduling, as well as Online Scheduling, Doctor and Patient Portals, Alert Software and Dietary features. By implementing Health+, hospitals and healthcare facilities can improve the quality of healthcare services provided to patients, streamline administrative tasks, and ensure compliance with regulations._
+_Health+ is a Hospital Management System which is an integrated information system for managing all aspects of a hospital’s operations such as medical, administrative and compliance. It includes electronic health records and appointment scheduling, as well as Online Scheduling, Doctor and Patient Portals, and Dietary features. By implementing Health+, hospitals and healthcare facilities can improve the quality of healthcare services provided to patients, streamline administrative tasks, and ensure compliance with regulations._
 ___
 
 ### Features:
