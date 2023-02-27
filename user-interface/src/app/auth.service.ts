@@ -8,7 +8,7 @@ import { ServerService } from './server.service';
 })
 export class AuthService {
 
-  constructor(private server: HttpClient) { }
+  constructor(private server: ServerService) { }
 
   private ONE_HOUR = 1000 * 60 * 60;
 
