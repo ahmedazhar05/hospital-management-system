@@ -1,8 +1,9 @@
 <app-carousel></app-carousel>
 <div class="row mx-3 mt-5">
+  <div class="col-12 p-4 bg-danger-subtle" *ngIf="isBlocked">You cannot book an appointment because you have been blocked!</div>
   <div class="border p-4 col overflow-auto">
     <form (ngSubmit)="onBooking()" #f="ngForm">
-      <fieldset>
+      <fieldset [disabled]="isBlocked">
         <legend><h2><b>Book and Appointment</b></h2></legend>
         <div class="row mb-3">
           <label for="symptom" class="col-sm-2 col-form-label">Symptom</label>

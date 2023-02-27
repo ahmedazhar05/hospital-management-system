@@ -133,7 +133,17 @@ export class BookAppointmentComponent implements BasePage, OnInit {
     return Utilities.formatDate(new Date(this.today.valueOf() + (dow + 1) * 1000 * 60 * 60 * 24));
   }
 
+  isBlocked = false;
+
   ngOnInit(): void {
+    let pid = this.auth.getUserId();
+    this.server.get('patients/' + pid)
+    .subscribe((d: any) => {
+      let pat = JSON.parse(d);
+      this.isBlocked = pat.status == 'BLOCKED';
+    })
+
+
     let week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     let dow = this.today.getDay() + 1;
     this.days = week.concat(week).slice(dow, 7 + dow);

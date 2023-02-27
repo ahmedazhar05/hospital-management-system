@@ -12,13 +12,13 @@
                     Link: <a href="{{p.fileUrl}}" target="_blank">{{p.fileUrl}}</a>
                 </div>
                 <span class="badge bg-primary">{{p.date.slice(0, 10)}}</span>
-                <div class="ms-3 align-self-center">
+                <div class="ms-3 align-self-center" *ngIf="!isBlocked">
                     <button type="button" class="btn-close" aria-label="Close" (click)="deleteReport(i)"
                         data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
                 </div>
             </div>
         </div>
-        <div class="mt-4">
+        <div class="mt-4" *ngIf="!isBlocked">
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add Report</button>
         </div>
     </div>

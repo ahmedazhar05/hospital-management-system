@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { isBlock } from 'typescript';
 import { BasePage } from '../app.component';
 import { AuthService } from '../auth.service';
 import { ServerService } from '../server.service';
@@ -29,8 +30,17 @@ export class ReportsListComponent implements OnInit, BasePage {
   @ViewChild(ToastComponent)
   private notify!: ToastComponent;
 
+  isBlocked: boolean = false;
+
   ngOnInit(): void {
     let userId = this.uid;
+
+    let pid = this.auth.getUserId();
+    this.server.get('patients/' + pid)
+    .subscribe((d: any) => {
+      let pat = JSON.parse(d);
+      this.isBlocked = pat.status == 'BLOCKED';
+    })
     
     this.server.get('reports/search', {
       patient: userId
