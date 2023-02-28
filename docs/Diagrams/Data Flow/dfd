@@ -26,7 +26,7 @@ skinparam default {
 }
 
 skinparam Box {
-    Padding 10
+    Padding 1
     BorderThickness 0.5
     BorderColor #CEDBE1
     BackgroundColor #edf5f9
@@ -61,15 +61,15 @@ skinparam Actor {
 }
 
 skinparam Rectangle {
-    Padding 20
+    Padding 2
     BorderThickness 0.5
     FontColor #1D234E
-    BackgroundColor #C1C6EC
+    BackgroundColor #FFFFFF
     BorderColor #202758
 }
 
 skinparam Participant {
-    Padding 20
+    Padding 2
     BorderThickness 1.5
     FontColor #3E4681
     BackgroundColor #ffffff
@@ -101,7 +101,7 @@ skinparam sequence {
     LifeLineBorderThickness 1
     LifeLineBackgroundColor #A9CCE3
     
-    BoxPadding 10
+    BoxPadding 1
     BoxBorderThickness 0.5
     BoxBorderColor #CEDBE1
     BoxBackgroundColor #edf5f9
@@ -119,34 +119,46 @@ skinparam sequence {
     GroupBodyBackgroundColor #f9f9f9
 }
 
+skinparam actorStyle awesome
 
-autonumber
-participant "Angular UI" as A
-participant "Authentication\nController" as SC
-participant "Authentication\nManager" as SM
-participant "Authentication\nDAO" as SD
-participant "Utility" as SU
+actor Patient as P
+actor Doctor as D
+actor Admin as A
 
-A->SC: POST /login\n(username, password)
-SC->SM: verify user credentials\n(username, password)
-SM->SD: fetch user from DB (username)
-activate SD
-alt user found
-    SD->>SM: return new User() object\nthat contains a hash
-    SM->SU:  calculate Hash (password)
-	activate SU
-    return return hash
-    alt both password-hash and hash from user object are equal
-        Note left of SM: using a JWT library
-        SM->>SC: create and return a new JWT
-        SC->>A: redir to /home with JWT
-    else hashes are not equal
-        SM-[#red]>>SC: throw new InvalidUserException()
-        SC->>A: HTTP 401 Unauthorized
-    end
-else user not found
-    return return null
-    SM-[#red]>>SC: throw new UserNotFoundException()
-    SC->>A: HTTP 401 Unauthorized
-end
+node "Hospital\nManagement\nSystem" as hms
+
+rectangle Login
+rectangle "Login " as l
+rectangle Signup
+rectangle "Add\nReport" as upload
+rectangle "View\nReport" as vr
+rectangle "View\nAppointment" as va
+rectangle "Create\nPrescription" as cp
+rectangle "View\nPrescription" as vp
+rectangle "Verify\nPatients" as verify
+
+P -up-> l : credentials
+D --> Login : credentials
+A --> Login : credentials
+A --> verify
+
+P -up-> Signup : "patient\ndetails"
+P -up-> upload : "report\nimage\nURL"
+P -up-> vp : "prescription\ndetails"
+
+D --> cp : "prescription\ndetails"
+D --> vr : "report\nimage"
+D --> va : "appointment\ndetails"
+
+
+l -up-> hms
+Login --> hms
+Signup -up-> hms
+upload -up-> hms
+vp -up-> hms
+cp --> hms
+vr --> hms
+va --> hms
+verify --> hms
+
 @enduml

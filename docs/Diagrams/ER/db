@@ -138,8 +138,7 @@ entity patients{
     * document_number: varchar
     weight: int
     blood_group: varchar
-    * status: boolean
-    * is_blocked: boolean
+    * status: varchar
 }
 entity departments{
 	* id: int <<PK>>
@@ -154,6 +153,7 @@ entity doctors{
     * designation: varchar
     * department: int <<FK>>
     * degrees: varchar
+    * degreesCertificateDate: datetime
     * experience: int
     * image_url: varchar
     * language: varchar

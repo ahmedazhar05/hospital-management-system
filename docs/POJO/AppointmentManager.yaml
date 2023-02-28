@@ -1,9 +1,0 @@
-class: AppointmentManager
-member variables:
-	-appointments: Appointment[]
-
-methods:
-	+bookAppointment(Appointment a): boolean
-	+cancelAppointment(Appointment a): boolean
-	+getPatientAppointments(Patient p): Appointment[]
-	+getDoctorAppointments(Doctor p): Appointment[]

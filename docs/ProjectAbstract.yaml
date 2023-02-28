@@ -2,7 +2,7 @@ Hospital Management System:
 	Title: Health+
 	
 	Overview: |
-		Health+ is a Hospital Management System which is an integrated information system for managing all aspects of a hospital’s operations such as medical, administrative and compliance. It includes electronic health records, appointment scheduling. Hospitals and healthcare facilities improve the quality of healthcare services, reduce operating costs, and improve the revenue cycle by using such hospital management systems. This Hospital Management System typically includes Online Scheduling, Doctor and Patient Portals, Alert Software and Dietary.
+		Health+ is a Hospital Management System which is an integrated information system for managing all aspects of a hospital’s operations such as medical, administrative and compliance. It includes electronic health records, appointment scheduling. Hospitals and healthcare facilities improve the quality of healthcare services, reduce operating costs, and improve the revenue cycle by using such hospital management systems. This Hospital Management System typically includes Online Scheduling, Doctor and Patient Portals and Dietary.
 	
 	Requirements:
 		- Appointment Booking management
@@ -22,4 +22,4 @@ Hospital Management System:
 			- Should be able to check his/her appointment history.
 		
 		Admin:
-			- Should be able to verify or block of a patient can whether they can allowed or not for the appoinment.
+			- Should be able to verify or block a patient whether they can be allowed for the appoinment or not.
