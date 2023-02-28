@@ -126,6 +126,11 @@ skinparam sequence {
 :Admin: as A
 
 rectangle "Health+"{
+    
+    A -down- (verif)
+    A -right- (Login )
+
+    (Verify/Block\nPatients) as (verif)
     (Book Appointment) as (bookA)
     (Create Prescription) as (createP)
     (View Prescription) as (viewP)
@@ -133,16 +138,18 @@ rectangle "Health+"{
     (View Appointments) as (viewA)
     (Upload Reports) as (updR)
     (Add Details) as (addD)
+    (View Details) as (viewD)
     (Select Symptoms,\nspecialization,\nDoctor and Timeslot) as (input)
-    (Create Bills) as (createB)
-    (add prescriptions\nto the bill) as (addP)
     
     P -- (Login)
-    P -- (Register)
+    P -left- (Register)
     (Register) -.-> (addD) : <<include>>
+    (Register) <-.- (viewD) : <<extend>>
+    (viewD) -.down-> (verif) : <<include>>
     (addD) <-.- (updR) : <<extend>>
     (updR) -.-> (viewR) : <<include>>
     (viewR) -- D
+    (Login) -- D
     
     P -- (bookA)
     (bookA) -.-> (input) : <<include>>
@@ -152,13 +159,5 @@ rectangle "Health+"{
     (createP) -- D
     (viewP) <-.- (createP) : <<include>>
     P -- (viewP)
-    
-    (Add/Delete/\nUpdate Doctor) -up- A
-    (createB) -up- A
-    (createB) -.-> (select Patient) : <<include>>
-    (select Patient) -.-> (addP) : <<include>>
-    (Book\nhospital\nbed) -up- A
-    (addP) -.-> (calculate amount) : <<include>>
 }
-
 @enduml

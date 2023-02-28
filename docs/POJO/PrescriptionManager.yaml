@@ -1,7 +1,0 @@
-class: PrescriptionManager
-member variables:
-	-appointments: Prescription[]
-
-methods:
-	+createPrescription(Prescription p): boolean
-	+getPatientDetails(int prescription_id): boolean

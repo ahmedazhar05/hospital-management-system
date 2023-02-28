@@ -1,9 +1,0 @@
----
-title: Admin Interaction
----
-erDiagram
-    Admin 1--1+ Bill: create
-    Admin 1--1+ Surgeries: get
-    Bill  1--1  Surgeries: access
-    Bill  1--1  Rooms: access
-    Admin 1--1  Rooms: get

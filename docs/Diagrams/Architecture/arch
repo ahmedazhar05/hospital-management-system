@@ -130,21 +130,14 @@ cloud "Amazon Web Service"{
         [Browser] -right-> ang: "Request"
         ang -left-> [Browser]: "Response"
     }
-    node "Authentication/\nAuthorization"{
-        [SpringBoot with\nSpring Security] as sec
-        ang <-down-> sec
-    }
-    node "Service Layer"{
-        [SpringBoot with\nSpring REST] as rest
-        sec <-right-> rest
-    }
     node "Data Access Layer"{
         [Spring Data JPA] as jpa
-        rest <--> jpa
+        ang --> jpa: "<color:orangered>PUT<color:black>,\n<color:green>POST<color:black>,\n<color:red>DELETE"
+        jpa --> ang: "<color:dodgerblue>GET"
     }
-    database "Database"{
-        jpa -right-> [mySQL]: "Query"
-        [mySQL] -left-> jpa: "Data"
+    database [<b>Database\n--\n\nmySQL\n--\n] as db {
     }
+    jpa -right-> db: "Query"
+    db -left-> jpa: "Data"
 }
 @enduml
