@@ -3,7 +3,7 @@ Signup:
 	- age
 	- contact number
 	- address
-	- email id(optional)
+	- email id
 	- verification docs:
 		- aadhar/pan
 
@@ -12,17 +12,9 @@ Patient:
 		- what he/she wants to get treated in? i.e. select speciality
 		- select a doctor from the list as per the speciality
 		- select a time slot as per doctors availability
-		- goto profile # a preview of his/her profile will be shown, and he/she can change if he wants
 	- fetch/view prescription
 	- appointment/report history
 	- future appointments(calendar)
-	- profile-update:
-		- upload reports
-		- update age
-		- update fullname
-		- update contact number
-		- update address
-		- update email id(optional)
 
 Doctor:
 	- future appointments(calendar)
@@ -34,39 +26,7 @@ Doctor:
 				- diet chart
 				- tests
 				- done with the patient
-		# - accept/reject future patient appointments
-	- get appointment history
-	- get list of attending doctors under him/her (depends on a doctor-position)
-	- &get-emergency-ping (this is only a popup)
-
-Nurses:
-	- get/fetch patient records
-	- get shift details
-	- *get-emergency-ping
-
-Helpdesk:
-	- ping emergency to the relevant doctors and nurses
-	- accept chat: # (chat people online through the chat box)
-		- send response messages
-		- close chat
+	- check appointments history
 
 Admin:
-	- add/remove/edit doctors/nurses/staff (staff management)
-	- add/remove/edit departments
-	- define prices for admitting room:
-		- for general beds
-		- for ICU beds
-	- define surgery prices
-	# - update shifts of doctor/nurse
-	- billing system:
-		- get prescription:
-			- get surgery details:
-				- get insurance ID and check claimability and scheme applicability
-			- calculate amount on the basis of prescription
-		- create a bill
-	- add/remove govt. schemes and insurances
-
-# Optional Additions that can be done:
-# 1. free appointments
-# 2. OT management
-# 3. Receptionist
+	- Verify/Block/Patient (staff management)
