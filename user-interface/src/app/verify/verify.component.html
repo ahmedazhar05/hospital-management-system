@@ -1,0 +1,137 @@
+<div class="d-flex align-items-center py-3 px-2 px-sm-5">
+    <div class="container text-center border p-3">
+        <h1>Search Patient</h1>
+        <div class="d-flex flex-column flex-sm-row mt-2">
+            <label for="search-patient" class="d-none d-sm-inline-block form-label align-self-center m-0"><b>Name:</b></label>
+            <input list="patients_list" type="text" #searchinput class="ms-sm-3 form-control" placeholder="Search Patient" id="search-patient">
+            <button class="btn btn-primary ms-0 mt-2 mt-sm-0 ms-sm-3" (click)="highlight()">Load Details</button>
+        </div>
+        <datalist id="patients_list">
+            <option *ngFor="let patient of plist; index as i" value="{{patient.firstName + ' ' + patient.lastName}} P#{{patient.id}}">
+        </datalist>
+    </div>
+</div>
+
+<div class="container my-3">
+    <form #f="ngForm" novalidate (ngSubmit)="verify();">
+        <fieldset disabled>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="validationTooltip01" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="validationTooltip01" value={{patient.firstName}}
+                        name="firstName">
+                </div>
+                <div class="col">
+                    <label for="validationTooltip02" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="validationTooltip02" value={{patient.lastName}}
+                        name="lastName">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="form-outline datepicker w-100">
+                        <label for="birthday" class="col-sm-4 col-form-label">Birthday:</label>
+                        <input type="date" class="form-control" id="birthday" name="dateOfBirth" value="{{dob}}">
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="form-outline datepicker w-100">
+                        <label for="gender" class="col-sm-4 col-form-label">Gender:</label>
+                        <input type="text" class="form-control" id="gender" name="gender" value="{{patient.gender}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label for="bloodgrp" class="form-label">Blood Group</label>
+                    <input type="text" class="form-control" id="bloodgrp" name="bloodGroup" value="{{patient.bloodGroup}}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="inputEmail" name="email" value="{{patient.email}}">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputNumber" class="form-label">Contact Number</label>
+                    <input type="number" class="form-control" id="inputNumber" name="contact" value="{{patient.contact}}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Address 3</label>
+                    <input type="text" class="form-control" id="inputAddress" name="addressLine1" value="{{patient.addressLine1}}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label for="inputAddress2" class="form-label">Address 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" name="addressLine2" value="{{patient.addressLine2}}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label for="inputAddress3" class="form-label">Address 3</label>
+                    <input type="text" class="form-control" id="inputAddress3" name="addressLine3" value="{{patient.addressLine3}}">
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="col-sm">
+                    <label for="validationServer04" class="form-label">State</label>
+                    <input type="text" class="form-control" id="validationServer03" value="{{patient.state}}" aria-describedby="validationServer03Feedback" name="state">
+                </div>
+                <div class="col-sm-5">
+                    <label for="validationServer03" class="form-label">City</label>
+                    <input type="text" class="form-control" id="validationServer03" value="{{patient.city}}" aria-describedby="validationServer03Feedback" name="city">
+                </div>
+                <div class="col-sm-3">
+                    <label for="validationServer05" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="validationServer05" value="{{patient.zip}}" aria-describedby="validationServer05Feedback" name="zip">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="doc_type" class="col-4  form-label select-label">Document Type:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputverificationId" name="documentNumber" value="{{patient.documentType}}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputverificationId" class="col-sm-4 col-form-label">Verification ID:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputverificationId" name="documentNumber" value="{{patient.documentNumber}}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inp" class="col-sm-4 col-form-label">Status:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inp" name="statuses" value="{{patient.status}}">
+                </div>
+            </div>
+        </fieldset>
+        <div class="row mt-2 align-items-center">
+            <div class="col-8">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="femaleGender" value="UNVERIFIED" [checked]="patient.status == 'UNVERIFIED'" required ngModel/>
+                    <label class="form-check-label" for="femaleGender">Mark as not verified</label>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="maleGender" value="VERIFIED" [checked]="patient.status == 'VERIFIED'" required ngModel/>
+                    <label class="form-check-label" for="maleGender">Mark as verified</label>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status" id="ender" value="BLOCKED" [checked]="patient.status == 'BLOCKED'" required ngModel/>
+                    <label class="form-check-label" for="ender">Block</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="d-flex justify-content-around">
+                    <a class="btn btn-secondary btn-lg" routerLink="/dashboard">Cancel</a>
+                    <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<app-toast></app-toast>

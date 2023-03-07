@@ -1,0 +1,7 @@
+nav.navbar {
+    background-color: #e3f2fd;
+}
+nav.navbar > div,
+nav.navbar + div {
+    max-width: 1000px;
+}

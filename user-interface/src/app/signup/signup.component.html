@@ -1,0 +1,177 @@
+<app-carousel [carousels]="carousel"></app-carousel>
+<section class="gradient-custom">
+    <div class="container pt-5">
+        <div class="justify-content-center align-items-center">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+
+            <form novalidate (ngSubmit)="onSignup()" #f="ngForm">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="validationTooltip01" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="validationTooltip01" maxlength="255" value="" name="firstName" required ngModel>
+                        <div class="valid-tooltip">Looks good!</div>
+                    </div>
+                    <div class="col">
+                        <label for="validationTooltip02" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="validationTooltip02" maxlength="255" value="" name="lastName" required ngModel>
+                        <div class="valid-tooltip">Looks good!</div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="form-outline datepicker w-100">
+                            <label for="birthday" class="col-sm-4 col-form-label">Birthday:</label>
+                            <input type="date" class="form-control" id="birthday" name="dateOfBirth" required ngModel>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="mb-2 py-2">Gender: </label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="maleGender" value="MALE" checked ngModel>
+                            <label class="form-check-label" for="maleGender">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="FEMALE" ngModel>
+                            <label class="form-check-label" for="femaleGender">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="otherGender" value="OTHERS" ngModel>
+                            <label class="form-check-label" for="otherGender">Other</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="bloodgrp" class="form-label">Blood Group</label>
+                        <select class="form-select" id="bloodgrp" name="bloodGroup" ngModel required>
+                            <option value="" disabled>Choose option</option>
+                            <option value="A_RHD_POSITIVE">A+</option>
+                            <option value="A_RHD_NEGATIVE">A-</option>
+                            <option value="B_RHD_POSITIVE">B+</option>
+                            <option value="B_RHD_NEGATIVE">B-</option>
+                            <option value="O_RHD_POSITIVE">O+</option>
+                            <option value="O_RHD_NEGATIVE">O-</option>
+                            <option value="AB_RHD_POSITIVE">AB+</option>
+                            <option value="AB_RHD_NEGATIVE">AB-</option>
+                            <option value="RH_NULL">RH null</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="inputEmail" name="email" maxlength="255" ngModel required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputNumber" class="form-label">Contact Number</label>
+                        <input type="number" class="form-control" id="inputNumber" min="1000000000" max="9999999999" name="contact" ngModel required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="inputAddress" class="form-label">Address 1</label>
+                        <input type="text" class="form-control" id="inputAddress" name="addressLine1" ngModel required maxlength="255">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Address 2</label>
+                        <input type="text" class="form-control" id="inputAddress2" name="addressLine2" ngModel maxlength="255">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="inputAddress3" class="form-label">Address 3</label>
+                        <input type="text" class="form-control" id="inputAddress3" name="addressLine3" ngModel maxlength="255">
+                    </div>
+                </div>
+                <div class="row g-3 mb-3">
+                    <div class="col-sm">
+                        <label for="validationServer04" class="form-label">State</label>
+                        <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" name="state" required ngModel>
+                            <option selected disabled value="">Choose...</option>
+                            <option value="ANDHRA_PRADESH">Andhra Pradesh</option>
+                            <option value="ARUNACHAL_PRADESH">Arunachal Pradesh</option>
+                            <option value="ASSAM">Assam</option>
+                            <option value="BIHAR">Bihar</option>
+                            <option value="CHHATTISGARH">Chhattisgarh</option>
+                            <option value="GOA">Goa</option>
+                            <option value="GUJARAT">Gujarat</option>
+                            <option value="HARYANA">Haryana</option>
+                            <option value="HIMACHAL_PRADESH">Himachal Pradesh</option>
+                            <option value="JHARKHAND">Jharkhand</option>
+                            <option value="KARNATAKA">Karnataka</option>
+                            <option value="KERALA">Kerala</option>
+                            <option value="MADHYA_PRADESH">Madhya Pradesh</option>
+                            <option value="MAHARASHTRA">Maharashtra</option>
+                            <option value="MANIPUR">Manipur</option>
+                            <option value="MEGHALAYA">Meghalaya</option>
+                            <option value="MIZORAM">Mizoram</option>
+                            <option value="NAGALAND">Nagaland</option>
+                            <option value="ODISHA">Odisha</option>
+                            <option value="PUNJAB">Punjab</option>
+                            <option value="RAJASTHAN">Rajasthan</option>
+                            <option value="SIKKIM">Sikkim</option>
+                            <option value="TAMIL_NADU">Tamil Nadu</option>
+                            <option value="TELANGANA">Telangana</option>
+                            <option value="TRIPURA">Tripura</option>
+                            <option value="UTTAR_PRADESH">Uttar Pradesh</option>
+                            <option value="UTTARAKHAND">Uttarakhand</option>
+                            <option value="WEST_BENGAL">West Bengal</option>
+                            <option value="ANDAMAN_AND_NICOBAR_ISLANDS">Andaman And Nicobar Islands</option>
+                            <option value="CHANDIGARH">Chandigarh</option>
+                            <option value="DADRA_AND_NAGAR_HAVELI_AND_DAMAN_AND_DIU">Dadra And Nagar Haveli And Daman And Diu</option>
+                            <option value="DELHI">Delhi</option>
+                            <option value="JAMMU_AND_KASHMIR">Jammu And Kashmir</option>
+                            <option value="LADAKH">Ladakh</option>
+                            <option value="LAKSHADWEEP">Lakshadweep</option>
+                            <option value="PUDUCHERRY">Puducherry</option>
+                        </select>
+                        <div id="validationServer04Feedback" class="invalid-feedback">Please select a valid state.</div>
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="validationServer03" class="form-label">City</label>
+                        <input type="text" class="form-control" id="validationServer03" maxlength="255" aria-describedby="validationServer03Feedback" required name="city" ngModel>
+                        <div id="validationServer03Feedback" class="invalid-feedback">Please provide a valid city.</div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="validationServer05" class="form-label">Zip</label>
+                        <input type="number" class="form-control" id="validationServer05" min="100000" max="999999" aria-describedby="validationServer05Feedback" required name="zip" ngModel>
+                        <div id="validationServer05Feedback" class="invalid-feedback">Please provide a valid zip.</div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="doc_type" class="col-4  form-label select-label">Document Type:</label>
+                    <div class="col-6">
+                        <select id="doc_type" class="form-select" name="documentType" ngModel required>
+                            <option value="1" disabled>Choose option</option>
+                            <option value="AADHAAR">Aadhaar card</option>
+                            <option value="PAN">Pan card</option>
+                            <option value="VOTER_ID">Voter Id</option>
+                            <option value="DRIVING_LICENSE">Driving License</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputverificationId" class="col-sm-4 col-form-label">Document ID:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="inputverificationId" name="documentNumber" maxlength="255" ngModel required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="password" class="col-sm-4 col-form-label">Password</label>
+                    <div class="col-md-6">
+                        <input type="password" class="form-control" id="password" name="hash" maxlength="255" ngModel required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-4 pt-2">
+                        <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<app-toast></app-toast>
