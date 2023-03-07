@@ -3,7 +3,7 @@ docs/*.odp
 
 docs/MFRP/GenC ADM FSE MFPE Design Considerations.pdf
 
-docs/*/*/*
+docs/MFRP/*/*
 !docs/*/*/*.pdf
 backup
 secrets
