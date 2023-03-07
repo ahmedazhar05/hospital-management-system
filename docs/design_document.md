@@ -27,7 +27,7 @@ Hospital Management System came into the picture of hospital management as early
     - Should be able to *verify patients* and if necessary, *block* them in case they cause nuisance.
     - Should be able to *log in* to my account with my username and password with valid credentials so that I can access and manage hospital information and resources.
 
-![Use Case Diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/ahmedazhar05/hospital-management-system/main/docs/Diagrams/Use%20Case/system-usage)
+![Use Case Diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/ahmedazhar05/hospital-management-system/main/docs/Diagrams/Use%2520Case/system-usage)
 
 ### Modules
 1. **Sign Up**
@@ -37,7 +37,7 @@ Hospital Management System came into the picture of hospital management as early
 7. **Add Reports**
 
 ### Schematic Diagram
-![Data Flow Diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/ahmedazhar05/hospital-management-system/main/docs/Diagrams/Data%20Flow/dfd)
+![Data Flow Diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/ahmedazhar05/hospital-management-system/main/docs/Diagrams/Data%2520Flow/dfd)
 
 ### Database Design
 ![ER Diagram](https://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/ahmedazhar05/hospital-management-system/main/docs/Diagrams/ER/db)
