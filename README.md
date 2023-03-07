@@ -10,8 +10,7 @@ ___
 - **Online prescription** - Doctors will be able to generate prescriptions for patients prescribing medicines, diet chart and related tests.
 - **Administration** - Admins can define all the functionalities of the hospital such as managing patient's health records, appointment scheduling, and doctor's information. In addition, they can also control the patient verification process to ensure the security of the hospital's data. The admin has the authority to verify the patients and decide whether to block them or grant them access to the system, ensuring that only authorized individuals have access to sensitive patient information.
 
-
 ### Users:
 - **Patients** - They are the primary users of different hospital services.
 - **Doctors** - They will be involved with interacting with patients and prescribing medicines to them.
-- **Admins** - They will have read access to the information about the patients, and they can verify or block them accordingly.
+- **Admins** - They will have read access to all the information about the patients and then they can verify or block them accordingly.

@@ -5,9 +5,6 @@ docs/MFRP/GenC ADM FSE MFPE Design Considerations.pdf
 
 docs/MFRP/*/*
 !docs/*/*/*.pdf
-user-interface
-.metadata
-data-access
+backup
 secrets
-data-access
-process-management
+.metadata

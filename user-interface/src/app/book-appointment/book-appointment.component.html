@@ -1,0 +1,73 @@
+<app-carousel></app-carousel>
+<div class="row mx-3 mt-5">
+  <div class="col-12 p-4 bg-danger-subtle" *ngIf="isBlocked">You cannot book an appointment because you have been blocked!</div>
+  <div class="border p-4 col overflow-auto">
+    <form (ngSubmit)="onBooking()" #f="ngForm">
+      <fieldset [disabled]="isBlocked">
+        <legend><h2><b>Book and Appointment</b></h2></legend>
+        <div class="row mb-3">
+          <label for="symptom" class="col-sm-2 col-form-label">Symptom</label>
+          <div class="col-sm-10">
+            <select class="form-select" id="symptom" name="symptom"  ngModel>
+              <option selected="" disabled="">Select a Symptom</option>
+              <option *ngFor="let sym of symptoms" value="{{sym}}">{{sym}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="speciality" class="col-sm-2 col-form-label">Speciality</label>
+          <div class="col-sm-10">
+            <select class="form-select" id="speciality" name="speciality" ngModel>
+              <option disabled>Select a Speciality</option>
+              <option *ngFor="let spl of speciality" value="{{spl}}">{{spl}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="doctor" class="col-sm-2 col-form-label">Doctor</label>
+          <div class="col-sm-10">
+            <select class="form-select" id="doctor" name="doctor" ngModel (change)="onDoctorChange()"> 
+            
+              <option selected="" disabled="">Select a Doctor</option>
+              <option *ngFor="let doc of doctors" value="{{doc.id}}">{{doc.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="day" class="col-sm-2 col-form-label">Day</label>
+          <div class="col-sm-10">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <ng-container *ngFor="let d of days; index as i">
+                  <input type="radio" class="btn-check" id="day-{{d}}" name="day" autocomplete="off" [checked]="selectedDay === i" value="{{i}}" (change)="onCh(i)">
+                  <label class="btn btn-outline-dark" for="day-{{d}}">{{d}}</label>
+                </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="slot" class="col-sm-2 col-form-label">Time<wbr>slot</label>
+          <div class="col-sm-10">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+              <ng-container *ngFor="let s of slots; index as i">
+                <input type="radio" class="btn-check" id="slot-{{i}}" value="{{s.id}}" name="slot" autocomplete="off" (change)="selectedSlot = s.id">
+                <label class="btn btn-outline-dark" for="slot-{{i}}">{{s.time}}</label>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <input type="submit" class="btn btn-primary fs-5" value=" Book ">
+      </fieldset>
+    </form>
+  </div>
+  <!--div class="border p-4 col-md-4">
+    <div class="container">
+      <h3><b>Reports</b></h3>
+      <div class="list-group">
+        <a *ngFor="let r of reports" [routerLink]="r.url" class="list-group-item list-group-item-action">{{r.name}}</a>
+      </div>
+      <br>
+      <a href="#" class="btn btn-warning float-end">Go to Profile</a>
+    </div>
+  </div-->
+</div>
+<app-toast></app-toast>
